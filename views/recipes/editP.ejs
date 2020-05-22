@@ -1,0 +1,28 @@
+<% include ../partials/header %>
+<br>
+<br>
+<br>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 col-md-12">
+                    <div class="card">
+                        <div class="card-title text-center title_new" id="name">
+                            <br>
+                            Edytuj zdjęcie główne przepisu <%= recipe.title %>
+                        </div>
+                        <div class="card-body">
+                                <form action="/recipes/<%= recipe._id %>/edit/profile" method="post" enctype="multipart/form-data">
+                                    
+                                    <p class="description_new">Wybierz zdjęcie</p>
+                                    <input type="file" name="profile">
+                                    <br>
+                                    <br>
+                                    <input type="submit" value="Edytuj zdjęcie główne" class="btn btn-outline-dark">
+                                </form>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+<% include ../partials/footer %>

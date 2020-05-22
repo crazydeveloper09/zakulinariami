@@ -1,0 +1,26 @@
+<% include ../partials/header %>
+<br>
+<br>
+<br>
+<div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-12">
+                <div class="card" style="background: #6c757d;">
+                    <div class="card-title title_new text-center" id="name">
+                        <br>
+                        Edytuj komentarz
+                    </div>
+                    <div class="card-body">
+                        <form action="/comment/<%= comment._id %>?_method=PUT" method="post">
+                            <p class="description_new">Edytuj treść</p>
+                            <textarea name="comment[text]" class="form-control" id="description" placeholder="Twój komentarz"><%= comment.text %></textarea>
+                            <br>
+                            <input type="submit" value="Edytuj komentarz" class="btn btn-primary" style="background: none; color:#212529; border-color:#212529;">
+                        </form>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+<% include ../partials/footer %>

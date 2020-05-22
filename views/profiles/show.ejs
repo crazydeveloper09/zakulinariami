@@ -1,0 +1,70 @@
+<% include ../partials/header %>
+<br>
+<br>
+<br>
+<div class="container">
+    
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-12">
+            <div class="card">
+                <img src="<%= thisUser.profile %>" alt="" class="card-img-top">
+                <div class="card-title text-center title">
+                    <br>
+                    <%= thisUser.username %>
+                    
+                </div>
+                <div class="card-body">
+                    <% if( thisUser.description !== ""){ %>
+                        <p class="description"><%= thisUser.description %></p>
+                    <% } else { %>
+                        <div class="alert alert-dark" role="alert">
+                            Nie dodałem jeszcze swojego opisu
+                        </div>
+                    <% } %>
+                    <dl>
+                        <dt class="description_new">Wiek</dt>
+                      
+                            <% if( thisUser.age !== ""){ %>
+                                <dd class="description"><%= thisUser.age %></dd>
+                            <% } else { %>
+                                <div class="alert alert-dark" role="alert">
+                                   Nie dodałem jeszcze swojego wieku
+                                </div>
+                            <% } %>
+                       
+                       
+                        <dt class="description_new">Miejscowość</dt>
+                        
+                            <% if( thisUser.city !== ""){ %>
+                                <dd class="description"><%= thisUser.city %></dd>
+                            <% } else { %>
+                                <div class="alert alert-dark" role="alert">
+                                    Nie dodałem jeszcze swojej miejscowości zamieszkania
+                                </div>
+                            <% } %>
+                        
+                       
+                        <dt class="description_new">Zainteresowania</dt>
+                        
+                            <% if( thisUser.hobbies !== ""){ %>
+                                <dd class="description"><%= thisUser.hobbies %></dd>
+                            <% } else { %>
+                                <div class="alert alert-dark" role="alert">
+                                    Nie dodałem jeszcze swoich zainteresowań
+                                </div>
+                            <% } %>
+                        
+                        
+                            
+                        
+                    </dl>
+                    <% if(currentUser){ %>
+                        <a href="/about/<%= currentUser._id %>/edit" class="btn btn-outline-dark">Edytuj o mnie</a>
+                    <% } %>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<% include ../partials/footer %>

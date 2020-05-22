@@ -1,0 +1,37 @@
+<% include ../partials/header %>
+<br>
+<br>
+<br>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-12">
+            <div class="card">
+                <div class="card-title text-center title_new" id="name">
+                    <br>
+                    <% if(comment.nickname){ %>
+                        Dodaj odpowiedż do komentarza <%= comment.nickname %>: <%= comment.text %> do przepisu <%= comment.recipe.title %>
+                    <% } else { %>
+                        Dodaj odpowiedż do komentarza <%= comment.author[0].username %>: <%= comment.text %> do przepisu <%= comment.recipe.title %>
+                    <% } %>
+                    
+                </div>
+                <div class="card-body">
+                        <form action="/recipes/<%= comment.recipe.link %>/comments/<%= comment._id %>/answers" method="post">
+                            <% if(!currentUser){ %>
+                                <p class="description_new">Podaj swój nick</p>
+                                <input type="text" name="nickname" class="form-control" placeholder="Nick">
+                                <br>
+                            <% } %>
+                            
+                            <p class="description_new">Tekst odpowiedzi</p>
+                            <textarea name="text" id="description" class="form-control" placeholder="Tekst odpowiedzi"></textarea>
+                            <br>
+                            <input type="submit" value="Dodaj nową odpowiedź" class="btn btn-outline-dark">
+                        </form>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+<% include ../partials/footer %>

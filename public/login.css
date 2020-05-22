@@ -1,0 +1,60 @@
+body:before {
+	content: '';
+    background-size: cover;
+    background-position: center; 
+
+	background: url(kuchnia.jpg) no-repeat;
+	background-attachment: fixed;
+	height: 100%;
+	width: 100%;
+	position: fixed;
+	
+}
+
+body,
+html {
+    margin:0;
+	padding:0;
+   
+ 
+}
+.container {
+    filter: none;
+}
+
+.card {
+    margin-top: 80%;
+}
+.headerp {
+    font-family: "Nunito", sans-serif;
+    font-size: 23px;
+    font-weight: 700;
+    color: #212529;
+}
+
+input[type=text],
+input[type=password],
+input[type=email] {
+    background: none;
+    border: 1px solid #212529;
+   
+    color: #212529;
+}
+
+input[type=text]::placeholder,
+input[type=password]::placeholder,
+input[type=email]::placeholder{
+    
+    color: #212529;
+}
+
+.card {
+    opacity: 0.9;
+}
+
+@media (max-width: 992px) {
+	.card {
+        margin-top: 50%;
+    }
+	
+}

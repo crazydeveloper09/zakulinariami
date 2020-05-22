@@ -1,0 +1,215 @@
+#mainNav .nav-link {
+    font-family: "Nunito", sans-serif;
+    text-transform: uppercase;
+    color: #212529;
+}
+
+#mainNav .nav-link:hover,
+#mainNav .active {
+    color: #f5f6fa;
+    background: #212529;
+}
+.navbar-brand {
+    font-family: "Nunito", sans-serif;
+    text-transform: uppercase;
+    color: #212529;
+    font-weight: 100;
+}
+.header {
+    font-family: "Nunito", sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    color: #212529;
+}
+.headerp {
+    font-family: "Nunito", sans-serif;
+    font-size: 23px;
+    font-weight: 700;
+    color: #212529;
+}
+.user_img{
+    height: 70px;
+    width: 70px;
+    border:1.5px solid #f5f6fa;
+
+}
+.user_img_post {
+    height: 25px;
+    width: 25px;
+    border:1px solid #f5f6fa;
+
+}
+
+.bg-grey {
+    background: #d7dbd8;
+}
+#name {
+    font-family: "Nunito", sans-serif;
+    font-size: 21px;
+    font-weight: 700;
+    color: #212529; 
+}
+.description {
+    font-family: "Nunito", sans-serif;
+    font-size: 19px;
+    
+    color: #212529;
+}
+
+.description_comment {
+    font-family: "Nunito", sans-serif;
+    font-size: 17px;
+    top: 30%;
+    color: #212529;
+}
+.info {
+    font-family: "Nunito", sans-serif;
+    font-size: 12px;
+   
+    color: #212529;
+}
+
+.footer {
+    font-family: "Nunito", sans-serif;
+    font-size: 13px;
+   
+    color: #212529;
+}
+
+.title {
+    font-family: "Nunito", sans-serif;
+    font-size: 25px;
+    font-weight: 700;
+    color: #212529;
+}
+body {
+    background: #d7dbd8;
+}
+
+.title_new {
+    font-family: "Nunito", sans-serif;
+    font-size: 25px;
+    font-weight: 700;
+    color: #212529;
+}
+
+.description_new {
+    font-family: "Nunito", sans-serif;
+    font-size: 20px;
+    color: #212529;
+}
+
+.preparation {
+    font-family: "Nunito", sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #212529;
+}
+
+input[type=text],
+input[type=password],
+input[type=email],
+input[type=number],
+input[type=search] {
+    background: none;
+    border-bottom: 1px solid #212529;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    color: #212529;
+}
+
+input[type=text]::placeholder,
+input[type=password]::placeholder,
+input[type=email]::placeholder,
+input[type=number]::placeholder,
+input[type=search]::placeholder {
+    
+    color: #212529;
+}
+
+.date_comment {
+    text-transform: uppercase;
+    font-family: 'Nunito', sans-serif;
+    color: #212529;
+    
+    left: 0;
+    
+    letter-spacing: 0.1em;
+}
+.informations {
+   
+    font-family: 'Nunito', sans-serif;
+    color: #212529;
+    font-weight: 700;
+}
+.date {
+    text-transform: uppercase;
+    font-family: 'Nunito', sans-serif;
+    color: #212529;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+}
+
+#description,
+#select {
+    background: none;
+                                    border-bottom: 1px solid #212529;
+                                    border-top: none;
+                                    border-right: none;
+                                    border-left: none;
+                                    color: #212529;
+                                    font-family: 'Nunito', sans-serif;
+}
+
+#description::placeholder,
+#comment::placeholder {
+    color: #212529;
+    font-family: 'Nunito', sans-serif;
+}
+
+.btn-like {
+    background: none;
+    color: #212529;
+    font-family: 'Nunito', sans-serif;
+
+    border: none;
+}
+
+.msg_cotainer{
+   
+    
+   
+    background: none;
+    padding: 10px;
+   
+    max-width: 100%;
+    font-family: 'Nunito', sans-serif;
+}
+.author {
+    
+    left: 10%;
+    bottom: -15px;
+    font-size: 17px;
+    bottom: 30%;
+    
+    color: #212529;
+    font-family: 'Nunito', sans-serif;
+}
+
+.img_cont_msg{
+    height: 40px;
+    width: 40px;
+}
+
+.img_cont_comments {
+    background: lightgreen;
+    height: 40px;
+    width: 40px;
+}
+
+.img_cont_comments:nth-of-type(2) {
+    background: lightsalmon;
+    height: 40px;
+    width: 40px;
+}

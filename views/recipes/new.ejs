@@ -1,0 +1,42 @@
+<% include ../partials/header %>
+       <br>
+       <br>
+       <br>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 col-md-12">
+                    <div class="card">
+                        <div class="card-title text-center title_new" id="name">
+                            <br>
+                            Dodaj nowy przepis
+                        </div>
+                        <div class="card-body">
+                                <form action="/recipes" method="post" enctype="multipart/form-data">
+                                    <p class="description_new">Tytuł przepisu</p>
+                                    <input type="text" name="title" class="form-control" placeholder="Tytuł przepisu">
+                                    <br>
+                                    <p class="description_new">Ilość godzin potrzebnych do przygotowania</p>
+                                    <input type="number" name="hours" class="form-control" placeholder="Godziny">
+                                    <br>
+                                    <p class="description_new">Ilość minut potrzebnych do przygotowania</p>
+                                    <input type="number" name="minutes" class="form-control" placeholder="Minuty">
+                                    <br>
+                                    <p class="description_new">Ilość porcji</p>
+                                    <input type="number" name="plates" class="form-control" placeholder="Porcje">
+                                    <br>
+                                    <p class="description_new">Opis przepisu</p>
+                                    <textarea name="description" id="description" class="form-control" placeholder="Opis przepisu"></textarea>
+                                    <br>
+                                    <p class="description_new">Zdjęcie główne przepisu</p>
+                                    <input type="file" name="profile">
+                                    <br>
+                                    <br>
+                                    <input type="submit" value="Dodaj przepis" class="btn btn-outline-dark">
+                                </form>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+<% include ../partials/footer %>

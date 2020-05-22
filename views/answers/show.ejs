@@ -1,0 +1,92 @@
+<% include ../partials/header %>
+<br>
+<br>
+<br>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-12">
+            <div class="card">
+                <div class="card-title text-center title_new" id="name">
+                    <br>
+                    <% if(comment.nickname){ %>
+                        Odpowiedzi do komentarza <%= comment.nickname %>: <q><%= comment.text %></q> do przepisu <a href="/recipes/<%= comment.recipe.link %>" style="color: #212529;"><%= comment.recipe.title %></a>
+                    <% } else { %>
+                        Odpowiedzi do komentarza <%= comment.author[0].username %>: <q><%= comment.text %></q> do przepisu <a href="/recipes/<%= comment.recipe.link %>" style="color: #212529;"><%= comment.recipe.title %></a>
+                    <% } %>
+                    
+                </div>
+                <div class="card-body">
+                    <% if(answers.length===0){ %>
+                        <div>
+                            <a href="/recipes/<%= comment.recipe.link %>/comments/<%= comment._id %>/answers/new" class="btn btn-outline-dark">Dodaj nową odpowiedź</a>
+                        </div>
+                     
+                        <br>
+                        <div class="alert alert-secondary text-center" role="alert">
+                            Nie mamy jeszcze odpowiedzi do tego komentarza
+                        </div>
+                    <% } else { %>
+                        <div>
+                            <a href="/recipes/<%= comment.recipe.link %>/comments/<%= comment._id %>/answers/new" class="btn btn-outline-dark">Dodaj nową odpowiedź</a>
+                        </div>
+                     
+                        <br>
+                        <div style="height: 500px; overflow-y:scroll">
+
+                            <% for(let i=0; i<answers.length;i++){ %>
+                                <% if(answers[i].nickname) { %>
+                                    
+                                        <div class="d-flex justify-content-start mb-4 messages">
+                                            <div class="img_cont_msg">
+                                                <div class="rounded-circle img_cont_comments"></div>
+                                            </div>
+                                            <div class="msg_cotainer">
+                                                <p class="author"><strong><%= answers[i].nickname %></strong></p>
+                                                <p class="description_comment"><%= answers[i].text %></p>
+                                                <span class="date_comment"><%= answers[i].written.toLocaleDateString() %></span>
+                                               
+                                                
+                                            </div>
+    
+                                        </div>
+    
+    
+    
+    
+                                    
+                                    <hr>
+                                <% } else { %>
+                                   
+                                        <div class="d-flex justify-content-start mb-4 messages">
+                                            <div class="img_cont_msg">
+                                                <img src="<%= answers[i].author.profile %>" class="rounded-circle img_cont_msg">
+                                            </div>
+                                            <div class="msg_cotainer">
+                                                <p class="author"><strong><%= answers[i].author.username %></strong></p>
+                                                <p class="description_comment"><%= answers[i].text %></p>
+                                                <span class="date_comment"><%= answers[i].written.toLocaleDateString() %></span>
+                                              
+                                            </div>
+    
+                                        </div>
+    
+    
+    
+    
+                                    
+                                    <hr>
+                                <% } %>
+                                
+
+                            <% } %>
+
+                        </div>
+
+                    <% } %>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+<% include ../partials/footer %>

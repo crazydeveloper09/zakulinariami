@@ -1,0 +1,30 @@
+<% include ../partials/header %>
+<br>
+<br>
+<br>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-12">
+            <div class="card">
+                <div class="card-title text-center title_new" id="name">
+                    <br> 
+                
+                    Edytuj <%= product.title %>
+                </div>
+                <div class="card-body">
+                    <form action="/products/<%= product._id %>?_method=PUT" method="post">
+                        <p class="description_new">Edytuj tytuł</p>
+                        <input type="text" name="product[title]" class="form-control" value="<%= product.title %>" placeholder="Tytuł produktu">
+                        <br>
+                        <p class="description_new">Edytuj opis</p>
+                        <textarea name="product[description]" class="form-control" id="description" placeholder="Opis produktu"><%= product.description %></textarea>
+                        <br>
+                        <input type="submit" value="Edytuj produkt" class="btn btn-outline-dark">
+                    </form>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+</div>
+<% include ../partials/footer %>

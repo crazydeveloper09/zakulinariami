@@ -1,0 +1,70 @@
+<% include ../partials/header %>
+<br>
+<br>
+<br>
+<div class="container">
+    
+    
+ 
+   
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <h1 class="headerp text-center">
+                Wyszukiwanie produktów dla parametru <%= param %> : <%= products.length %>
+            </h1>
+            <% if(currentUser){ %>
+                <a href="/products/new" class="btn btn-outline-dark text-center">Dodaj produkt</a>
+              
+            <% } %>
+            <form action="/products/title/search" method="get">
+                <div class="input-group mb-3">
+                    <input type="search" id="news" autocomplete="off" class="form-control" name="title" value="<%= param %>" placeholder="Wpisz tytuł produktu" aria-label="Wpisz tytuł produktu" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-dark" type="submit" style="border:none; border-bottom: 1px solid #212529;"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <% if(products.length===0){ %>
+        <br>
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-12">
+                <div class="alert alert-secondary text-center" role="alert">
+                    Nie znaleźliśmy produktów dla parametru <%= param %>
+                </div>
+            </div>
+        </div>
+    <% } else { %>
+        <div class="row">
+                
+                    <% for(let i=products.length-1; i>=0;i--){ %>
+                        <div class="col-lg-4 col-md-12">
+                            <div class="card">
+                                <img src="<%= products[i].profile %>" alt="" class="card-img-top">
+                                <br>
+                                <div class="card-title text-center title">
+                                    <a href="/products/<%= products[i].link %>" style="color: #212529"><%= products[i].title %></a>
+                                    
+                                </div>
+                                <div class="card-body">
+                                    <p class="description"><%= products[i].description.substring(0,300) %></p>
+                                   
+                                    
+                                    <a href="/products/<%= products[i].link %>" class="btn btn-outline-dark">Zobacz dlaczego warto jeść</a>
+                        
+                        
+                                </div>
+                        
+                            </div>
+                        </div>
+                    <% } %>
+                
+        </div>
+       
+    <% } %>
+    
+    
+</div>
+<% include ../partials/footer %>

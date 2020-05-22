@@ -1,0 +1,239 @@
+<% include ../partials/header %>
+<br>
+<br>
+<br>
+<div class="container">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <img src="<%= recipe.profile %>" alt="" class="card-img-top">
+                <br>
+                <div class="card-title text-center title"><%= recipe.title %></div>
+                <div class="card-body">
+                    <div class="informations">
+                        <p>
+                            <i class="far fa-clock" style="margin-right: 6px;"></i>
+                            <span>
+                                <% if(recipe.hours === 0){ %>
+                                    <%= `Czas przygotowania: ${recipe.minutes}min` %>
+                                <% } else { %>
+                                    <%= `Czas przygotowania: ${recipe.hours}h ${recipe.minutes}min` %>
+                                <% } %>
+                            
+                            </span>
+                        </p>
+                        <% if(recipe.categories.length !== 0){ %>
+                            <p>
+                                <i class="fas fa-tag" style="margin-right: 6px;"></i>
+            
+                                <span>
+                                    
+                                    <% for(let i=0;i< recipe.categories.length;i++){ %>
+                                        <a href="/recipes/category/<%= recipe.categories[i].link %>" style="color: #212529;"><%= recipe.categories[i].name %>,</a>
+                                    <% } %>
+                                </span>
+                            </p>
+                        <% } %>
+                        <% if(recipe.products.length !== 0){ %>
+                            <p>
+                                <i class="fas fa-shopping-bag" style="margin-right: 6px;"></i>
+            
+                                <span>
+                                    Wykorzystane produkty:
+                                    <% for(let i=0;i< recipe.products.length;i++){ %>
+                                        <a href="/products/<%= recipe.products[i].link %>" style="color: #212529;"><%= recipe.products[i].title %>,</a>
+                                    <% } %>
+                                </span>
+                            </p>
+                        <% } %>
+                        <p>
+                            <i class="fas fa-utensils" style="margin-right: 6px;"></i>
+                            <span>Porcje: <%= recipe.plates %></span>
+                        </p>
+                        <p>
+                            <i class="far fa-user" style="margin-right: 6px;"></i>
+                            <span>Dodane przez: <%= recipe.author[0].username %></span>
+                        </p>
+                     
+                        
+                       
+                    </div>
+                    <p class="description"><%= recipe.description %></p>
+                  
+                    <p class="preparation">Składniki: </p>
+                    <% if(recipe.ingredients.length === 0){ %>
+                        <div class="row">
+                            <div class="col-lg-6 col-sm-12">
+                                <div class="alert alert-secondary" role="alert">
+                                    Nie mamy jeszcze składników do tego przepisu
+                                </div>
+                            </div>
+                        </div>
+                        
+                    <% } else { %>
+                        <ul>
+                            <% for(let i=0;i<recipe.ingredients.length;i++){ %>
+                                <li class="description_comment"><%= recipe.ingredients[i].text %></li>
+                                <% if(currentUser) { %>
+                                    <div class="d-inline">
+                                        <a href="/recipes/<%= recipe._id %>/ingredients/<%= recipe.ingredients[i]._id %>/edit">Edytuj</a>
+                                        <a href="/recipes/<%= recipe._id %>/ingredients/<%= recipe.ingredients[i]._id %>/delete">Usuń</a>
+                                    </div>
+                                   
+                                <% } %>
+                            <% } %>
+                        </ul>
+                    <% } %>
+                   
+                    <p class="preparation">Sposób przygotowania: </p>
+                    <% if(recipe.preparations.length === 0){ %>
+                        <div class="row">
+                            <div class="col-lg-6 col-sm-12">
+                                <div class="alert alert-secondary" role="alert">
+                                    Nie mamy jeszcze kroków przygotowania do tego przepisu
+                                </div>
+                            </div>
+                        </div>
+                    <% } else { %>
+                        <ol>
+                            <% for(let i=0;i<recipe.preparations.length;i++){ %>
+                                <li class="description_comment"><%= recipe.preparations[i].text %></li>
+                                <% if(currentUser) { %>
+                                   
+                                    <a href="/recipes/<%= recipe._id %>/preparations/<%= recipe.preparations[i]._id %>/edit">Edytuj</a>
+                                    <a href="/recipes/<%= recipe._id %>/preparations/<%= recipe.preparations[i]._id %>/delete">Usuń</a>
+                                    
+                                    
+                                <% } %>
+                            <% } %>
+                        </ol>
+                    <% } %>
+
+                    <% if(recipe.pictures.length !== 0){ %>
+                        <p class="preparation">Galeria</p>
+                           <div class="row">
+                                <% for(let i=0;i< recipe.pictures.length;i++){ %>
+                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                        <img src="<%= recipe.pictures[i].source %>" alt="Galeria" class="img-thumbnail">
+                                    </div>
+                                    
+                                
+                                <% } %>
+                           </div>
+                           
+                                
+                       
+                    <% } %>
+                    <br>
+                    <p class="date"> Ostatnia aktualizacja: <%= recipe.written.toLocaleDateString() %></p>
+
+
+
+                    <% if(currentUser){ %>
+                        <div class="dropdown">
+                            <button class="btn btn-outline-dark dropdown-toggle justify-content-center" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                               Modyfikacja
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="background: #eeeeee">
+                              
+    
+                                <a class="dropdown-item" href="/recipes/<%= recipe._id %>/edit">Edytuj przepis</a>
+                                <a class="dropdown-item" href="/recipes/<%= recipe._id %>/delete">Usuń przepis</a>
+                                <a class="dropdown-item" href="/recipes/<%= recipe._id %>/edit/profile">Edytuj zdjęcie główne</a>
+                                <a class="dropdown-item" href="/recipes/<%= recipe._id %>/add/picture">Dodaj zdjęcie do galerii</a>
+                                <a class="dropdown-item" href="/recipes/<%= recipe._id %>/ingredients/add">Dodaj składnik</a>
+                                <a class="dropdown-item" href="/recipes/<%= recipe._id %>/preparations/add">Dodaj sposób przygotowania</a>
+                               
+                                
+                            </div>
+                        </div>
+                        <br>
+                       
+
+
+                    <% }  %>
+
+                </div>
+                <div class="card-footer">
+                    <h2 class="title">Komentarze <span style="margin-left: 4%"><%= comments.length %></span></h2>
+                    <% if(comments.length===0){ %>
+                        <div>
+                            <a href="/recipes/<%= recipe.link %>/comments/new" class="btn btn-outline-dark">Dodaj nowy komentarz</a>
+                        </div>
+                     
+                        <br>
+                        <div class="alert alert-secondary text-center" role="alert">
+                            Nie mamy jeszcze komentarzy do tego przepisu
+                        </div>
+                    <% } else { %>
+                        <div>
+                            <a href="/recipes/<%= recipe.link %>/comments/new" class="btn btn-outline-dark">Dodaj nowy komentarz</a>
+                        </div>
+                     
+                        <br>
+                        <div style="height: 500px; overflow-y:scroll">
+
+                            <% for(let i=comments.length-1; i>=0;i--){ %>
+                                <% if(comments[i].nickname) { %>
+                                    
+                                        <div class="d-flex justify-content-start mb-4 messages">
+                                            <div class="img_cont_msg">
+                                                <div class="rounded-circle img_cont_comments"></div>
+                                            </div>
+                                            <div class="msg_cotainer">
+                                                <p class="author"><strong><%= comments[i].nickname %></strong></p>
+                                                <p class="description_comment"><%= comments[i].text %></p>
+                                                <span class="date_comment"><%= comments[i].written.toLocaleDateString() %></span>
+                                                <br>
+                                                <br>
+                                                <a href="/recipes/<%= recipe.link %>/comments/<%= comments[i]._id %>/answers/new" style="color: #212529;margin-right: 5px">Odpowiedz</a>
+                                                <a href="/recipes/<%= recipe.link %>/comments/<%= comments[i]._id %>/answers/" style="color: #212529">Zobacz odpowiedzi(<%= comments[i].answers.length %>)</a>
+                                                
+                                            </div>
+    
+                                        </div>
+    
+    
+    
+    
+                                    
+                                    <hr>
+                                <% } else { %>
+                                   
+                                        <div class="d-flex justify-content-start mb-4 messages">
+                                            <div class="img_cont_msg">
+                                                <img src="<%= comments[i].author[0].profile %>" class="rounded-circle img_cont_msg">
+                                            </div>
+                                            <div class="msg_cotainer">
+                                                <p class="author"><strong><%= comments[i].author[0].username %></strong></p>
+                                                <p class="description_comment"><%= comments[i].text %></p>
+                                                <span class="date_comment"><%= comments[i].written.toLocaleDateString() %></span>
+                                                <br>
+                                                <br>
+                                                <a href="/recipes/<%= recipe.link %>/comments/<%= comments[i]._id %>/answers/new" style="color: #212529;margin-right: 5px">Odpowiedz</a>
+                                                <a href="/recipes/<%= recipe.link %>/comments/<%= comments[i]._id %>/answers/" style="color: #212529">Zobacz odpowiedzi(<%= comments[i].answers.length %>)</a>
+                                            </div>
+    
+                                        </div>
+    
+    
+    
+    
+                                    
+                                    <hr>
+                                <% } %>
+                                
+
+                            <% } %>
+
+                        </div>
+
+                    <% } %>
+
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <% include ../partials/footer %>

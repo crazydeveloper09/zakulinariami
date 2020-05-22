@@ -1,0 +1,28 @@
+<% include ../partials/header %>
+<br>
+<br>
+<br>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-12">
+            <div class="card">
+                <div class="card-title text-center title_new" id="name">
+                    <br>
+                    Dodaj cechę dlaczego warto jeść do <%= product.title %>
+                </div>
+                <div class="card-body">
+                        <form action="/products/<%= product._id %>/whyToEat" method="post">
+                            
+                            <p class="description_new">Opis cechy</p>
+                            <textarea name="text" id="description" class="form-control" placeholder="Cecha dlaczego warto jeść"></textarea>
+                            <br>
+                           
+                            <input type="submit" value="Dodaj cechę" class="btn btn-outline-dark">
+                        </form>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+<% include ../partials/footer %>
