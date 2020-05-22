@@ -7,7 +7,7 @@ app.use(flash());
 
 router.get("/", function (req, res) {
     let username = "crazyadmin";
-    Blogger.findOne({username: username}, function (err, user) {
+    Blogger.findOne({}, function (err, user) {
         if (err) {
             console.log(err);
         } else {

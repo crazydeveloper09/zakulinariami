@@ -7,15 +7,15 @@
     <div class="row justify-content-center">
         <div class="col-lg-8 col-md-12">
             <div class="card">
-                <img src="<%= thisUser.profile %>" alt="" class="card-img-top">
+                <img src="<%= thisUser[0].profile %>" alt="" class="card-img-top">
                 <div class="card-title text-center title">
                     <br>
-                    <%= thisUser.username %>
+                    <%= thisUser[0].username %>
                     
                 </div>
                 <div class="card-body">
-                    <% if( thisUser.description !== ""){ %>
-                        <p class="description"><%= thisUser.description %></p>
+                    <% if( thisUser[0].description !== ""){ %>
+                        <p class="description"><%= thisUser[0].description %></p>
                     <% } else { %>
                         <div class="alert alert-dark" role="alert">
                             Nie dodałem jeszcze swojego opisu
@@ -24,8 +24,8 @@
                     <dl>
                         <dt class="description_new">Wiek</dt>
                       
-                            <% if( thisUser.age !== ""){ %>
-                                <dd class="description"><%= thisUser.age %></dd>
+                            <% if( thisUser[0].age !== ""){ %>
+                                <dd class="description"><%= thisUser[0].age %></dd>
                             <% } else { %>
                                 <div class="alert alert-dark" role="alert">
                                    Nie dodałem jeszcze swojego wieku
@@ -35,8 +35,8 @@
                        
                         <dt class="description_new">Miejscowość</dt>
                         
-                            <% if( thisUser.city !== ""){ %>
-                                <dd class="description"><%= thisUser.city %></dd>
+                            <% if( thisUser[0].city !== ""){ %>
+                                <dd class="description"><%= thisUser[0].city %></dd>
                             <% } else { %>
                                 <div class="alert alert-dark" role="alert">
                                     Nie dodałem jeszcze swojej miejscowości zamieszkania
@@ -46,8 +46,8 @@
                        
                         <dt class="description_new">Zainteresowania</dt>
                         
-                            <% if( thisUser.hobbies !== ""){ %>
-                                <dd class="description"><%= thisUser.hobbies %></dd>
+                            <% if( thisUser[0].hobbies !== ""){ %>
+                                <dd class="description"><%= thisUser[0].hobbies %></dd>
                             <% } else { %>
                                 <div class="alert alert-dark" role="alert">
                                     Nie dodałem jeszcze swoich zainteresowań
