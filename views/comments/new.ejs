@@ -1,4 +1,4 @@
-<% include ../partials/header %>
+<%- include("../partials/header") %>
 <br>
 <br>
 <br>
@@ -13,7 +13,7 @@
                 <div class="card-body">
                         <form action="/recipes/<%= recipe.link %>/comments" method="post">
                             <% if(!currentUser){ %>
-                                <p class="description_new">Podaj swój nick</p>
+                                <p class="description_new">Podaj swรณj nick</p>
                                 <input type="text" name="nickname" class="form-control" placeholder="Nick">
                                 <br>
                             <% } %>
@@ -29,4 +29,4 @@
         </div>
     </div>
 </div>
-<% include ../partials/footer %>
+<%- include("../partials/footer") %>
