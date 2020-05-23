@@ -84,7 +84,7 @@ router.get("/:product_id/recipes/add", isLoggedIn, (req, res) => {
                     if(err){
                         console.log(err)
                     } else {
-                         Product.find({products: req.params.product_id}, (err, thisNotAdd) => {
+                        Product.find({products: req.params.product_id}, (err, thisNotAdd) => {
                             if(err){
                                 console.log(err)
                             } else {
@@ -92,6 +92,7 @@ router.get("/:product_id/recipes/add", isLoggedIn, (req, res) => {
                                 res.render("./products/addRecipe", {thisNotAdd: thisNotAdd,header:header, productSubpage:"",product:product, recipes:recipes, currentUser: req.user})
                             }
                         })
+                        
                     }
                 })
         }
@@ -152,7 +153,7 @@ router.put("/:id", isLoggedIn, (req, res) => {
         if(err) {
             console.log(err)
         } else {
-            updatedProduct.link = req.body.recipe.title.toLowerCase().split(' ').join('-');
+            updatedProduct.link = req.body.product.title.toLowerCase().split(' ').join('-');
             updatedProduct.save();
             res.redirect(`/products/${updatedProduct.link}`);
         }

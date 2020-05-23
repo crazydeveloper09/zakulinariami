@@ -8,6 +8,17 @@ const express = require("express"),
 app.use(flash());
 app.use(methodOverride("_method"));
 
+router.get("/redirect", isLoggedIn, (req, res) => {
+    Recipe.findById(req.params.recipe_id, (err, recipe) => {
+        if(err){
+            console.log(err)
+        } else {
+            let header = `Zakulinariami | Przepisy | ${recipe.title} | Redirect page`;
+            res.render("./preparations/redirect", {header: header, recipeSubpage:"",recipe: recipe, currentUser: req.user})
+        }
+    })
+})
+
 router.get("/add", isLoggedIn, (req, res) => {
     Recipe.findById(req.params.recipe_id, (err, recipe) => {
         if(err){
@@ -30,7 +41,7 @@ router.post("/", isLoggedIn, (req, res) => {
                 } else {
                     recipe.preparations.push(createdPrepation);
                     recipe.save();
-                    res.redirect(`/recipes/${recipe.link}`);
+                    res.redirect(`/recipes/${recipe._id}/preparations/redirect`);
                 }
            })
         }

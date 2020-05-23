@@ -8,6 +8,17 @@ const express = require("express"),
 app.use(flash());
 app.use(methodOverride("_method"));
 
+router.get("/redirect", isLoggedIn, (req, res) => {
+    Product.findById(req.params.product_id, (err, product) => {
+        if(err){
+            console.log(err)
+        } else {
+            let header = `Zakulinariami | Produkty | ${product.title} | Redirect page`;
+            res.render("./whyToEat/redirect", {header:header, productSubpage:"",product: product, currentUser: req.user})
+        }
+    })
+})
+
 router.get("/new", isLoggedIn, (req, res) => {
     Product.findById(req.params.product_id, (err, product) => {
         if(err){
@@ -30,7 +41,7 @@ router.post("/", isLoggedIn, (req, res) => {
                 } else {
                     product.whyToEat.push(createdWhyToEat);
                     product.save();
-                    res.redirect(`/products/${product.link}`);
+                    res.redirect(`/products/${product._id}/whyToEat/redirect`);
                 }
            })
         }

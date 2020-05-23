@@ -1,0 +1,16 @@
+<%- include("../partials/header") %>
+<br>
+<br>
+<br>
+<div class="container">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-lg-12 text-center">
+            <p class="title">Czy chcesz dodać kolejny powód dlaczego warto jeść do <%= product.title %>?</p>
+            <a href="/products/<%= product._id %>/whyToEat/new" class="btn btn-dark">
+                Tak
+            </a>
+            <a href="/products/<%= product.link %>" class="btn btn-outline-dark">Nie</a>
+        </div>
+    </div>
+</div>
+<%- include("../partials/footer") %>
