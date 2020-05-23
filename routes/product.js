@@ -84,8 +84,14 @@ router.get("/:product_id/recipes/add", isLoggedIn, (req, res) => {
                     if(err){
                         console.log(err)
                     } else {
-                        let header = `Zakulinariami | Produkty | ${product.title} | Powiąż z przepisem`;
-                        res.render("./products/addRecipe", {header:header, productSubpage:"",product:product, recipes:recipes, currentUser: req.user})
+                         Product.find({products: req.params.product_id}, (err, thisNotAdd) => {
+                            if(err){
+                                console.log(err)
+                            } else {
+                                let header = `Zakulinariami | Produkty | ${product.title} | Powiąż z przepisem`;
+                                res.render("./products/addRecipe", {thisNotAdd: thisNotAdd,header:header, productSubpage:"",product:product, recipes:recipes, currentUser: req.user})
+                            }
+                        })
                     }
                 })
         }

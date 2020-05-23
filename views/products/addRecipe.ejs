@@ -11,6 +11,17 @@
                     Powiąż przepis z produktem <%= product.title %>
                 </div>
                 <div class="card-body">
+					<% if(thisNotAdd.length !== 0){ %>
+                            <p class="informations">
+                                Niestety nie udało mi się jeszcze zapobiec błędowi, żeby 
+                                podwójnie nie powiązać przepisu, więc tu lista, których nie dodawać
+                            </p>
+                            <ul class="informations">
+                                <% for(let i=0;i<thisNotAdd.length;i++){ %>
+                                    <li><ins><%= thisNotAdd[i].title %></ins></li>
+                                <% } %>
+                            </ul>
+                        <% } %>
                         <form action="/products/<%= product._id %>/recipes" method="post">
                             <p class="description_new">Wybierz przepis</p>
                             <% if(recipes.length === 0){ %>
@@ -25,16 +36,9 @@
                             <% } else { %>
                                 <select name="recipe" id="select" class="form-control">
                                     <% for(let i=0;i< recipes.length;i++){ %>
-                                        <% if(recipes[i].products.length === 0){ %>
+                                       
                                             <option value="<%= recipes[i]._id %>"><%= recipes[i].title %></option>
-                                        <% } else { %>
-                                            <% if(product.title !== recipes[i].products[i].title){ %>
-                                                <option value="<%= recipes[i]._id %>"><%= recipes[i].title %></option>
-                                            <% } else { %>
-                                                
-                                                <option>Już dodany do tej kategorii</option>
-                                            <% } %>
-                                        <% } %>
+                                        
                                        
                                        
                                        

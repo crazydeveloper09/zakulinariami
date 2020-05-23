@@ -47,8 +47,14 @@ router.get("/:category_id/recipes/add", isLoggedIn, (req, res) => {
                     if(err){
                         console.log(err)
                     } else {
-                        let header = `Zakulinariami | Przepisy | ${category.name} | Powiąż z przepisem`;
-                        res.render("./category/addRecipe", {header:header, recipeSubpage:"",category:category, recipes:recipes, currentUser: req.user})
+                         Recipe.find({categories: req.params.category_id}, (err, thisNotAdd) => {
+                            if(err){
+                                console.log(err)
+                            } else {
+                                let header = `Zakulinariami | Przepisy | ${category.name} | Powiąż z przepisem`;
+                                res.render("./category/addRecipe", {thisNotAdd: thisNotAdd,header:header, recipeSubpage:"",category:category, recipes:recipes, currentUser: req.user})
+                            }
+                        })
                     }
                 })
         }

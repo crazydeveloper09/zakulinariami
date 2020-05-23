@@ -23,7 +23,12 @@ const  express = require("express"),
   
   
 // Database and models
-mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser: true });
+mongoose.connect(process.env.DATABASE_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true 
+});
+
 
 
 // App configuration

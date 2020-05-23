@@ -30,11 +30,13 @@
         <div class="row">
                 <% if(recipes.length > 5){ %>
                     <% for(let i=recipes.length-1; i>recipes.length - 6;i--){ %>
-                        <div class="col-lg-4 col-md-12">
+                        <div class="col-lg-4 col-md-12" style="margin-top: 8px">
                             <div class="card">
                                 <img src="<%= recipes[i].profile %>" alt="" class="card-img-top">
                                 <br>
-                                <div class="card-title text-center title"><%= recipes[i].title %></div>
+                                <div class="card-title text-center title">
+									 <a href="/recipes/<%= recipes[i].link %>" style="color: #212529"><%= recipes[i].title %></a>
+								</div>
                                 <div class="card-body">
                                     <p class="description"><%= recipes[i].description.substring(0,300) %></p>
                                     <label>
@@ -63,11 +65,13 @@
                     <% } %>
                 <% } else { %>
                     <% for(let i=recipes.length-1; i>=0;i--){ %>
-                        <div class="col-lg-4 col-md-12">
+                        <div class="col-lg-4 col-md-12" style="margin-top: 8px">
                             <div class="card">
                                 <img src="<%= recipes[i].profile %>" alt="" class="card-img-top">
                                 <br>
-                                <div class="card-title text-center title"><%= recipes[i].title %></div>
+                                <div class="card-title text-center title">
+									 <a href="/recipes/<%= recipes[i].link %>" style="color: #212529"><%= recipes[i].title %></a>
+								</div>
                                 <div class="card-body">
                                     <p class="description"><%= recipes[i].description.substring(0,300) %></p>
                                     <label>

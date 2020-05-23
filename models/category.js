@@ -7,14 +7,9 @@ const categorySchema = new mongoose.Schema({
     recipes: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "Recipe",
-            unique: true
+            ref: "Recipe"
         }
-    ],
-    isInRecipe: {
-        type: Boolean,
-        default: false
-    }
+    ]
 })
 
 module.exports = mongoose.model("Category", categorySchema);

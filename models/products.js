@@ -22,11 +22,7 @@ const productSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: "Recipe"
         }
-    ],
-    isInRecipe: {
-        type: Boolean,
-        default: false
-    }
+    ]
 })
 
 module.exports = mongoose.model("Product", productSchema);
