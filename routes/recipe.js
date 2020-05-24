@@ -203,7 +203,7 @@ router.post("/:id/add/picture", upload.single("picture"), (req, res) => {
 
 
 router.get("/:id/edit", isLoggedIn, function(req, res){
-    if(req.user.username === "crazyadmin"){
+   
         Recipe.findById(req.params.id, function(err, recipe){
             if(err){
                 console.log(err);
@@ -212,7 +212,7 @@ router.get("/:id/edit", isLoggedIn, function(req, res){
                 res.render("./recipes/edit", {currentUser: req.user, header:header, recipeSubpage:"", recipe:recipe});
             }
         });
-    }
+    
     
 });
 
