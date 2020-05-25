@@ -63,7 +63,11 @@
                                     <a href="/recipes/<%= recipes[i].link %>" style="color: #212529"><%= recipes[i].title %></a>
                                 </div>
                                 <div class="card-body">
-                                    <p class="description"><%= recipes[i].description.substring(0,300) %></p>
+                                    <% if(recipes[i].description < 200){ %>
+										  <p class="description"><%= recipes[i].description %></p>
+									<% } else { %>
+										  <p class="description"><%= recipes[i].description.substring(0,200) %>...</p>
+									<% } %>
                                     <label>
                                         <i class="far fa-clock"></i>
                                         <span style="margin-right:5px">

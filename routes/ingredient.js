@@ -107,7 +107,7 @@ router.get("/:ingredient_id/edit", isLoggedIn, (req, res) => {
     if(req.isAuthenticated()) {
         return next();
     }
-    req.flash("error", "Prosimy zaloguj się najpierw");
+    req.flash("error", "Nie masz dostępu do tej strony");
     res.redirect("/");
 }
 

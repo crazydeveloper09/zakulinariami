@@ -46,8 +46,12 @@
                                     <a href="/products/<%= products[i].link %>" style="color: #212529"><%= products[i].title %></a>
                                 </div>
                                 <div class="card-body">
-                                    <p class="description"><%= products[i].description.substring(0,300) %></p>
-                                   
+									<% if(products[i].description < 200){ %>
+										  <p class="description"><%= products[i].description %></p>
+									<% } else { %>
+										  <p class="description"><%= products[i].description.substring(0,200) %>...</p>
+									<% } %>
+                                                                       
                                     
                                     <a href="/products/<%= products[i].link %>" class="btn btn-outline-dark">Zobacz dlaczego warto jeść</a>
                         

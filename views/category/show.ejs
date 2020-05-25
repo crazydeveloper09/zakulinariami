@@ -79,7 +79,12 @@
                                     
                                 </div>
                                 <div class="card-body">
-                                    <p class="description"><%= category.recipes[i].description.substring(0,300) %></p>
+									<% if(category.recipes[i].description < 200){ %>
+										  <p class="description"><%= category.recipes[i].description %></p>
+									<% } else { %>
+										  <p class="description"><%= category.recipes[i].description.substring(0,200) %>...</p>
+									<% } %>
+                                   
                                     <label>
                                         <i class="far fa-clock"></i>
                                         <span style="margin-right:5px">
