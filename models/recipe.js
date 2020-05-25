@@ -22,8 +22,7 @@ const recipeSchema = new mongoose.Schema({
     categories: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "Category",
-            unique: true
+            ref: "Category"
         }
     ],
     ingredients: [
