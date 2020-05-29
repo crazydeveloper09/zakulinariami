@@ -17,6 +17,18 @@ const productSchema = new mongoose.Schema({
             ref: "WhyToEat"
         }
     ],
+	whyToAvoid: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "WhyToAvoid"
+        }
+    ],
+	substitutes: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Substitute"
+        }
+    ],
     recipes: [
         {
             type: mongoose.Schema.Types.ObjectId,
