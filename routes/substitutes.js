@@ -1,6 +1,6 @@
 const express = require("express"),
     Product = require("../models/products"),
-    WhyToEat = require("../models/whyToEat"),
+    Substitute = require("../models/substitute"),
     methodOverride = require("method-override"),
     app = express(),
     flash = require("connect-flash"),
@@ -14,7 +14,7 @@ router.get("/redirect", isLoggedIn, (req, res) => {
             console.log(err)
         } else {
             let header = `Zakulinariami | Produkty | ${product.title} | Redirect page`;
-            res.render("./whyToEat/redirect", {header:header, productSubpage:"",product: product, currentUser: req.user})
+            res.render("./substitutes/redirect", {header:header, productSubpage:"",product: product, currentUser: req.user})
         }
     })
 })
@@ -25,7 +25,7 @@ router.get("/new", isLoggedIn, (req, res) => {
             console.log(err)
         } else {
             let header = `Zakulinariami | Produkty | ${product.title} | Dodaj powód do jedzenia`;
-            res.render("./whyToEat/new", {header:header, productSubpage:"",product: product, currentUser: req.user})
+            res.render("./substitutes/new", {header:header, productSubpage:"",product: product, currentUser: req.user})
         }
     })
 })
@@ -33,15 +33,16 @@ router.get("/new", isLoggedIn, (req, res) => {
 router.post("/", isLoggedIn, (req, res) => {
     Product.findById(req.params.product_id, (err, product) => {
         if(err){
-            console.log(err)
+            console.log(err);
         } else {
-           WhyToEat.create({text: req.body.text}, (err, createdWhyToEat) => {
+           Substitute.create({text: req.body.text}, (err, createdsubstitute) => {
                 if(err) {
                    console.log(err);
                 } else {
-                    product.whyToEat.push(createdWhyToEat);
+                    console.log(createdsubstitute);
+                    product.substitutes.push(createdsubstitute);
                     product.save();
-                    res.redirect(`/products/${product._id}/whyToEat/redirect`);
+                    res.redirect(`/products/${product._id}/substitutes/redirect`);
                 }
            })
         }
@@ -49,17 +50,17 @@ router.post("/", isLoggedIn, (req, res) => {
 })
 
 
-router.get("/:whyToEat_id/edit", isLoggedIn, (req, res) => {
+router.get("/:substitute_id/edit", isLoggedIn, (req, res) => {
     Product.findById(req.params.product_id, (err, product) => {
         if(err) {
             console.log(err)
         } else {
-            WhyToEat.findById(req.params.whyToEat_id, (err, whyToEat) => {
+            Substitute.findById(req.params.substitute_id, (err, substitute) => {
                 if(err){
                     console.log(err)
                 } else {
-                    let header = `Zakulinariami | Produkty | ${product.title} | Edytuj powód do jedzenia`;
-                    res.render("./whyToEat/edit", {header:header, productSubpage:"",product: product, whyToEat:whyToEat, currentUser: req.user})
+                    let header = `Zakulinariami | Produkty | ${product.title} | Edytuj zamiennik`;
+                    res.render("./substitutes/edit", {header:header, productSubpage:"",product: product, substitute:substitute, currentUser: req.user})
                 }
             })
         }
@@ -67,12 +68,12 @@ router.get("/:whyToEat_id/edit", isLoggedIn, (req, res) => {
    
 });
 
-router.put("/:whyToEat_id", isLoggedIn, (req, res) => {
+router.put("/:substitute_id", isLoggedIn, (req, res) => {
     Product.findById(req.params.product_id, (err, product) => {
         if(err) {
             console.log(err)
         } else {
-            WhyToEat.findByIdAndUpdate(req.params.whyToEat_id, req.body.whyToEat, (err, updatedwhyToEat) => {
+            Substitute.findByIdAndUpdate(req.params.substitute_id, req.body.substitute, (err, updatedsubstitute) => {
                 if(err){
                     console.log(err);
                 } else {
@@ -84,12 +85,12 @@ router.put("/:whyToEat_id", isLoggedIn, (req, res) => {
   
 });
 
-router.get("/:whyToEat_id/delete", isLoggedIn, (req, res) => {
+router.get("/:substitute_id/delete", isLoggedIn, (req, res) => {
     Product.findById(req.params.product_id, (err, product) => {
         if(err) {
             console.log(err)
         } else {
-            WhyToEat.findByIdAndRemove(req.params.whyToEat_id, (err, updatedwhyToEat) => {
+            Substitute.findByIdAndRemove(req.params.substitute_id, (err, updatedsubstitute) => {
                 if(err){
                     console.log(err);
                 } else {

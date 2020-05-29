@@ -59,7 +59,7 @@
                         
                        
                     </div>
-                    <p class="description"><%= recipe.description %></p>
+                    <p class="description"><%- recipe.description %></p>
                   
                     <p class="preparation">Składniki: </p>
                     <% if(recipe.ingredients.length === 0){ %>
@@ -135,7 +135,7 @@
                             <button class="btn btn-outline-dark dropdown-toggle justify-content-center" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                Modyfikacja
                             </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="background: #eeeeee">
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                               
     
                                 <a class="dropdown-item" href="/recipes/<%= recipe._id %>/edit">Edytuj przepis</a>
@@ -236,4 +236,4 @@
             </div>
         </div>
     </div>
-    <%- include("../partials/footer") %>
+<%- include("../partials/footer") %>

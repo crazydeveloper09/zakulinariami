@@ -34,7 +34,7 @@
                                 <%= success %>
                             </div>
                         <% } %>
-                        <form action="/login" method="post">
+                        <form action="/login?return_route=<%= route %>" method="post">
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                   <span class="input-group-text" id="basic-addon1" style="background: none; color:  #212529; border-color: #212529;"><i class="fas fa-user"></i></span>

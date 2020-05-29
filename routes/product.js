@@ -35,7 +35,7 @@ app.use(methodOverride("_method"));
 
 // Product index route
 router.get("/", (req, res) => {
-    Product.find({}, (err, products) => {
+    Product.find({}).populate("whyToAvoid").exec((err, products) => {
         if(err) {
             console.log(err)
         } else {
@@ -101,24 +101,39 @@ router.get("/:product_id/recipes/add", isLoggedIn, (req, res) => {
 
 
 router.post("/:product_id/recipes", isLoggedIn, (req, res) => {
-    Product.findById(req.params.product_id, (err, product) => {
-        if(err) {
-            console.log(err.message)
-        } else {
-            Recipe
-                .findById(req.body.recipe, (err, recipe) => {
-                    if(err){
-                        console.log(err.message)
+    Recipe
+        .findOne({$and: [{_id: req.body.recipe}, {products: req.params.product_id}]}, (err, notAdd) => {
+                if(err) {
+                    console.log(err);
+                } else {
+                    if(notAdd){
+                        
+                        req.flash("error", `Nie możesz powiązać ${notAdd.title} z tym przepisem, ponieważ już to zrobiłeś`);
+                        res.redirect("back");
+                       
                     } else {
-                        recipe.products.push(product);
-                        recipe.save();
-                        product.recipes.push(recipe);
-                        product.save();
-                        res.redirect(`/products/${product.link}`)
+                        Product.findById(req.params.product_id, (err, product) => {
+                            if(err) {
+                                console.log(err.message)
+                            } else {
+                                Recipe
+                                    .findById(req.body.recipe, (err, recipe) => {
+                                        if(err){
+                                            console.log(err.message)
+                                        } else {
+                                            recipe.products.push(product);
+                                            recipe.save();
+                                            product.recipes.push(recipe);
+                                            product.save();
+                                            res.redirect(`/products/${product.link}`)
+                                        }
+                                    })
+                            }
+                        })
                     }
-                })
-        }
-    })
+                }
+        });
+   
 })
 
 // Product show route
@@ -126,7 +141,7 @@ router.post("/:product_id/recipes", isLoggedIn, (req, res) => {
 router.get("/:link", (req, res) => {
     Product
         .findOne({link: req.params.link})
-        .populate(["whyToEat", "recipes", "pictures"])
+        .populate(["whyToEat", "recipes", "pictures","whyToAvoid", "substitutes"])
         .exec((err, product) => {
             if(err){
                 console.log(err);
@@ -175,7 +190,7 @@ router.get("/:id/delete", isLoggedIn, (req, res) => {
 
 router.get("/title/search", function(req, res){
 	const regex = new RegExp(escapeRegex(req.query.title), 'gi');
-	Product.find({title: regex}, function(err, products){
+	Product.find({title: regex}).populate("whyToAvoid").exec(function(err, products){
 		if(err){
 			console.log(err);
 		} else {
@@ -253,7 +268,7 @@ function isLoggedIn(req, res, next) {
         return next();
     }
     req.flash("error", "Nie masz dostępu do tej strony");
-    res.redirect("/");
+    res.redirect(`/?return_route=${req._parsedOriginalUrl.path}`);
 }
 
 function escapeRegex(text) {

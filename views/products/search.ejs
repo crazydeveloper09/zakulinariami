@@ -49,14 +49,20 @@
                                     
                                 </div>
                                 <div class="card-body">
-                                   <% if(products[i].description < 200){ %>
-										  <p class="description"><%= products[i].description %></p>
-									<% } else { %>
-										  <p class="description"><%= products[i].description.substring(0,200) %>...</p>
-									<% } %>
+                                    <% if(products[i].description.length < 200){ %>
+                                        <p class="description"><%- products[i].description %></p>
+                                    <% } else { %>
+                                        <p class="description"><%- products[i].description.substring(0,200) %>...</p>
+                                    <% } %>
                                    
                                     
-                                    <a href="/products/<%= products[i].link %>" class="btn btn-outline-dark">Zobacz dlaczego warto jeść</a>
+                                    <a href="/products/<%= products[i].link %>" class="btn btn-outline-dark">
+                                        <% if(products[i].whyToAvoid.length === 0){ %>
+                                            Zobacz dlaczego warto jeść
+                                        <% } else { %>
+                                            Zobacz dlaczego unikać
+                                        <% } %>
+                                    </a>
                         
                         
                                 </div>

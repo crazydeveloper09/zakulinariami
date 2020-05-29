@@ -36,7 +36,7 @@ router.get("/:category_link", (req, res) => {
 });
 
 router.get("/:category_id/recipes/add", isLoggedIn, (req, res) => {
-    Category.findById(req.params.category_id, (err, category) => {
+    Category.findById(req.params.category_id).populate("recipes").exec((err, category) => {
         if(err) {
             console.log(err)
         } else {
@@ -47,14 +47,11 @@ router.get("/:category_id/recipes/add", isLoggedIn, (req, res) => {
                     if(err){
                         console.log(err)
                     } else {
-                         Recipe.find({categories: req.params.category_id}, (err, thisNotAdd) => {
-                            if(err){
-                                console.log(err)
-                            } else {
+                       
                                 let header = `Zakulinariami | Przepisy | ${category.name} | Powiąż z przepisem`;
-                                res.render("./category/addRecipe", {thisNotAdd: thisNotAdd,header:header, recipeSubpage:"",category:category, recipes:recipes, currentUser: req.user})
-                            }
-                        })
+                                res.render("./category/addRecipe", {header:header, recipeSubpage:"",category:category, recipes:recipes, currentUser: req.user})
+                         
+                        
                     }
                 })
         }
@@ -63,30 +60,45 @@ router.get("/:category_id/recipes/add", isLoggedIn, (req, res) => {
 
 
 router.post("/:category_id/recipes", isLoggedIn, (req, res) => {
-    Category.findById(req.params.category_id, (err, category) => {
-        if(err) {
-            console.log(err.message)
-        } else {
-            Recipe
-                .findById(req.body.recipe, (err, recipe) => {
-                    if(err){
-                        console.log(err.message)
+    Recipe
+        .findOne({$and: [{_id: req.body.recipe}, {categories: req.params.category_id}]}, (err, notAdd) => {
+                if(err) {
+                    console.log(err);
+                } else {
+                    if(notAdd){
+                        
+                        req.flash("error", `Nie możesz dodać ${notAdd.title} do kategorii, ponieważ już w niej jest`);
+                        res.redirect("back");
+                       
                     } else {
-                        recipe.categories.push(category);
-                        recipe.save();
-                        category.recipes.push(recipe);
-                        category.save();
-                        res.redirect(`/recipes/category/${category.link}`)
+                        Category.findById(req.params.category_id, (err, category) => {
+                            if(err) {
+                                console.log(err.message)
+                            } else {
+                                Recipe
+                                    .findById(req.body.recipe, (err, recipe) => {
+                                        if(err){
+                                            console.log(err.message)
+                                        } else {
+                                            recipe.categories.push(category);
+                                            recipe.save();
+                                            category.recipes.push(recipe);
+                                            category.save();
+                                            res.redirect(`/recipes/category/${category.link}`)
+                                        }
+                                    })
+                            }
+                        })
                     }
-                })
-        }
-    })
+                }
+            })
+    
 })
 
 
 router.post("/", isLoggedIn, (req, res) => {
-            console.log(req.body)
-           Category.create({name: req.body.title, link: req.body.title.toLowerCase().split(' ').join('-')}, (err, createdCategory) => {
+            
+            Category.create({name: req.body.title, link: req.body.title.toLowerCase().split(' ').join('-')}, (err, createdCategory) => {
                 if(err) {
                    console.log(err);
                 } else {
@@ -173,7 +185,7 @@ function isLoggedIn(req, res, next) {
         return next();
     }
     req.flash("error", "Nie masz dostępu do tej strony");
-    res.redirect("/");
+    res.redirect(`/?return_route=${req._parsedOriginalUrl.path}`);
 }
 function escapeRegex(text) {
     return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");

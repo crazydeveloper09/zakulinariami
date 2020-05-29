@@ -5,7 +5,12 @@
             Zakulinariami <script>document.write(new Date().getFullYear())</script>  © Wszelkie prawa zastrzeżone by:
             <a href="https://mkdportfolio.pl" target="_blank" style="color: #212529;">MK</a> 
             <br>
-             <a href="/login" style="color: #212529;">panel administracyjny</a> 
+            <% if(return_route){ %>
+                <a href="/login?return_route=<%= return_route %>" style="color: #212529;">panel administracyjny</a>
+            <% } else { %> 
+                <a href="/login?return_route=<%= route %>" style="color: #212529;">panel administracyjny</a>
+            <% } %>
+              
         </div>
     </div>
 

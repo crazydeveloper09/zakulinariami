@@ -7,7 +7,7 @@ app.use(flash());
 
 router.get("/", function (req, res) {
     let username = "crazyadmin";
-    Blogger.find({}, function (err, user) {
+    Blogger.findOne({username: username}, function (err, user) {
         if (err) {
             console.log(err);
         } else {
@@ -45,6 +45,6 @@ function isLoggedIn(req, res, next) {
         return next();
     }
     req.flash("error", "Nie masz dostępu do tej strony");
-    res.redirect("/");
+    res.redirect(`/?return_route=${req._parsedOriginalUrl.path}`);
 }
 module.exports = router;

@@ -11,6 +11,8 @@ const  express = require("express"),
         ingredientsRoutes = require("./routes/ingredient"),
         commentsRoutes = require("./routes/comment"),
         whyToEatRoutes = require("./routes/whyToEat"),
+        whyToAvoidRoutes = require("./routes/whyToAvoid"),
+        substitutesRoutes = require("./routes/substitutes"),
         preparationsRoutes = require("./routes/preparation"),
         categoryRoutes = require("./routes/category"),
         methodOverride = require("method-override"),
@@ -30,7 +32,6 @@ mongoose.connect(process.env.DATABASE_URL, {
 });
 
 
-
 // App configuration
 
 app.set("view engine", "ejs");
@@ -44,6 +45,8 @@ app.use(require("express-session")({
     saveUninitialized: false
 }));
 app.use(function(req, res, next) {
+    res.locals.return_route = req.query.return_route;
+    res.locals.route = req.path;
     res.locals.error = req.flash("error");
     res.locals.success = req.flash("success");
     res.locals.currentUser = req.user;
@@ -60,6 +63,8 @@ app.use("/about", aboutRoutes);
 app.use("/recipes/:recipe_link/comments", commentsRoutes);
 app.use("/products", productsRoutes);
 app.use("/products/:product_id/whyToEat", whyToEatRoutes);
+app.use("/products/:product_id/whyToAvoid", whyToAvoidRoutes);
+app.use("/products/:product_id/substitutes", substitutesRoutes);
 app.use("/recipes", recipesRoutes);
 app.use("/recipes/category", categoryRoutes);
 app.use("/recipes/:recipe_id/ingredients", ingredientsRoutes);

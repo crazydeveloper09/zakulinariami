@@ -8,15 +8,16 @@
             <div class="card">
                 <div class="card-title text-center title_new" id="name">
                     <br>
-                    Dodaj nową kategorię
+                    Dodaj cechę dlaczego unikać do <%= product.title %>
                 </div>
                 <div class="card-body">
-                        <form action="/recipes/category/" method="post">
-                            <p class="description_new">Tytuł kategorii</p>
-                            <input type="text" name="title" class="form-control" placeholder="Tytuł kategorii">
-                            <br>
+                        <form action="/products/<%= product._id %>/whyToAvoid" method="post">
                             
-                            <input type="submit" value="Dodaj kategorię" class="btn btn-outline-dark">
+                            <p class="description_new">Opis cechy</p>
+                            <textarea name="text" id="description" class="form-control" placeholder="Cecha dlaczego unikać"></textarea>
+                            <br>
+                           
+                            <input type="submit" value="Dodaj cechę" class="btn btn-outline-dark">
                         </form>
                 </div>
             </div>

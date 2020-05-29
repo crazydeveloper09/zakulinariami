@@ -51,7 +51,7 @@ router.get("/", function(req, res){
 
 router.get("/login", function(req, res){
     let header = `Zakulinariami | Logowanie`;
-    res.render("login",{header:header,});
+    res.render("login",{header:header, route: req.query.return_route});
 });
 
 router.get("/register", function(req, res){
@@ -181,11 +181,10 @@ router.post("/reset/:token", function(req, res){
 });
 
 router.post("/login", passport.authenticate("local", {
-    successRedirect: "/",
     failureRedirect: "/login",
     failureFlash: true
 }), function(req, res) {
-
+    res.redirect(req.query.return_route);
 });
 router.get("/logout", function(req, res) {
     req.logout();
@@ -213,7 +212,7 @@ router.post("/register", upload.single("profile"), function(req, res){
             } 
             passport.authenticate("local")(req, res, function() {
                 
-                res.redirect("/");
+                res.redirect("/login");
             });
         });
     });

@@ -12,19 +12,11 @@
                 <div class="card-title text-center title"><%= product.title %></div>
                 <div class="card-body">
                    
-                    <p class="description"><%= product.description %></p>
+                    <p class="description"><%- product.description %></p>
                   
-                    <p class="preparation">Dlaczego warto jeść: </p>
-                    <% if(product.whyToEat.length === 0){ %>
-                        <div class="row">
-                            <div class="col-lg-6 col-sm-12">
-                                <div class="alert alert-secondary" role="alert">
-                                    Nie dodaliśmy jeszce powodów dla ktorych warto jeść
-                                </div>
-                            </div>
-                        </div>
-                        
-                    <% } else { %>
+                   
+                    <% if(product.whyToEat.length !== 0){ %>
+                        <p class="preparation">Dlaczego warto jeść: </p>
                         <ul>
                             <% for(let i=0;i<product.whyToEat.length;i++){ %>
                                 <li class="description_comment"><%= product.whyToEat[i].text %></li>
@@ -37,6 +29,41 @@
                                 <% } %>
                             <% } %>
                         </ul>
+                        
+                    <% } %>
+
+                    <% if(product.whyToAvoid.length > 0){ %>
+                        <p class="preparation">Dlaczego unikać: </p>
+                        <ul>
+                            <% for(let i=0;i<product.whyToAvoid.length;i++){ %>
+                                <li class="description_comment"><%= product.whyToAvoid[i].text %></li>
+                                <% if(currentUser) { %>
+                                    <div class="d-inline">
+                                        <a href="/products/<%= product._id %>/whyToAvoid/<%= product.whyToAvoid[i]._id %>/edit">Edytuj</a>
+                                        <a href="/products/<%= product._id %>/whyToAvoid/<%= product.whyToAvoid[i]._id %>/delete">Usuń</a>
+                                    </div>
+                                   
+                                <% } %>
+                            <% } %>
+                        </ul>
+                        
+                    <% } %>
+                        
+                    <% if(product.substitutes.length !== 0){ %>
+                        <p class="preparation">Zamienniki: </p>
+                        <ul>
+                            <% for(let i=0;i<product.substitutes.length;i++){ %>
+                                <li class="description_comment"><%= product.substitutes[i].text %></li>
+                                <% if(currentUser) { %>
+                                    <div class="d-inline">
+                                        <a href="/products/<%= product._id %>/substitutes/<%= product.substitutes[i]._id %>/edit">Edytuj</a>
+                                        <a href="/products/<%= product._id %>/substitutes/<%= product.substitutes[i]._id %>/delete">Usuń</a>
+                                    </div>
+                                   
+                                <% } %>
+                            <% } %>
+                        </ul>
+                        
                     <% } %>
                    
                     <p class="preparation">Ostatnio powiązane przepisy: </p>
@@ -85,7 +112,7 @@
                             <button class="btn btn-outline-dark dropdown-toggle justify-content-center" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                Modyfikacja
                             </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="background: #eeeeee">
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                               
     
                                 <a class="dropdown-item" href="/products/<%= product._id %>/edit">Edytuj produkt</a>
@@ -93,6 +120,8 @@
                                 <a class="dropdown-item" href="/products/<%= product._id %>/edit/profile">Edytuj zdjęcie główne</a>
                                 <a class="dropdown-item" href="/products/<%= product._id %>/add/picture">Dodaj zdjęcie do galerii</a>
                                 <a class="dropdown-item" href="/products/<%= product._id %>/whyToEat/new">Dodaj powód do jedzenia</a>
+                                <a class="dropdown-item" href="/products/<%= product._id %>/whyToAvoid/new">Dodaj powód do unikania</a>
+                                <a class="dropdown-item" href="/products/<%= product._id %>/substitutes/new">Dodaj zamiennik</a>
                                 <a class="dropdown-item" href="/products/<%= product._id %>/recipes/add">Powiąż z przepisem</a>
                                
                                 

@@ -9,7 +9,7 @@
    
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="headerp text-center">Ostatnie 5 przepisów</h1>
+            <h1 class="headerp text-center">Najnowsze przepisy</h1>
             <% if(error && error.length > 0){ %>
 				<div class="row justify-content-center">
 					<div class="col-lg-6 col-md-12">
@@ -33,21 +33,19 @@
         </div>
     <% } else { %>
         <div class="row">
-                <% if(recipes.length > 5){ %>
-                    <% for(let i=recipes.length-1; i>recipes.length - 6;i--){ %>
+                <% if(recipes.length > 6){ %>
+                    <% for(let i=recipes.length-1; i>recipes.length - 7;i--){ %>
                         <div class="col-lg-4 col-md-12" style="margin-top: 8px">
                             <div class="card">
                                 <img src="<%= recipes[i].profile %>" alt="" class="card-img-top">
                                 <br>
-                                <div class="card-title text-center title">
-									 <a href="/recipes/<%= recipes[i].link %>" style="color: #212529"><%= recipes[i].title %></a>
-								</div>
+                                <div class="card-title text-center title"><%= recipes[i].title %></div>
                                 <div class="card-body">
-                                   <% if(recipes[i].description < 200){ %>
-										  <p class="description"><%= recipes[i].description %></p>
-									<% } else { %>
-										  <p class="description"><%= recipes[i].description.substring(0,200) %>...</p>
-									<% } %>
+                                    <% if(recipes[i].description.length < 200){ %>
+                                        <p class="description"><%- recipes[i].description %></p>
+                                    <% } else { %>
+                                        <p class="description"><%- recipes[i].description.substring(0,200) %>...</p>
+                                    <% } %>
                                     <label>
                                             <i class="far fa-clock"></i>
                                             <span style="margin-right:5px">
@@ -71,16 +69,15 @@
                                 
                             </div>
                         </div>
+                        </div>
                     <% } %>
                 <% } else { %>
                     <% for(let i=recipes.length-1; i>=0;i--){ %>
-                        <div class="col-lg-4 col-md-12" style="margin-top: 8px">
+                        <div class="col-lg-4 col-md-12">
                             <div class="card">
                                 <img src="<%= recipes[i].profile %>" alt="" class="card-img-top">
                                 <br>
-                                <div class="card-title text-center title">
-									 <a href="/recipes/<%= recipes[i].link %>" style="color: #212529"><%= recipes[i].title %></a>
-								</div>
+                                <div class="card-title text-center title"><%= recipes[i].title %></div>
                                 <div class="card-body">
                                     <p class="description"><%= recipes[i].description.substring(0,300) %></p>
                                     <label>

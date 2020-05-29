@@ -106,7 +106,7 @@ function isLoggedIn(req, res, next) {
         return next();
     }
     req.flash("error", "Nie masz dostępu do tej strony");
-    res.redirect("/");
+    res.redirect(`/?return_route=${req._parsedOriginalUrl.path}`);
 }
 
 module.exports = router;
