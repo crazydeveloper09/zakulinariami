@@ -41,7 +41,7 @@ router.get("/:category_id/recipes/add", isLoggedIn, (req, res) => {
             console.log(err)
         } else {
             Recipe
-                .find({})
+                .find({categories: { $ne: req.params.category_id} })
                 .populate("categories")
                 .exec((err, recipes) => {
                     if(err){

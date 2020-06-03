@@ -78,7 +78,7 @@ router.get("/:product_id/recipes/add", isLoggedIn, (req, res) => {
             console.log(err)
         } else {
             Recipe
-                .find({})
+                .find({products: { $ne: req.params.product_id} })
                 .populate("products")
                 .exec((err, recipes) => {
                     if(err){
