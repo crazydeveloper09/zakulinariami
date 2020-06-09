@@ -49,6 +49,12 @@ const recipeSchema = new mongoose.Schema({
             ref: "Sauce"
         }
     ],
+	decorations: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Decoration"
+        }
+    ],
     written : {
         type: Date,
         default: Date.now()

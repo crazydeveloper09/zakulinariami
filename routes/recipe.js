@@ -1,6 +1,7 @@
 const express = require("express"),
     Blogger = require("../models/blogger"),
     Recipe = require("../models/recipe"),
+	Decoration = require("../models/decoration"),
     Comment = require("../models/comment"),
     Category = require("../models/category"),
     Picture         = require("../models/picture"),
@@ -119,7 +120,7 @@ router.post("/",  upload.single("profile"), function(req, res){
 router.get("/:id", function(req, res){
     Recipe
         .findOne({link: req.params.id})
-        .populate(["author", "ingredients", "preparations", "categories","products", "pictures", "sauce"])
+        .populate(["author", "ingredients", "preparations", "categories","products", "pictures", "sauce", "decorations"])
         .exec(function(err, recipe){
         if(err){
             console.log(err);
