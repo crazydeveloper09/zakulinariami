@@ -1,7 +1,6 @@
 const express = require("express"),
     Blogger = require("../models/blogger"),
     Recipe = require("../models/recipe"),
-	Decoration = require("../models/decoration"),
     Comment = require("../models/comment"),
     Category = require("../models/category"),
     Picture         = require("../models/picture"),
