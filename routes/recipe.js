@@ -119,7 +119,7 @@ router.post("/",  upload.single("profile"), function(req, res){
 router.get("/:id", function(req, res){
     Recipe
         .findOne({link: req.params.id})
-        .populate(["author", "ingredients", "preparations", "categories","products", "pictures"])
+        .populate(["author", "ingredients", "preparations", "categories","products", "pictures", "sauce"])
         .exec(function(err, recipe){
         if(err){
             console.log(err);

@@ -14,11 +14,11 @@ const  express = require("express"),
         whyToAvoidRoutes = require("./routes/whyToAvoid"),
         substitutesRoutes = require("./routes/substitutes"),
         preparationsRoutes = require("./routes/preparation"),
+        sauceRoutes = require("./routes/sauce"),
         categoryRoutes = require("./routes/category"),
         methodOverride = require("method-override"),
         flash = require("connect-flash"),
         app = express(),
-        multer = require("multer"),
         dotenv = require("dotenv");
         dotenv.config();
     
@@ -69,6 +69,7 @@ app.use("/recipes", recipesRoutes);
 app.use("/recipes/category", categoryRoutes);
 app.use("/recipes/:recipe_id/ingredients", ingredientsRoutes);
 app.use("/recipes/:recipe_id/preparations", preparationsRoutes);
+app.use("/recipes/:recipe_id/sauce", sauceRoutes);
 app.use(indexRoutes)
 
 app.listen(process.env.PORT);
