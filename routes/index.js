@@ -38,7 +38,7 @@ app.use(flash());
 
 
 router.get("/", function(req, res){
-    Recipe.find({}).populate("comments").exec(function(err, recipes){
+    Recipe.find({}).populate(["comments", "ingredients"]).exec(function(err, recipes){
         if(err){
             console.log(err);
         } else {

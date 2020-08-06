@@ -57,7 +57,7 @@
         </div>
     </div>
 
-    <% if(category.recipes.length===0){ %>
+    <% if(recipes.length===0){ %>
         <div class="row justify-content-center">
             <div class="col-lg-6 col-md-12">
                 <div class="alert alert-secondary text-center" role="alert">
@@ -68,42 +68,61 @@
     <% } else { %>
         <div class="row">
                 
-                    <% for(let i=category.recipes.length-1; i>=0;i--){ %>
+                    <% for(let i=recipes.length-1; i>=0;i--){ %>
                         
                         <div class="col-lg-4 col-md-12" style="margin-top: 8px">
                             <div class="card">
-                                <img src="<%= category.recipes[i].profile %>" alt="" class="card-img-top">
+                                <img src="<%= recipes[i].profile %>" alt="" class="card-img-top">
                                 <br>
                                 <div class="card-title text-center title">
-                                    <a href="/recipes/<%= category.recipes[i].link %>" style="color: #212529"><%= category.recipes[i].title %></a>
+                                    <a href="/recipes/<%= recipes[i].link %>" style="color: #212529"><%= recipes[i].title %></a>
                                     
                                 </div>
                                 <div class="card-body">
-                                    <% if(category.recipes[i].description.length < 200){ %>
-                                        <p class="description"><%- category.recipes[i].description %></p>
-                                    <% } else { %>
-                                        <p class="description"><%- category.recipes[i].description.substring(0,200) %>...</p>
-                                    <% } %>
-                                    <label>
-                                        <i class="far fa-clock"></i>
-                                        <span style="margin-right:5px">
-                                            <% if(category.recipes[i].hours === 0){ %>
-                                                <%= `${category.recipes[i].minutes}min` %>
-                                            <% } else { %>
-                                                <%= `${category.recipes[i].hours}h ${category.recipes[i].minutes}min` %>
+                                    <% if(recipes[i].description === ""){ %>
+                                        <p class="preparation">Składniki: </p>
+                
+                                        <ul>
+                                            <% for(let j=0;j<recipes[i].ingredients.length;j++){ %>
+                                                <li class="description_comment"><%= recipes[i].ingredients[j].text %></li>
+                                                
                                             <% } %>
-                                            
-                                        </span>
-                                        <i class="fas fa-utensils"></i>
-                                        <span style="margin-right:5px"><%= category.recipes[i].plates %></span>
-                                        <i class="fas fa-comments"></i>
-                                        <span><%= category.recipes[i].comments.length %></span>
+                                        </ul>
+                    
+                                    <% } else { %>
+                                        <% if(recipes[i].description.length < 200){ %>
+                                            <p class="description"><%- recipes[i].description %></p>
+                                        <% } else { %>
+                                            <p class="description"><%- recipes[i].description.substring(0,200) %>...</p>
+                                        <% } %>
+                                    <% } %>
+                                    
+                                    <label>
+                                            <i class="far fa-clock"></i>
+                                            <span style="margin-right:5px">
+                                                <% if(recipes[i].hours === 0){ %>
+                                                    <%= `${recipes[i].minutes}min` %>
+                                                <% } else { %>
+                                                    <%= `${recipes[i].hours}h ${recipes[i].minutes}min` %>
+                                                <% } %>
+                                                
+                                            </span>
+                                            <i class="fas fa-utensils"></i>
+                                            <span style="margin-right:5px"><%= recipes[i].plates %></span>
+                                            <i class="fas fa-comments"></i>
+                                            <span><%= recipes[i].comments.length %></span>
                                     </label>
                                     <br>
-                                    <a href="/recipes/<%= category.recipes[i].link %>" class="btn btn-outline-dark">Zobacz składniki</a>
-                        
-                        
-                                </div>
+                                    <% if(recipes[i].description === ""){ %>
+                                        <a href="/recipes/<%= recipes[i].link %>" class="btn btn-outline-dark">Zobacz kroki przygotowania</a>
+                                    <% } else { %>
+                                        <a href="/recipes/<%= recipes[i].link %>" class="btn btn-outline-dark">Zobacz składniki</a>
+                                    <% } %>
+                                    
+                                
+                                   
+                                
+                            </div>
                         
                             </div>
                         </div>

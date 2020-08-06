@@ -38,7 +38,7 @@ app.use(methodOverride("_method"))
 
 router.get("/title/search", function(req, res){
 	const regex = new RegExp(escapeRegex(req.query.title), 'gi');
-	Recipe.find({title: regex}, function(err, recipes){
+	Recipe.find({title: regex}).populate(["comments", "ingredients"]).exec(function(err, recipes){
 		if(err){
 			console.log(err);
 		} else {
@@ -57,7 +57,7 @@ router.get("/title/search", function(req, res){
 
 
 router.get("/", function(req, res){
-    Recipe.find({}).populate("comments").exec(function(err, recipes){
+    Recipe.find({}).populate(["comments", "ingredients"]).exec(function(err, recipes){
         if(err){
             console.log(err);
         } else {
@@ -92,6 +92,7 @@ router.post("/",  upload.single("profile"), function(req, res){
             profile: result.secure_url,
             pictures: [],
             hours: req.body.hours,
+			level:req.body.level,
             minutes: req.body.minutes,
             plates: req.body.plates,
             link: req.body.title.toLowerCase().split(' ').join('-'),

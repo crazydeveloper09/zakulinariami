@@ -85,15 +85,15 @@
                             <% } %>
                         </ul>
                     <% } %>
-                    <% if(recipe.sauce.length !== 0){ %>
-                        <p class="preparation">Sos: </p>
+                    <% if(recipe.cheese.length !== 0){ %>
+                        <p class="preparation">Ser: </p>
                         <ul>
-                            <% for(let i=0;i<recipe.sauce.length;i++){ %>
-                                <li class="description_comment"><%= recipe.sauce[i].text %></li>
+                            <% for(let i=0;i<recipe.cheese.length;i++){ %>
+                                <li class="description_comment"><%= recipe.cheese[i].text %></li>
                                 <% if(currentUser) { %>
                                     <div class="d-inline">
-                                        <a href="/recipes/<%= recipe._id %>/sauce/<%= recipe.sauce[i]._id %>/edit">Edytuj</a>
-                                        <a href="/recipes/<%= recipe._id %>/sauce/<%= recipe.sauce[i]._id %>/delete">Usuń</a>
+                                        <a href="/recipes/<%= recipe._id %>/cheese/<%= recipe.cheese[i]._id %>/edit">Edytuj</a>
+                                        <a href="/recipes/<%= recipe._id %>/cheese/<%= recipe.cheese[i]._id %>/delete">Usuń</a>
                                     </div>
                                    
                                 <% } %>
@@ -109,6 +109,21 @@
                                     <div class="d-inline">
                                         <a href="/recipes/<%= recipe._id %>/decorations/<%= recipe.decorations[i]._id %>/edit">Edytuj</a>
                                         <a href="/recipes/<%= recipe._id %>/decorations/<%= recipe.decorations[i]._id %>/delete">Usuń</a>
+                                    </div>
+                                   
+                                <% } %>
+                            <% } %>
+                        </ul>
+                    <% } %>
+                    <% if(recipe.sauce.length !== 0){ %>
+                        <p class="preparation">Sos: </p>
+                        <ul>
+                            <% for(let i=0;i<recipe.sauce.length;i++){ %>
+                                <li class="description_comment"><%= recipe.sauce[i].text %></li>
+                                <% if(currentUser) { %>
+                                    <div class="d-inline">
+                                        <a href="/recipes/<%= recipe._id %>/sauce/<%= recipe.sauce[i]._id %>/edit">Edytuj</a>
+                                        <a href="/recipes/<%= recipe._id %>/sauce/<%= recipe.sauce[i]._id %>/delete">Usuń</a>
                                     </div>
                                    
                                 <% } %>
@@ -172,6 +187,7 @@
                                 <a class="dropdown-item" href="/recipes/<%= recipe._id %>/edit/profile">Edytuj zdjęcie główne</a>
                                 <a class="dropdown-item" href="/recipes/<%= recipe._id %>/add/picture">Dodaj zdjęcie do galerii</a>
                                 <a class="dropdown-item" href="/recipes/<%= recipe._id %>/ingredients/add">Dodaj składnik</a>
+                                <a class="dropdown-item" href="/recipes/<%= recipe._id %>/cheese/add">Dodaj składnik sera</a>
                                 <a class="dropdown-item" href="/recipes/<%= recipe._id %>/sauce/add">Dodaj składnik sosu</a>
                                 <a class="dropdown-item" href="/recipes/<%= recipe._id %>/decorations/add">Dodaj składnik dekoracji</a>
                                 <a class="dropdown-item" href="/recipes/<%= recipe._id %>/preparations/add">Dodaj sposób przygotowania</a>

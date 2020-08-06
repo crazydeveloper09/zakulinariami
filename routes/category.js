@@ -16,20 +16,22 @@ router.get("/new", isLoggedIn, (req, res) => {
 
 router.get("/:category_link", (req, res) => {
     Category
-        .findOne({link: req.params.category_link})
-        .populate("recipes")
-        .exec((err, category) => {
+        .findOne({link: req.params.category_link}, (err, category) => {
             if(err) {
                 console.log(err);
             } else {
-                Category.find({}, (err, categories) => {
-                    if(err){
-                        console.log(err)
-                    } else {
-                        let header = `Zakulinariami | Przepisy | ${category.name} `;
-                        res.render("./category/show", {category: category,header:header, recipeSubpage:"", categories:categories, currentUser: req.user})
-                    }
+                Recipe.find({categories: category._id}).populate(["comments", "ingredients"]).exec((err, recipes) => {
+                    Category.find({}, (err, categories) => {
+                        if(err){
+                            console.log(err)
+                        } else {
+                            console.log(recipes);
+                            let header = `Zakulinariami | Przepisy | ${category.name} `;
+                            res.render("./category/show", {recipes:recipes,category: category,header:header, recipeSubpage:"", categories:categories, currentUser: req.user})
+                        }
+                    })
                 })
+                
                 
             }
         })
@@ -41,7 +43,7 @@ router.get("/:category_id/recipes/add", isLoggedIn, (req, res) => {
             console.log(err)
         } else {
             Recipe
-                .find({categories: { $ne: req.params.category_id} })
+                .find({categories: { $ne: req.params.category_id} } )
                 .populate("categories")
                 .exec((err, recipes) => {
                     if(err){
@@ -154,7 +156,7 @@ router.get("/:category_id/delete", isLoggedIn, (req, res) => {
 
 router.get("/:category_link/search", function(req, res){
 	const regex = new RegExp(escapeRegex(req.query.title), 'gi');
-	Recipe.find({$and: [{title: regex}, {categories: req.query.category_id}]}, function(err, recipes){
+	Recipe.find({$and: [{title: regex}, {categories: req.query.category_id}]}).populate(["comments", "ingredients"]).exec(function(err, recipes){
 		if(err){
 			console.log(err);
 		} else {

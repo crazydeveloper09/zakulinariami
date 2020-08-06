@@ -28,6 +28,14 @@
                             <p class="description_new">Edytuj opis</p>
                             <textarea name="recipe[description]" class="form-control" id="description" placeholder="Opis przepisu"><%= recipe.description %></textarea>
                             <br>
+                            <p class="description_new">Edytuj poziom zaawansowania</p>
+                                    <select name="recipe[level]" id="select" class="form-control">
+                                        <option><%= recipe.level %></option>
+                                        <option>Łatwy</option>
+                                        <option>Średni</option>
+                                        <option>Zaawansowany</option>
+                                    </select>
+                                    <br>
                             <ul class="description_new">
                                 Poradnik formatowania tekstu opisu przepisu:
                                 <li class="informations" style="font-size:15px">pogrubienie -  <pre style="color:#212529"> <code> <span> &lt;strong&gt; wyraz lub wyrażenie &lt;/strong&gt; </span> </code>  </pre></li>

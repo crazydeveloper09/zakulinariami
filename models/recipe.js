@@ -12,6 +12,7 @@ const recipeSchema = new mongoose.Schema({
     ],
     description: String,
     profile: String,
+    level: String,
     pictures: [
         {
             type: mongoose.Schema.Types.ObjectId,
@@ -29,6 +30,12 @@ const recipeSchema = new mongoose.Schema({
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Ingredient"
+        }
+    ],
+    cheese: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Cheese"
         }
     ],
     preparations: [
@@ -49,7 +56,7 @@ const recipeSchema = new mongoose.Schema({
             ref: "Sauce"
         }
     ],
-	decorations: [
+    decorations: [
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Decoration"

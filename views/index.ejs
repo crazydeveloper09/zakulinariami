@@ -41,11 +41,24 @@
                                 <br>
                                 <div class="card-title text-center title"><%= recipes[i].title %></div>
                                 <div class="card-body">
-                                    <% if(recipes[i].description.length < 200){ %>
-                                        <p class="description"><%- recipes[i].description %></p>
+                                    <% if(recipes[i].description === ""){ %>
+                                        <p class="preparation">Składniki: </p>
+                
+                                        <ul>
+                                            <% for(let i=0;i<recipe.ingredients.length;i++){ %>
+                                                <li class="description_comment"><%= recipe.ingredients[i].text %></li>
+                                                
+                                            <% } %>
+                                        </ul>
+                    
                                     <% } else { %>
-                                        <p class="description"><%- recipes[i].description.substring(0,200) %>...</p>
+                                        <% if(recipes[i].description.length < 200){ %>
+                                            <p class="description"><%- recipes[i].description %></p>
+                                        <% } else { %>
+                                            <p class="description"><%- recipes[i].description.substring(0,200) %>...</p>
+                                        <% } %>
                                     <% } %>
+                                    
                                     <label>
                                             <i class="far fa-clock"></i>
                                             <span style="margin-right:5px">
@@ -62,8 +75,12 @@
                                             <span><%= recipes[i].comments.length %></span>
                                     </label>
                                     <br>
-                                   
-                                    <a href="/recipes/<%= recipes[i].link %>" class="btn btn-outline-dark">Zobacz składniki</a>
+                                    <% if(recipes[i].description === ""){ %>
+                                        <a href="/recipes/<%= recipes[i].link %>" class="btn btn-outline-dark">Zobacz kroki przygotowania</a>
+                                    <% } else { %>
+                                        <a href="/recipes/<%= recipes[i].link %>" class="btn btn-outline-dark">Zobacz składniki</a>
+                                    <% } %>
+                                    
                                 
                                    
                                 
@@ -73,13 +90,30 @@
                     <% } %>
                 <% } else { %>
                     <% for(let i=recipes.length-1; i>=0;i--){ %>
-                        <div class="col-lg-4 col-md-12" style="margin-top: 8px">
+                        <div class="col-lg-4 col-md-12">
                             <div class="card">
                                 <img src="<%= recipes[i].profile %>" alt="" class="card-img-top">
                                 <br>
                                 <div class="card-title text-center title"><%= recipes[i].title %></div>
                                 <div class="card-body">
-                                    <p class="description"><%= recipes[i].description.substring(0,300) %></p>
+                                    <% if(recipes[i].description === ""){ %>
+                                        <p class="preparation">Składniki: </p>
+                
+                                        <ul>
+                                            <% for(let j=0;j<recipes[i].ingredients.length;j++){ %>
+                                                <li class="description_comment"><%= recipes[i].ingredients[j].text %></li>
+                                                
+                                            <% } %>
+                                        </ul>
+                    
+                                    <% } else { %>
+                                        <% if(recipes[i].description.length < 200){ %>
+                                            <p class="description"><%- recipes[i].description %></p>
+                                        <% } else { %>
+                                            <p class="description"><%- recipes[i].description.substring(0,200) %>...</p>
+                                        <% } %>
+                                    <% } %>
+                                    
                                     <label>
                                             <i class="far fa-clock"></i>
                                             <span style="margin-right:5px">
@@ -96,11 +130,16 @@
                                             <span><%= recipes[i].comments.length %></span>
                                     </label>
                                     <br>
+                                    <% if(recipes[i].description === ""){ %>
+                                        <a href="/recipes/<%= recipes[i].link %>" class="btn btn-outline-dark">Zobacz kroki przygotowania</a>
+                                    <% } else { %>
+                                        <a href="/recipes/<%= recipes[i].link %>" class="btn btn-outline-dark">Zobacz składniki</a>
+                                    <% } %>
+                                    
+                                
                                    
-                                    <a href="/recipes/<%= recipes[i].link %>" class="btn btn-outline-dark">Zobacz składniki</a>
-                                   
-                                   
-                                </div>
+                                
+                            </div>
                                 
                             </div>
                         </div>

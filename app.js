@@ -17,6 +17,7 @@ const  express = require("express"),
         decorationsRoutes = require("./routes/decoration"),
         sauceRoutes = require("./routes/sauce"),
         categoryRoutes = require("./routes/category"),
+        cheeseRoutes = require("./routes/cheese"),
         methodOverride = require("method-override"),
         flash = require("connect-flash"),
         app = express(),
@@ -72,6 +73,7 @@ app.use("/recipes/:recipe_id/ingredients", ingredientsRoutes);
 app.use("/recipes/:recipe_id/preparations", preparationsRoutes);
 app.use("/recipes/:recipe_id/sauce", sauceRoutes);
 app.use("/recipes/:recipe_id/decorations", decorationsRoutes);
+app.use("/recipes/:recipe_id/cheese", cheeseRoutes);
 app.use(indexRoutes)
 
 app.listen(process.env.PORT);
