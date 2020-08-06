@@ -4,11 +4,6 @@
     color: #212529;
 }
 
-.card-title {
-    padding-left: 20px;
-    padding-right: 20px;
-}
-
 #mainNav .nav-link:hover,
 #mainNav .active {
     color: #f5f6fa;
@@ -28,9 +23,12 @@
 }
 .headerp {
     font-family: "Nunito", sans-serif;
-    font-size: 23px;
+    font-size: 1.728rem;
     font-weight: 700;
     color: #212529;
+}
+a {
+    color: #bb9e68;
 }
 .user_img{
     height: 70px;
@@ -133,6 +131,8 @@ input[type=search]::placeholder {
     color: #212529;
 }
 
+
+
 .date_comment {
     text-transform: uppercase;
     font-family: 'Nunito', sans-serif;
@@ -155,7 +155,10 @@ input[type=search]::placeholder {
     font-size: 13px;
     letter-spacing: 0.1em;
 }
-
+.card-title {
+    padding-left: 20px;
+    padding-right: 20px;
+}
 #description,
 #select {
     background: none;
@@ -207,14 +210,59 @@ input[type=search]::placeholder {
     width: 40px;
 }
 
-.img_cont_comments {
+div .nickname {
     background: lightgreen;
     height: 40px;
     width: 40px;
 }
 
-.img_cont_comments:nth-of-type(2) {
+div .nickname:nth-of-type(2n) {
     background: lightsalmon;
-    height: 40px;
-    width: 40px;
+   
+}
+.radio {
+    color: #212529;
+    font-family: 'Nunito', sans-serif;
+    margin-right: 8px;
+   font-size:17px;
+    position: relative;
+    align-items: center;
+    display:inline-flex;
+    
+}
+.jumbotron {
+    background: url('https://zakulinariamifood.files.wordpress.com/2020/02/lily-banse-yhswy6uqvk-unsplash.jpg') no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    content: '';
+    
+}
+.title_jumbotron {
+    font-family: "Nunito", sans-serif;
+    font-size: 42px;
+    font-weight: 100;
+    color: white;
+    text-align: center;
+}
+.radios {
+    margin-bottom: 11px;
+}
+input[type=radio] {
+    opacity:0;
+        position:absolute;
+
+}
+.radioButton {
+    margin-right: 10px;
+        width:20px;
+        height:20px;
+        border-radius: 50%;
+        border: 2px solid #212529;
+   
+}
+
+input:checked + .radioButton {
+    background: #212529;
+        box-shadow: inset 0 0 0 3px white;
 }

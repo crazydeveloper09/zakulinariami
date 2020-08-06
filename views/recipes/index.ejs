@@ -17,25 +17,24 @@
                 
             <% } %>
             
-				<form action="/recipes/title/search" method="get">
-					<div class="input-group mb-3">
-						<input type="search" id="news" autocomplete="off" class="form-control" name="title" placeholder="Wpisz tytuł przepisu" aria-label="Wpisz tytuł przepisu" aria-describedby="basic-addon2">
-						<div class="input-group-append">
-							<button class="btn btn-outline-dark" type="submit" style="border:none; border-bottom: 1px solid #212529;"><i class="fas fa-search"></i></button>
-						</div>
-					</div>
-				</form>
+			
             <% if(categories.length !== 0){ %>
-                <div class="dropdown text-center">
-                    <button class="btn btn-outline-dark dropdown-toggle justify-content-center" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                       Wybierz kategorię
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <% for(let i=0; i< categories.length; i++){ %>
-                            <a class="dropdown-item" href="/recipes/category/<%= categories[i].link %>"><%= categories[i].name %></a>
-                        <% } %>
-                        
+               
+                <div class="d-inline">
+                    <div class="dropdown text-center">
+                        <button class="btn btn-outline-dark dropdown-toggle justify-content-center" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                           Wybierz kategorię
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <% for(let i=0; i< categories.length; i++){ %>
+                                <a class="dropdown-item" href="/recipes/category/<%= categories[i].link %>"><%= categories[i].name %></a>
+                            <% } %>
+                            
+                        </div>
+                        <span class="description" style="margin-left: 8px;margin-right: 8px">lub</span>
+                        <a data-toggle="modal" data-target="#searchRecipe" class="btn btn-dark" style="color:White">Wyszukaj przepis</a>
                     </div>
+                   
                 </div>
                 <br>
             <% } %>
@@ -60,7 +59,7 @@
                                 <img src="<%= recipes[i].profile %>" alt="" class="card-img-top">
                                 <br>
                                 <div class="card-title text-center title">
-                                    <a href="/recipes/<%= recipes[i].link %>" style="color: #212529"><%= recipes[i].title %></a>
+                                    <a href="/recipes/<%= recipes[i].link %>"><%= recipes[i].title %></a>
                                 </div>
                                 <div class="card-body">
                                     <% if(recipes[i].description === ""){ %>
@@ -93,6 +92,8 @@
                                             </span>
                                             <i class="fas fa-utensils"></i>
                                             <span style="margin-right:5px"><%= recipes[i].plates %></span>
+                                            <i class="far fa-lightbulb fa-lg"></i>
+                                            <span style="margin-right:5px"><%= recipes[i].level %></span>
                                             <i class="fas fa-comments"></i>
                                             <span><%= recipes[i].comments.length %></span>
                                     </label>
@@ -116,6 +117,84 @@
        
     <% } %>
     
-    
+    <div class="modal fade" id="searchRecipe" tabindex="-1" role="dialog" aria-labelledby="searchRecipe" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title headerp">Wyszukaj przepis</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <form action="/recipes/advanced/search" method="get">
+					
+                        <p class="description">Wpisz tytuł przepisu</p>
+                        <input type="search" id="news" autocomplete="off" class="form-control" name="title" placeholder="Tytuł przepisu" aria-label="Tytuł przepisu" aria-describedby="basic-addon2">
+                        <br>
+                        <p class="description">Wybierz ilość porcji</p>
+                        <div class="radios">
+                            <label class="radio">
+                                <input type="radio" name="portion" value="3">
+                                <div class="radioButton"></div>
+                                Więcej niż 3
+                            </label>
+                            <label class="radio">
+                                <input type="radio" name="portionS" value="3">
+                                <div class="radioButton"></div>
+                                Mniej niż 3
+                            </label>
+                        </div>
+                        
+                       
+                        <p class="description">Wybierz czas przygotowania</p>
+                        <div class="radios">
+                            <label class="radio">
+                                <input type="radio" name="time" value="15">
+                                <div class="radioButton"></div>
+                                15min
+                            </label>
+                            <label class="radio">
+                                <input type="radio" name="time" value="30">
+                                <div class="radioButton"></div>
+                                30min
+                            </label>
+                            <label class="radio">
+                                <input type="radio" name="time" value="1">
+                                <div class="radioButton"></div>
+                                Więcej niż godzina
+                            </label>
+                        </div>
+                        
+                        <p class="description">Wybierz poziom zaawansowania</p>
+                        <div class="radios">
+                            <label class="radio">
+                                <input type="radio" name="level" value="Łatwy">
+                                <div class="radioButton"></div>
+                                Łatwy
+                            </label>
+                            <label class="radio">
+                                <input type="radio" name="level" value="Średni" id="">
+                                <div class="radioButton"></div>
+                                Średni
+                            </label>
+                            <label for="advanced" class="radio">
+                                <input type="radio" name="level" value="Zaawansowany" id="advanced">
+                                <div class="radioButton"></div>
+                                Zaawansowany
+                            </label>
+                        </div>
+                        
+                        <input type="submit" value="Szukaj przepis" class="btn btn-dark">
+                        <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Zamknij mnie</button>
+					
+				</form>
+              
+                
+            </div>
+           
+          </div>
+        </div>
+      </div>
 </div>
 <%- include("../partials/footer") %>

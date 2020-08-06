@@ -1,16 +1,6 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-167643259-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-167643259-1');
-</script>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -27,7 +17,7 @@
 <body>
     <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-grey" id="mainNav">
         <div class="container">
-            <a href="/" class="navbar-brand"> Zakulinariami</a>
+            <a href="/home" class="navbar-brand"> Zakulinariami</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
                 style="border:none;">
@@ -38,11 +28,11 @@
                 <ul class="navbar-nav mr-auto text-center">
                     <% if(typeof home !== 'undefined'){ %>
                         <li class="nav-item">
-                            <a class="nav-link active" href="/">Home</a>
+                            <a class="nav-link active" href="/home">Home</a>
                         </li>
                     <% } else { %>
                         <li class="nav-item">
-                            <a class="nav-link" href="/">Home</a>
+                            <a class="nav-link" href="/home">Home</a>
                         </li>
                     <% } %>
                    

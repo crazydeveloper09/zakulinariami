@@ -75,7 +75,7 @@
                                 <img src="<%= recipes[i].profile %>" alt="" class="card-img-top">
                                 <br>
                                 <div class="card-title text-center title">
-                                    <a href="/recipes/<%= recipes[i].link %>" style="color: #212529"><%= recipes[i].title %></a>
+                                    <a href="/recipes/<%= recipes[i].link %>"><%= recipes[i].title %></a>
                                     
                                 </div>
                                 <div class="card-body">
@@ -109,6 +109,8 @@
                                             </span>
                                             <i class="fas fa-utensils"></i>
                                             <span style="margin-right:5px"><%= recipes[i].plates %></span>
+                                            <i class="far fa-lightbulb fa-lg"></i>
+                                            <span style="margin-right:5px"><%= recipes[i].level %></span>
                                             <i class="fas fa-comments"></i>
                                             <span><%= recipes[i].comments.length %></span>
                                     </label>

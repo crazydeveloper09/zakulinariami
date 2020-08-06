@@ -36,8 +36,12 @@ cloudinary.config({
 
 app.use(flash());
 
+router.get("/", (req, res) => {
+    let header = `Zakulinariami | Przywitanie`;
+    res.render("landing", {header:header});
+})
 
-router.get("/", function(req, res){
+router.get("/home", function(req, res){
     Recipe.find({}).populate(["comments", "ingredients"]).exec(function(err, recipes){
         if(err){
             console.log(err);

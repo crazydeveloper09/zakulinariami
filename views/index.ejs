@@ -9,6 +9,7 @@
    
     <div class="row">
         <div class="col-lg-12">
+            
             <h1 class="headerp text-center">Najnowsze przepisy</h1>
             <% if(error && error.length > 0){ %>
 				<div class="row justify-content-center">
@@ -39,7 +40,9 @@
                             <div class="card">
                                 <img src="<%= recipes[i].profile %>" alt="" class="card-img-top">
                                 <br>
-                                <div class="card-title text-center title"><%= recipes[i].title %></div>
+                                <div class="card-title text-center title">
+                                    <a href="/recipes/<%= recipes[i].link %>"><%= recipes[i].title %></a>
+                                </div>
                                 <div class="card-body">
                                     <% if(recipes[i].description === ""){ %>
                                         <p class="preparation">Składniki: </p>
@@ -94,7 +97,9 @@
                             <div class="card">
                                 <img src="<%= recipes[i].profile %>" alt="" class="card-img-top">
                                 <br>
-                                <div class="card-title text-center title"><%= recipes[i].title %></div>
+                                <div class="card-title text-center title">
+                                    <a href="/recipes/<%= recipes[i].link %>"><%= recipes[i].title %></a>
+                                </div>
                                 <div class="card-body">
                                     <% if(recipes[i].description === ""){ %>
                                         <p class="preparation">Składniki: </p>
@@ -126,8 +131,11 @@
                                             </span>
                                             <i class="fas fa-utensils"></i>
                                             <span style="margin-right:5px"><%= recipes[i].plates %></span>
+                                            <i class="far fa-lightbulb fa-lg"></i>
+                                            <span style="margin-right:5px"><%= recipes[i].level %></span>
                                             <i class="fas fa-comments"></i>
                                             <span><%= recipes[i].comments.length %></span>
+                                            
                                     </label>
                                     <br>
                                     <% if(recipes[i].description === ""){ %>

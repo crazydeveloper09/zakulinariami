@@ -10,42 +10,38 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="headerp text-center">
-                Wyniki wyszukiwania przepisów z kategorii <%= category.name %> dla parametru <%= param %>: <%= recipes.length %>
+                Wyszukiwanie przepisów dla parametru <%= param %>: <%= recipes.length %>
             </h1>
             <% if(currentUser){ %>
                 <div class="text-center">
-                    <a href="/recipes/category/<%= category._id %>/recipes/add" class="btn btn-outline-dark">Dodaj przepis do kategorii</a>
+                    <a href="/recipes/category/new" class="btn btn-outline-dark">Dodaj nową kategorię</a>
                 </div>
                 
             <% } %>
-            <form action="/recipes/category/<%= category.link %>/search" method="get">
-                <div class="input-group mb-3">
-                    <input type="text" name="category_id" value="<%= category._id %>" hidden>
-                    <input type="search" id="news" autocomsplete="off" class="form-control" name="title" value="<%= param %>" placeholder="Wpisz tytuł przepisu" aria-label="Wpisz tytuł przepisu" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-dark" type="submit" style="border:none; border-bottom: 1px solid #212529;"><i class="fas fa-search"></i></button>
-                    </div>
-                </div>
-            </form>
+            
+				<form action="/recipes/title/search" method="get">
+					<div class="input-group mb-3">
+						<input type="search" id="news" autocomplete="off" class="form-control" name="title" value="<%= param %>" placeholder="Wpisz tytuł przepisu" aria-label="Wpisz tytuł przepisu" aria-describedby="basic-addon2">
+						<div class="input-group-append">
+							<button class="btn btn-outline-dark" type="submit" style="border:none; border-bottom: 1px solid #212529;"><i class="fas fa-search"></i></button>
+						</div>
+					</div>
+				</form>
             <% if(categories.length !== 0){ %>
                 <div class="dropdown text-center">
                     <button class="btn btn-outline-dark dropdown-toggle justify-content-center" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                       Wybierz inną kategorię
+                       Wybierz kategorię
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <% for(let i=0; i< categories.length; i++){ %>
-                            <% if(categories[i].link === category.link){ %>
-                                <a class="dropdown-item active" href="/recipes/category/<%= categories[i].link %>"><%= categories[i].name %></a>
-                            <% } else { %>
-                                <a class="dropdown-item" href="/recipes/category/<%= categories[i].link %>"><%= categories[i].name %></a>
-                            <% } %>
-                           
+                            <a class="dropdown-item" href="/recipes/category/<%= categories[i].link %>"><%= categories[i].name %></a>
                         <% } %>
                         
                     </div>
                 </div>
                 <br>
             <% } %>
+            
         </div>
     </div>
 
@@ -53,7 +49,7 @@
         <div class="row justify-content-center">
             <div class="col-lg-6 col-md-12">
                 <div class="alert alert-secondary text-center" role="alert">
-                    Nie znaleźliśmy przepisów z kategorii <%= category.name %> dla parametru <%= param %>
+                    Nie znależliśmy przepisów dla parametru <%= param %>
                 </div>
             </div>
         </div>
@@ -61,14 +57,12 @@
         <div class="row">
                 
                     <% for(let i=recipes.length-1; i>=0;i--){ %>
-                        
                         <div class="col-lg-4 col-md-12" style="margin-top: 8px">
                             <div class="card">
                                 <img src="<%= recipes[i].profile %>" alt="" class="card-img-top">
                                 <br>
                                 <div class="card-title text-center title">
-                                    <a href="/recipes/<%= recipes[i].link %>"><%= recipes[i].title %></a>
-                                    
+                                    <a href="/recipes/<%= recipes[i].link %>" style="color: #212529"><%= recipes[i].title %></a>
                                 </div>
                                 <div class="card-body">
                                     <% if(recipes[i].description === ""){ %>

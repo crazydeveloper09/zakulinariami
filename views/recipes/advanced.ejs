@@ -1,0 +1,314 @@
+<%- include("../partials/header") %>
+<br>
+<br>
+<br>
+<div class="container">
+    
+    
+ 
+   
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="headerp text-center">
+                Zaawansowane wyszukiwanie przepisów - znaleziono <%= recipes.length %> 
+                <% if(recipes.length === 1){ %>
+                    przepis
+                <% } else { %>
+                    przepisów
+                <% } %>
+               
+            </h1>
+            <div class="alert alert-secondary">
+                
+                <ul class="description">
+                    Parametry:
+                    <li>
+                        Tytuł - <strong><%= param.title %></strong> <a data-toggle="modal" data-target="#searchRecipe" style="margin-left: 8px;cursor:pointer"> zmień</a>
+                    </li>
+                    <li>
+                        Poziom - <strong><%= param.level %></strong> <a data-toggle="modal" data-target="#searchRecipe" style="margin-left: 8px;cursor:pointer"> zmień</a>
+                    </li>
+                    <li>
+                        Czas - 
+                        <strong>
+                            <% if(param.time === 15){ %>
+                                15min
+                            <% } else if(param.time === 30) { %>
+                                30min
+                            <% } else { %>
+                                1h
+                            <% } %>
+                        </strong> <a data-toggle="modal" data-target="#searchRecipe" style="margin-left: 8px;cursor:pointer"> zmień</a>
+                    </li>
+                    <li>
+                        Ilość porcji - <strong><%= param.portion %></strong> <a data-toggle="modal" data-target="#searchRecipe" style="margin-left: 8px;cursor:pointer"> zmień</a>
+                    </li>
+                </ul>
+               
+            </div>
+            <% if(currentUser){ %>
+                <div class="text-center">
+                    <a href="/recipes/category/new" class="btn btn-outline-dark">Dodaj nową kategorię</a>
+                </div>
+                
+            <% } %>
+            
+				
+            <% if(categories.length !== 0){ %>
+                <div class="dropdown text-center">
+                    <button class="btn btn-outline-dark dropdown-toggle justify-content-center" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                       Wybierz kategorię
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <% for(let i=0; i< categories.length; i++){ %>
+                            <a class="dropdown-item" href="/recipes/category/<%= categories[i].link %>"><%= categories[i].name %></a>
+                        <% } %>
+                        
+                    </div>
+                </div>
+                <br>
+            <% } %>
+            
+        </div>
+    </div>
+
+    <% if(recipes.length===0){ %>
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-12">
+                <div class="alert alert-secondary text-center" role="alert">
+                    Nie znaleźliśmy przepisów dla podanych powyżej parametrów. Spróbuj ponownie:
+                </div>
+            </div>
+        </div>
+    <% } else { %>
+        <div class="row">
+                
+                    <% for(let i=recipes.length-1; i>=0;i--){ %>
+                        <div class="col-lg-4 col-md-12" style="margin-top: 8px">
+                            <div class="card">
+                                <img src="<%= recipes[i].profile %>" alt="" class="card-img-top">
+                                <br>
+                                <div class="card-title text-center title">
+                                    <a href="/recipes/<%= recipes[i].link %>"><%= recipes[i].title %></a>
+                                </div>
+                                <div class="card-body">
+                                    <% if(recipes[i].description === ""){ %>
+                                        <p class="preparation">Składniki: </p>
+                
+                                        <ul>
+                                            <% for(let j=0;j<recipes[i].ingredients.length;j++){ %>
+                                                <li class="description_comment"><%= recipes[i].ingredients[j].text %></li>
+                                                
+                                            <% } %>
+                                        </ul>
+                    
+                                    <% } else { %>
+                                        <% if(recipes[i].description.length < 200){ %>
+                                            <p class="description"><%- recipes[i].description %></p>
+                                        <% } else { %>
+                                            <p class="description"><%- recipes[i].description.substring(0,200) %>...</p>
+                                        <% } %>
+                                    <% } %>
+                                    
+                                    <label>
+                                            <i class="far fa-clock"></i>
+                                            <span style="margin-right:5px">
+                                                <% if(recipes[i].hours === 0){ %>
+                                                    <%= `${recipes[i].minutes}min` %>
+                                                <% } else { %>
+                                                    <%= `${recipes[i].hours}h ${recipes[i].minutes}min` %>
+                                                <% } %>
+                                                
+                                            </span>
+                                            <i class="fas fa-utensils"></i>
+                                            <span style="margin-right:5px"><%= recipes[i].plates %></span>
+                                            <i class="far fa-lightbulb fa-lg"></i>
+                                            <span style="margin-right:5px"><%= recipes[i].level %></span>
+                                            <i class="fas fa-comments"></i>
+                                            <span><%= recipes[i].comments.length %></span>
+                                    </label>
+                                    <br>
+                                    <% if(recipes[i].description === ""){ %>
+                                        <a href="/recipes/<%= recipes[i].link %>" class="btn btn-outline-dark">Zobacz kroki przygotowania</a>
+                                    <% } else { %>
+                                        <a href="/recipes/<%= recipes[i].link %>" class="btn btn-outline-dark">Zobacz składniki</a>
+                                    <% } %>
+                                    
+                                
+                                   
+                                
+                            </div>
+                        
+                            </div>
+                        </div>
+                    <% } %>
+                
+        </div>
+       
+    <% } %>
+    
+    <div class="modal fade" id="searchRecipe" tabindex="-1" role="dialog" aria-labelledby="searchRecipe" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title headerp">Wyszukaj przepis</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <form action="/recipes/advanced/search" method="get">
+					
+                        <p class="description">Wpisz tytuł przepisu</p>
+                        <input type="text" id="news" value="<%= param.title %>" autocomplete="off" class="form-control" name="title" placeholder="Tytuł przepisu" aria-label="Tytuł przepisu" aria-describedby="basic-addon2">
+                        <br>
+                        <p class="description">Wybierz ilość porcji</p>
+                        <div class="radios">
+                            <% if(param.portion === "Więcej niż 3"){ %> 
+                                <label class="radio">
+                                    <input type="radio" name="portion" value="3" checked>
+                                    <div class="radioButton"></div>
+                                    Więcej niż 3
+                                </label>
+                                <label class="radio">
+                                    <input type="radio" name="portion" value="3s">
+                                    <div class="radioButton"></div>
+                                    Mniej niż 3
+                                </label>
+                            <% } else { %>
+                                <label class="radio">
+                                    <input type="radio" name="portion" value="3">
+                                    <div class="radioButton"></div>
+                                    Więcej niż 3
+                                </label>
+                                <label class="radio">
+                                    <input type="radio" name="portion" value="3s" checked>
+                                    <div class="radioButton"></div>
+                                    Mniej niż 3
+                                </label>
+                            <% } %>
+                            
+                        </div>
+                        
+                       
+                        <p class="description">Wybierz czas przygotowania</p>
+                        <div class="radios">
+                            <% if(param.time === 15){ %> 
+                                <label class="radio">
+                                    <input type="radio" name="time" value="15" checked>
+                                    <div class="radioButton"></div>
+                                    15min
+                                </label>
+                                <label class="radio">
+                                    <input type="radio" name="time" value="30">
+                                    <div class="radioButton"></div>
+                                    30min
+                                </label>
+                                <label class="radio">
+                                    <input type="radio" name="time" value="1">
+                                    <div class="radioButton"></div>
+                                    Więcej niż godzina
+                                </label>
+                            <% } else if(param.time === 30){ %>
+                                <label class="radio">
+                                    <input type="radio" name="time" value="15">
+                                    <div class="radioButton"></div>
+                                    15min
+                                </label>
+                                <label class="radio">
+                                    <input type="radio" name="time" value="30" checked>
+                                    <div class="radioButton"></div>
+                                    30min
+                                </label>
+                                <label class="radio">
+                                    <input type="radio" name="time" value="1">
+                                    <div class="radioButton"></div>
+                                    Więcej niż godzina
+                                </label>
+                            <% } else { %>
+                                <label class="radio">
+                                    <input type="radio" name="time" value="15">
+                                    <div class="radioButton"></div>
+                                    15min
+                                </label>
+                                <label class="radio">
+                                    <input type="radio" name="time" value="30">
+                                    <div class="radioButton"></div>
+                                    30min
+                                </label>
+                                <label class="radio">
+                                    <input type="radio" name="time" value="1" checked>
+                                    <div class="radioButton"></div>
+                                    Więcej niż godzina
+                                </label>
+                            <% } %>
+                            
+                        </div>
+                        
+                        <p class="description">Wybierz poziom zaawansowania</p>
+                        <div class="radios">
+                            <% if(param.level === "Łatwy"){ %> 
+                                <label class="radio">
+                                    <input type="radio" name="level" value="Łatwy" checked>
+                                    <div class="radioButton"></div>
+                                    Łatwy
+                                </label>
+                                <label class="radio">
+                                    <input type="radio" name="level" value="Średni" id="">
+                                    <div class="radioButton"></div>
+                                    Średni
+                                </label>
+                                <label for="advanced" class="radio">
+                                    <input type="radio" name="level" value="Zaawansowany" id="advanced">
+                                    <div class="radioButton"></div>
+                                    Zaawansowany
+                                </label>
+                            <% } else if(param.level === "Średni"){ %>
+                                <label class="radio">
+                                    <input type="radio" name="level" value="Łatwy">
+                                    <div class="radioButton"></div>
+                                    Łatwy
+                                </label>
+                                <label class="radio">
+                                    <input type="radio" name="level" value="Średni" id="" checked>
+                                    <div class="radioButton"></div>
+                                    Średni
+                                </label>
+                                <label for="advanced" class="radio">
+                                    <input type="radio" name="level" value="Zaawansowany" id="advanced">
+                                    <div class="radioButton"></div>
+                                    Zaawansowany
+                                </label>
+                            <% } else { %>
+                                <label class="radio">
+                                    <input type="radio" name="level" value="Łatwy">
+                                    <div class="radioButton"></div>
+                                    Łatwy
+                                </label>
+                                <label class="radio">
+                                    <input type="radio" name="level" value="Średni" id="">
+                                    <div class="radioButton"></div>
+                                    Średni
+                                </label>
+                                <label for="advanced" class="radio">
+                                    <input type="radio" name="level" value="Zaawansowany" id="advanced" checked>
+                                    <div class="radioButton"></div>
+                                    Zaawansowany
+                                </label>
+                            <% } %>
+                            
+                        </div>
+                        
+                        <input type="submit" value="Szukaj przepis" class="btn btn-dark">
+                        <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Zamknij mnie</button>
+					
+				</form>
+              
+                
+            </div>
+           
+          </div>
+        </div>
+      </div>
+</div>
+<%- include("../partials/footer") %>
