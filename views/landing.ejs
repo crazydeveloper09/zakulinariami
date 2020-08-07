@@ -19,20 +19,52 @@
         <div class="row justify-content-center">
             <div class="col-lg-6 col-md-12" id="landing">
                 <h1 class="title_jumbotron">Witaj na Zakulinariami</h1>
-                        <form action="/recipes/title/search" method="get">
-                            <div class="input-group mb-3">
-                                <input type="search" id="news" autocomplete="off" class="form-control" name="title"
-                                    placeholder="Wpisz tytuł przepisu" aria-label="Wpisz tytuł przepisu" aria-describedby="basic-addon2">
-                                <div class="input-group-append">
-                                    <button class="btn btn-outline-light" type="submit" style="border:none; border-bottom: 1px solid white;"><i
-                                            class="fas fa-search"></i></button>
-                                </div>
-                            </div>
-                        </form>
-                <a href="/home" class="btn btn-outline-light">Przejdź do strony głównej</a>   
+                <div class="text-center">
+                    <a href="#" data-toggle="modal" data-target="#searchRecipe" class="btn btn-outline-light">Wyszukaj przepis</a>
+                    <span class="description" style="color: white;">lub</span>
+                    <a href="/home" class="btn btn-light">Przejdź do strony głównej</a>
+                </div>
+                        
+                   
             </div>
             
         </div>
     </div>
+    <div class="modal fade" id="searchRecipe" tabindex="-1" role="dialog" aria-labelledby="searchRecipe" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title headerp">Wyszukaj przepis</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <form action="/recipes/title/search" method="get">
+					
+                    <span class="description">
+                        Wpisz tytuł przepisu
+                        <button type="button" style="background: transparent;border: none;" data-container="body" data-toggle="popover" data-placement="right" data-content="Nie pamiętasz dokładnie tytułu przepisu? Żaden problem. Wystarczy, że wpiszesz słowo kluczowe lub ciąg liter">
+                            <i class="fas fa-info-circle" style="color: #212529;"></i>
+                        </button>
+                    </span>
+                        <input type="search" id="news" autocomplete="off" class="form-control" name="title" placeholder="Tytuł przepisu" aria-label="Tytuł przepisu" aria-describedby="basic-addon2">
+                        
+                        <br>
+                        <input type="submit" value="Szukaj przepis" class="btn btn-dark">
+                        
+					
+				</form>
+              
+                
+            </div>
+           
+          </div>
+        </div>
+        <script>
+            $(function () {
+                $('[data-toggle="popover"]').popover()
+            })
+        </script>
 </body>
 </html>

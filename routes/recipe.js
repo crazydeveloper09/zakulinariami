@@ -50,7 +50,7 @@ router.get("/advanced/search", function(req, res){
                     {$or: [{title: regex}]}, 
                     {$or: [{level: req.query.level}]},
                     {$or: [{hours: {$gte: parseInt(req.query.time)}}]},
-                    {$or: [{plates: {$gt: parseInt(req.query.portion)} }]} 
+                    {$or: [{plates: {$gte: parseInt(req.query.portion)} }]} 
                 ]}).populate(["comments", "ingredients"]).exec( function(err, recipes){
                 if(err){
                     console.log(err);
@@ -79,7 +79,7 @@ router.get("/advanced/search", function(req, res){
                     {$or: [{title: regex}]}, 
                     {$or: [{level: req.query.level}]},
                     {$or: [{minutes: {$lte: parseInt(req.query.time)}}]},
-                    {$or: [{plates: {$gt: parseInt(req.query.portion)} }]} 
+                    {$or: [{plates: {$gte: parseInt(req.query.portion)} }]} 
                 ]}).populate(["comments", "ingredients"]).exec(function(err, recipes){
                 if(err){
                     console.log(err);
@@ -111,7 +111,7 @@ router.get("/advanced/search", function(req, res){
                     {$or: [{title: regex}]}, 
                     {$or: [{level: req.query.level}]},
                     {$or: [{hours: {$gte: parseInt(req.query.time)}}]},
-                    {$or: [{plates: {$lt: parseInt(req.query.portion.split('s'))} }]} 
+                    {$or: [{plates: {$lte: parseInt(req.query.portion.split('s'))} }]} 
                 ]}).populate(["comments", "ingredients"]).exec(function(err, recipes){
                 if(err){
                     console.log(err);
@@ -140,7 +140,7 @@ router.get("/advanced/search", function(req, res){
                     {$or: [{ title: regex }]}, 
                     {$or: [{ level: req.query.level }]},
                     {$or: [{ minutes:{$lte: parseInt(req.query.time)}}]},
-                    {$or: [{ plates: {$lt: parseInt(req.query.portion.split('s'))} } ]}
+                    {$or: [{ plates: {$lte: parseInt(req.query.portion.split('s'))} } ]}
                 ]}).populate(["comments", "ingredients"]).exec(function(err, recipes){
                 if(err){
                     console.log(err);

@@ -129,10 +129,20 @@
             <div class="modal-body">
                 <form action="/recipes/advanced/search" method="get">
 					
-                        <p class="description">Wpisz tytuł przepisu</p>
+                    <span class="description">
+                        Wpisz tytuł przepisu
+                        <button type="button" style="background: transparent;border: none;" data-container="body" data-toggle="popover" data-placement="right" data-content="Nie pamiętasz dokładnie tytułu przepisu? Żaden problem. Wystarczy, że wpiszesz słowo kluczowe lub ciąg liter">
+                            <i class="fas fa-info-circle" style="color: #212529;"></i>
+                        </button>
+                    </span>
                         <input type="search" id="news" autocomplete="off" class="form-control" name="title" placeholder="Tytuł przepisu" aria-label="Tytuł przepisu" aria-describedby="basic-addon2">
                         <br>
-                        <p class="description">Wybierz ilość porcji</p>
+                        <span class="description">
+                            Wybierz ilość porcji
+                            <button type="button" style="background: transparent;border: none;" data-container="body" data-toggle="popover" data-placement="right" data-content="Niezależnie którą opcję zaznaczysz to wyszukuje również równo 3">
+                                <i class="fas fa-info-circle" style="color: #212529;"></i>
+                            </button>
+                        </span>
                         <div class="radios">
                             <label class="radio">
                                 <input type="radio" name="portion" value="3">
@@ -147,7 +157,12 @@
                         </div>
                         
                        
-                        <p class="description">Wybierz czas przygotowania</p>
+                        <span class="description">
+                            Wybierz czas przygotowania
+                            <button type="button" style="background: transparent;border: none;" data-container="body" data-toggle="popover" data-placement="right" data-content="Jeśli zaznaczasz opcję z minutami to wyszukuje również mniejszą wartość.">
+                                <i class="fas fa-info-circle" style="color: #212529;"></i>
+                            </button>
+                        </span>
                         <div class="radios">
                             <label class="radio">
                                 <input type="radio" name="time" value="15">
@@ -158,6 +173,16 @@
                                 <input type="radio" name="time" value="30">
                                 <div class="radioButton"></div>
                                 30min
+                            </label>
+                            <label class="radio">
+                                <input type="radio" name="time" value="45">
+                                <div class="radioButton"></div>
+                                45min
+                            </label>
+                            <label class="radio">
+                                <input type="radio" name="time" value="59">
+                                <div class="radioButton"></div>
+                                59min
                             </label>
                             <label class="radio">
                                 <input type="radio" name="time" value="1">
@@ -186,7 +211,7 @@
                         </div>
                         
                         <input type="submit" value="Szukaj przepis" class="btn btn-dark">
-                        <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Zamknij mnie</button>
+                        
 					
 				</form>
               
@@ -197,4 +222,9 @@
         </div>
       </div>
 </div>
+<script>
+    $(function () {
+        $('[data-toggle="popover"]').popover()
+    })
+</script>
 <%- include("../partials/footer") %>
