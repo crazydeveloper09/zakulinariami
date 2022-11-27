@@ -1,28 +1,29 @@
-#mainNav .nav-link {
+body {
+    background: #d7dbd8;
     font-family: "Nunito", sans-serif;
+}
+
+#mainNav .nav-link {
     text-transform: uppercase;
-    color: #212529;
+    color: #f5f6fa;
 }
 
 #mainNav .nav-link:hover,
 #mainNav .active {
-    color: #f5f6fa;
-    background: #212529;
+    color: #bb9e68;
 }
 .navbar-brand {
-    font-family: "Nunito", sans-serif;
     text-transform: uppercase;
-    color: #212529;
+    color: #f5f6fa;
     font-weight: 100;
+    text-shadow: #bb9e68 4px 1px 12px;
 }
 .header {
-    font-family: "Nunito", sans-serif;
     font-size: 40px;
     font-weight: 700;
     color: #212529;
 }
 .headerp {
-    font-family: "Nunito", sans-serif;
     font-size: 1.728rem;
     font-weight: 700;
     color: #212529;
@@ -44,66 +45,55 @@ a {
 }
 
 .bg-grey {
-    background: #d7dbd8;
+    background: #212529;
 }
 #name {
-    font-family: "Nunito", sans-serif;
     font-size: 21px;
     font-weight: 700;
     color: #212529; 
 }
 .description {
-    font-family: "Nunito", sans-serif;
     font-size: 19px;
     
     color: #212529;
 }
 
 .description_comment {
-    font-family: "Nunito", sans-serif;
     font-size: 17px;
     top: 30%;
     color: #212529;
 }
 .info {
-    font-family: "Nunito", sans-serif;
     font-size: 12px;
    
     color: #212529;
 }
 
 .footer {
-    font-family: "Nunito", sans-serif;
     font-size: 13px;
    
     color: #212529;
 }
 
 .title {
-    font-family: "Nunito", sans-serif;
     font-size: 25px;
     font-weight: 700;
     color: #212529;
 }
-body {
-    background: #d7dbd8;
-}
+
 
 .title_new {
-    font-family: "Nunito", sans-serif;
     font-size: 25px;
     font-weight: 700;
     color: #212529;
 }
 
 .description_new {
-    font-family: "Nunito", sans-serif;
     font-size: 20px;
     color: #212529;
 }
 
 .preparation {
-    font-family: "Nunito", sans-serif;
     font-size: 18px;
     font-weight: 700;
     color: #212529;
@@ -239,7 +229,6 @@ div .nickname:nth-of-type(2n) {
     
 }
 .title_jumbotron {
-    font-family: "Nunito", sans-serif;
     font-size: 42px;
     font-weight: 100;
     color: white;

@@ -15,9 +15,9 @@
     <title><%= header %></title>
 </head>
 <body>
-    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-grey" id="mainNav">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-grey" id="mainNav">
         <div class="container">
-            <a href="/home" class="navbar-brand"> Zakulinariami</a>
+            <a href="/home" class="navbar-brand" style="color: #f5f6fa;"> Zakulinariami</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
                 style="border:none;">
@@ -25,7 +25,7 @@
             </button>
     
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto text-center">
+                <ul class="navbar-nav ml-auto text-center">
                     <% if(typeof home !== 'undefined'){ %>
                         <li class="nav-item">
                             <a class="nav-link active" href="/home">Home</a>
