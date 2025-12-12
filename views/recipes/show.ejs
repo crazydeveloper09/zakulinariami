@@ -57,7 +57,7 @@
                         </p>
                         <p>
                             <i class="far fa-user" style="margin-right: 6px;"></i>
-                            <span>Dodane przez: <%= recipe.author[0].username %></span>
+                            <span>Dodane przez: <%= recipe.author[0]?.username %></span>
                         </p>
                      
                         
@@ -287,4 +287,5 @@
             </div>
         </div>
     </div>
+
 <%- include("../partials/footer") %>
