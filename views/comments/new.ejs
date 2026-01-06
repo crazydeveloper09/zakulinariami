@@ -13,13 +13,13 @@
                 <div class="card-body">
                         <form action="/recipes/<%= recipe.link %>/comments" method="post">
                             <% if(!currentUser){ %>
-                                <p class="description_new">Podaj swรณj nick</p>
-                                <input type="text" name="nickname" class="form-control" placeholder="Nick">
+                                <p class="description_new">Podaj swój nick</p>
+                                <input type="text" name="nickname" class="form-control" placeholder="Nick" required>
                                 <br>
                             <% } %>
                             
                             <p class="description_new">Tekst komentarza</p>
-                            <textarea name="text" id="description" class="form-control" placeholder="Tekst komentarza"></textarea>
+                            <textarea name="text" id="description" class="form-control" placeholder="Tekst komentarza" required></textarea>
                             <br>
                             <input type="submit" value="Dodaj nowy komentarz" class="btn btn-outline-dark">
                         </form>

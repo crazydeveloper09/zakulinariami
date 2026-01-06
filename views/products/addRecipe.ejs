@@ -28,7 +28,7 @@
                                 </div>
                                 <input type="submit" value="Powiąż przepis z produktem" class="btn btn-outline-dark" disabled>
                             <% } else { %>
-                                <select name="recipe" id="select" class="form-control">
+                                <select name="recipe" id="select" class="form-control" required>
                                     <% for(let i=0;i< recipes.length;i++){ %>
                                         
                                             <option value="<%= recipes[i]._id %>"><%= recipes[i].title %></option>

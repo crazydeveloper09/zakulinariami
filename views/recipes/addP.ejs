@@ -14,9 +14,8 @@
                                 <form action="/recipes/<%= recipe._id %>/add/picture" method="post" enctype="multipart/form-data">
                                     
                                     <p class="description_new">Wybierz zdjęcie</p>
-                                    <input type="file" name="picture">
-                                    <br>
-                                    <br>
+                                    <input class="form-control" type="file" accept="image/*" name="picture" required>
+                                    
                                     <input type="submit" value="Dodaj zdjęcie do galerii" class="btn btn-outline-dark">
                                 </form>
                         </div>

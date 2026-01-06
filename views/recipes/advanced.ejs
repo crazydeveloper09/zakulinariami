@@ -42,7 +42,7 @@
                             <% } else { %>
                                 1h
                             <% } %>
-                        </strong> <a data-toggle="modal" data-target="#searchRecipe" style="margin-left: 8px;cursor:pointer"> zmień</a>
+                        </strong> <a data-bs-toggle="modal" data-bs-target="#searchRecipe" style="margin-left: 8px;cursor:pointer"> zmień</a>
                     </li>
                     <li>
                         Ilość porcji - <strong><%= param.portion %></strong> <a data-toggle="modal" data-target="#searchRecipe" style="margin-left: 8px;cursor:pointer"> zmień</a>
@@ -50,7 +50,7 @@
                 </ul>
                
             </div>
-            <% if(currentUser){ %>
+            <% if(currentUser && currentUser.username === "Admin"){ %>
                 <div class="text-center">
                     <a href="/recipes/category/new" class="btn btn-outline-dark">Dodaj nową kategorię</a>
                 </div>
@@ -88,63 +88,7 @@
         <div class="row">
                 
                     <% for(let i=recipes.length-1; i>=0;i--){ %>
-                        <div class="col-lg-4 col-md-12" style="margin-top: 8px">
-                            <div class="card">
-                                <img src="<%= recipes[i].profile %>" alt="" class="card-img-top">
-                                <br>
-                                <div class="card-title text-center title">
-                                    <a href="/recipes/<%= recipes[i].link %>"><%= recipes[i].title %></a>
-                                </div>
-                                <div class="card-body">
-                                    <% if(recipes[i].description === ""){ %>
-                                        <p class="preparation">Składniki: </p>
-                
-                                        <ul>
-                                            <% for(let j=0;j<recipes[i].ingredients.length;j++){ %>
-                                                <li class="description_comment"><%= recipes[i].ingredients[j].text %></li>
-                                                
-                                            <% } %>
-                                        </ul>
-                    
-                                    <% } else { %>
-                                        <% if(recipes[i].description.length < 200){ %>
-                                            <p class="description"><%- recipes[i].description %></p>
-                                        <% } else { %>
-                                            <p class="description"><%- recipes[i].description.substring(0,200) %>...</p>
-                                        <% } %>
-                                    <% } %>
-                                    
-                                    <label>
-                                            <i class="far fa-clock"></i>
-                                            <span style="margin-right:5px">
-                                                <% if(recipes[i].hours === 0){ %>
-                                                    <%= `${recipes[i].minutes}min` %>
-                                                <% } else { %>
-                                                    <%= `${recipes[i].hours}h ${recipes[i].minutes}min` %>
-                                                <% } %>
-                                                
-                                            </span>
-                                            <i class="fas fa-utensils"></i>
-                                            <span style="margin-right:5px"><%= recipes[i].plates %></span>
-                                            <i class="far fa-lightbulb fa-lg"></i>
-                                            <span style="margin-right:5px"><%= recipes[i].level %></span>
-                                            <i class="fas fa-comments"></i>
-                                            <span><%= recipes[i].comments.length %></span>
-                                    </label>
-                                    <br>
-                                    <% if(recipes[i].description === ""){ %>
-                                        <a href="/recipes/<%= recipes[i].link %>" class="btn btn-outline-dark">Zobacz kroki przygotowania</a>
-                                    <% } else { %>
-                                        <a href="/recipes/<%= recipes[i].link %>" class="btn btn-outline-dark">Zobacz składniki</a>
-                                    <% } %>
-                                    
-                                
-                                   
-                                
-                            </div>
-                        
-                            </div>
-                        </div>
+                        <%- include("../partials/recipe", { recipe: recipes[i] }) %>
                     <% } %>
                 
         </div>
@@ -165,7 +109,7 @@
 					
                         <span class="description">
                             Wpisz tytuł przepisu
-                            <button type="button" style="background: transparent;border: none;" data-container="body" data-toggle="popover" data-placement="top" data-content="Nie pamiętasz dokładnie tytułu przepisu? Żaden problem. Wystarczy, że wpiszesz słowo kluczowe lub ciąg liter">
+                            <button type="button" style="background: transparent;border: none;" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Nie pamiętasz dokładnie tytułu przepisu? Żaden problem. Wystarczy, że wpiszesz słowo kluczowe lub ciąg liter">
                                 <i class="fas fa-info-circle" style="color: #212529;"></i>
                             </button>
                         </span>
@@ -173,7 +117,7 @@
                         <br>
                         <span class="description">
                             Wybierz ilość porcji
-                            <button type="button" style="background: transparent;border: none;" data-container="body" data-toggle="popover" data-placement="top" data-content="Niezależnie którą opcję zaznaczysz to wyszukuje również równo 3">
+                            <button type="button" style="background: transparent;border: none;" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Niezależnie którą opcję zaznaczysz to wyszukuje również równo 3">
                                 <i class="fas fa-info-circle" style="color: #212529;"></i>
                             </button>
                         </span>
@@ -207,7 +151,7 @@
                        
                         <span class="description">
                             Wybierz czas przygotowania
-                            <button type="button" style="background: transparent;border: none;" data-container="body" data-toggle="popover" data-placement="top" data-content="Jeśli zaznaczasz opcję z minutami to wyszukuje również mniejszą wartość.">
+                            <button type="button" style="background: transparent;border: none;" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Jeśli zaznaczasz opcję z minutami to wyszukuje również mniejszą wartość.">
                                 <i class="fas fa-info-circle" style="color: #212529;"></i>
                             </button>
                         </span>
@@ -403,7 +347,7 @@
                             
                         </div>
                         
-                        <input type="submit" value="Szukaj przepis" class="btn btn-dark">
+                        <input type="submit" value="Szukaj przepis" class="btn btn-green">
                         
 					
 				</form>

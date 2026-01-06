@@ -1,0 +1,50 @@
+<div class="col-lg-4 col-md-12" style="margin-top: 8px">
+                            <div class="card">
+                                <img src="<%= recipe.profile %>" alt="" class="card-img-top image">
+                                <br>
+                                <div class="card-title text-center title">
+                                    <a href="/recipes/<%= recipe.link %>" class="title_link"><%= recipe.title %></a>
+                                </div>
+                                <div class="card-body">
+                                    <% if(recipe.description === ""){ %>
+                                        <p class="preparation">Składniki: </p>
+                
+                                        <ul>
+                                            <% for(let i=0;i<recipe.ingredients.length;i++){ %>
+                                                <li class="description_comment"><%= recipe.ingredients[i].text %></li>
+                                                
+                                            <% } %>
+                                        </ul>
+                    
+                                    <% } else { %>
+                                        <% if(recipe.description.length < 200){ %>
+                                            <p class="description"><%- recipe.description %></p>
+                                        <% } else { %>
+                                            <p class="description"><%- recipe.description.substring(0,200) %>...</p>
+                                        <% } %>
+                                    <% } %>
+                                    
+                                    <label>
+                                            <i class="far fa-clock"></i>
+                                            <span style="margin-right:5px">
+                                                <% if(recipe.hours === 0){ %>
+                                                    <%= `${recipe.minutes}min` %>
+                                                <% } else { %>
+                                                    <%= `${recipe.hours}h ${recipe.minutes}min` %>
+                                                <% } %>
+                                                
+                                            </span>
+                                            <i class="fas fa-utensils"></i>
+                                            <span style="margin-right:5px"><%= recipe.plates %></span>
+                                            <i class="far fa-lightbulb fa-lg"></i>
+                                            <span style="margin-right:5px"><%= recipe.level %></span>
+                                            <i class="fas fa-comments"></i>
+                                            <span><%= recipe.comments.length %></span>
+                                    </label>
+                                    <div class="link_div">
+                                        <a href="/recipes/<%= recipe.link %>" class="more_details_link">Zobacz szczegóły →</a>
+                                    </div>
+                                    
+                            </div>
+                        </div>
+                        </div>

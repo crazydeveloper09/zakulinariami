@@ -1,0 +1,48 @@
+<%- include("../partials/header") %>
+<br>
+<br>
+<br>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-12">
+            <div class="card">
+                <div class="card-title text-center title_new" id="name">
+                    <br>
+                    Dodaj kategorię do przepisu <%= recipe.title %>
+                </div>
+                <div class="card-body">
+                    <% if(error && error.length > 0){ %>
+                        <div class="alert alert-danger" role="alert">
+                            <%= error %>
+                        </div>
+                    <% } %>
+                    
+                        <form action="/recipes/<%= recipe._id %>/categories" method="post">
+                            <p class="description_new">Wybierz kategorię</p>
+                            <% if(categories.length === 0){ %>
+                                <div class="row justify-content-center">
+                                    <div class="col-lg-6 col-md-12">
+                                        <div class="alert alert-secondary text-center" role="alert">
+                                            Dodałeś wszystkie kategorie do tego przepisu
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="submit" value="Dodaj kategorię do przepisu" class="btn btn-outline-dark" disabled>
+                            <% } else { %>
+                                <select name="category" id="select" class="form-control" required>
+                                    <% for(let i=0; i < categories.length; i++){ %>
+                                        <option value="<%= categories[i]._id %>"><%= categories[i].name %></option>
+                                    <% } %>
+                                </select>
+                                <br>
+                                <input type="submit" value="Dodaj kategorię do przepisu" class="btn btn-outline-dark">
+                            <% } %>
+                        </form>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<%- include("../partials/footer") %>

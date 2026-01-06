@@ -3,10 +3,6 @@
 <br>
 <br>
 <div class="container">
-    
-    
- 
-   
     <div class="row">
         <div class="col-lg-12">
             
@@ -19,12 +15,11 @@
 						</div>
 					</div>
 				</div>
-               
             <% } %>
         </div>
     </div>
 
-    <% if(recipes.length===0){ %>
+    <% if(recipes.length === 0){ %>
         <div class="row justify-content-center">
             <div class="col-lg-6 col-md-12">
                 <div class="alert alert-secondary text-center" role="alert">
@@ -36,125 +31,14 @@
         <div class="row">
                 <% if(recipes.length > 6){ %>
                     <% for(let i=recipes.length-1; i>recipes.length - 7;i--){ %>
-                        <div class="col-lg-4 col-md-12" style="margin-top: 8px">
-                            <div class="card">
-                                <img src="<%= recipes[i].profile %>" alt="" class="card-img-top">
-                                <br>
-                                <div class="card-title text-center title">
-                                    <a href="/recipes/<%= recipes[i].link %>"><%= recipes[i].title %></a>
-                                </div>
-                                <div class="card-body">
-                                    <% if(recipes[i].description === ""){ %>
-                                        <p class="preparation">Składniki: </p>
-                
-                                        <ul>
-                                            <% for(let i=0;i<recipe.ingredients.length;i++){ %>
-                                                <li class="description_comment"><%= recipe.ingredients[i].text %></li>
-                                                
-                                            <% } %>
-                                        </ul>
-                    
-                                    <% } else { %>
-                                        <% if(recipes[i].description.length < 200){ %>
-                                            <p class="description"><%- recipes[i].description %></p>
-                                        <% } else { %>
-                                            <p class="description"><%- recipes[i].description.substring(0,200) %>...</p>
-                                        <% } %>
-                                    <% } %>
-                                    
-                                    <label>
-                                            <i class="far fa-clock"></i>
-                                            <span style="margin-right:5px">
-                                                <% if(recipes[i].hours === 0){ %>
-                                                    <%= `${recipes[i].minutes}min` %>
-                                                <% } else { %>
-                                                    <%= `${recipes[i].hours}h ${recipes[i].minutes}min` %>
-                                                <% } %>
-                                                
-                                            </span>
-                                            <i class="fas fa-utensils"></i>
-                                            <span style="margin-right:5px"><%= recipes[i].plates %></span>
-                                            <i class="fas fa-comments"></i>
-                                            <span><%= recipes[i].comments.length %></span>
-                                    </label>
-                                    <br>
-                                    <% if(recipes[i].description === ""){ %>
-                                        <a href="/recipes/<%= recipes[i].link %>" class="btn btn-outline-dark">Zobacz kroki przygotowania</a>
-                                    <% } else { %>
-                                        <a href="/recipes/<%= recipes[i].link %>" class="btn btn-outline-dark">Zobacz składniki</a>
-                                    <% } %>
-                                    
-                                
-                                   
-                                
-                            </div>
-                        </div>
-                        </div>
+                        <%- include("partials/recipe", { recipe: recipes[i] }) %>
                     <% } %>
                 <% } else { %>
                     <% for(let i=recipes.length-1; i>=0;i--){ %>
-                        <div class="col-lg-4 col-md-12">
-                            <div class="card">
-                                <img src="<%= recipes[i].profile %>" alt="" class="card-img-top">
-                                <br>
-                                <div class="card-title text-center title">
-                                    <a href="/recipes/<%= recipes[i].link %>"><%= recipes[i].title %></a>
-                                </div>
-                                <div class="card-body">
-                                    <% if(recipes[i].description === ""){ %>
-                                        <p class="preparation">Składniki: </p>
-                
-                                        <ul>
-                                            <% for(let j=0;j<recipes[i].ingredients.length;j++){ %>
-                                                <li class="description_comment"><%= recipes[i].ingredients[j].text %></li>
-                                                
-                                            <% } %>
-                                        </ul>
-                    
-                                    <% } else { %>
-                                        <% if(recipes[i].description.length < 200){ %>
-                                            <p class="description"><%- recipes[i].description %></p>
-                                        <% } else { %>
-                                            <p class="description"><%- recipes[i].description.substring(0,200) %>...</p>
-                                        <% } %>
-                                    <% } %>
-                                    
-                                    <label>
-                                            <i class="far fa-clock"></i>
-                                            <span style="margin-right:5px">
-                                                <% if(recipes[i].hours === 0){ %>
-                                                    <%= `${recipes[i].minutes}min` %>
-                                                <% } else { %>
-                                                    <%= `${recipes[i].hours}h ${recipes[i].minutes}min` %>
-                                                <% } %>
-                                                
-                                            </span>
-                                            <i class="fas fa-utensils"></i>
-                                            <span style="margin-right:5px"><%= recipes[i].plates %></span>
-                                            <i class="far fa-lightbulb fa-lg"></i>
-                                            <span style="margin-right:5px"><%= recipes[i].level %></span>
-                                            <i class="fas fa-comments"></i>
-                                            <span><%= recipes[i].comments.length %></span>
-                                            
-                                    </label>
-                                    <br>
-                                    <% if(recipes[i].description === ""){ %>
-                                        <a href="/recipes/<%= recipes[i].link %>" class="btn btn-outline-dark">Zobacz kroki przygotowania</a>
-                                    <% } else { %>
-                                        <a href="/recipes/<%= recipes[i].link %>" class="btn btn-outline-dark">Zobacz składniki</a>
-                                    <% } %>
-                                    
-                                
-                                   
-                                
-                            </div>
-                                
-                            </div>
-                        </div>
+                        <%- include("partials/recipe", { recipe: recipes[i] }) %>
                     <% } %>
                 <% } %>
         </div>
-       
     <% } %>
     
 </div>

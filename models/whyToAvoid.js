@@ -1,7 +1,7 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const whyToAvoidSchema = new mongoose.Schema({
     text: String
 });
 
-module.exports=mongoose.model("WhyToAvoid", whyToAvoidSchema);
+export default mongoose.model("WhyToAvoid", whyToAvoidSchema);

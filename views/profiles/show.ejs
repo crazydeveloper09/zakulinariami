@@ -7,59 +7,78 @@
     <div class="row justify-content-center">
         <div class="col-lg-8 col-md-12">
             <div class="card">
-                <img src="<%= thisUser[0].profile %>" alt="" class="card-img-top">
-                <div class="card-title text-center title">
-                    <br>
-                    <%= thisUser[0].username %>
-                    
-                </div>
+                <img src="<%= thisUser.profile %>" alt="" class="card-img-top show">
+                
                 <div class="card-body">
-                    <% if( thisUser[0].description !== ""){ %>
-                        <p class="description"><%= thisUser[0].description %></p>
+                    <div class="card-title text-center title">
+                        <%= thisUser.username %>
+                    </div>
+                    <% if( thisUser.description !== ""){ %>
+                        <p class="description"><%= thisUser.description %></p>
                     <% } else { %>
                         <div class="alert alert-dark" role="alert">
-                            Nie dodałem jeszcze swojego opisu
+                            Użytkownik nie dodał jeszcze swojego opisu
                         </div>
                     <% } %>
                     <dl>
                         <dt class="description_new">Wiek</dt>
                       
-                            <% if( thisUser[0].age !== ""){ %>
-                                <dd class="description"><%= thisUser[0].age %></dd>
+                            <% if( thisUser.age !== ""){ %>
+                                <dd class="description"><%= thisUser.age %></dd>
                             <% } else { %>
                                 <div class="alert alert-dark" role="alert">
-                                   Nie dodałem jeszcze swojego wieku
+                                   Użytkownik nie dodał jeszcze swojego wieku
                                 </div>
                             <% } %>
                        
                        
                         <dt class="description_new">Miejscowość</dt>
                         
-                            <% if( thisUser[0].city !== ""){ %>
-                                <dd class="description"><%= thisUser[0].city %></dd>
+                            <% if( thisUser.city !== ""){ %>
+                                <dd class="description"><%= thisUser.city %></dd>
                             <% } else { %>
                                 <div class="alert alert-dark" role="alert">
-                                    Nie dodałem jeszcze swojej miejscowości zamieszkania
+                                    Użytkownik nie dodał jeszcze swojej miejscowości zamieszkania
                                 </div>
                             <% } %>
                         
                        
                         <dt class="description_new">Zainteresowania</dt>
                         
-                            <% if( thisUser[0].hobbies !== ""){ %>
-                                <dd class="description"><%= thisUser[0].hobbies %></dd>
+                            <% if(thisUser.hobbies && thisUser.hobbies.trim() !== ""){ %>
+                                <dd class="description"><%= thisUser.hobbies %></dd>
                             <% } else { %>
                                 <div class="alert alert-dark" role="alert">
-                                    Nie dodałem jeszcze swoich zainteresowań
+                                    Użytkownik nie dodał jeszcze swoich zainteresowań
                                 </div>
                             <% } %>
                         
                         
-                            
+                        <dt class="description_new">Przepisy</dt>
+                        <% if(recipes.length === 0){ %>
+                            <div class="alert alert-dark" role="alert">
+                                Użytkownik nie dodał jeszcze przepisów
+                            </div>
+                        <% } else { %>
+                            <div class="row">
+                                <% recipes.forEach((recipe) => { %>
+                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                        <img src="<%= recipe.profile %>" alt="<%= recipe.title %>" class="img-fluid">
+                                        <div class="link_div">
+                                            <a href="/recipes/<%= recipe.link %>" class="more_details_link"><%= recipe.title %></a>
+                                        </div>
+                                        
+                                    </div>
+                                <% }) %>
+                                
+                            </div>
+                        <% } %>
                         
                     </dl>
-                    <% if(currentUser){ %>
-                        <a href="/about/<%= currentUser._id %>/edit" class="btn btn-outline-dark">Edytuj o mnie</a>
+                    
+                    <% if(currentUser && currentUser.username === thisUser.username){ %>
+                        <a href="/about/<%= currentUser._id %>/edit" class="btn btn-outline-dark">Edytuj opisy</a>
+                        <a href="/about/<%= currentUser._id %>/edit/profile" class="btn btn-dark">Edytuj zdjęcie profilowe</a>
                     <% } %>
                     
                 </div>

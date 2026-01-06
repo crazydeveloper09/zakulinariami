@@ -18,7 +18,6 @@
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="/recipes/category/<%= category._id %>/edit">Edytuj kategorię</a>
                         <a class="dropdown-item" href="/recipes/category/<%= category._id %>/delete">Usuń kategorię</a>
-                        <a href="/recipes/category/<%= category._id %>/recipes/add" class="dropdown-item">Dodaj przepis do kategorii</a>
                         
                     </div>
                 </div>
@@ -31,7 +30,7 @@
                     <input type="text" name="category_id" value="<%= category._id %>" hidden>
                     <input type="search" id="news" autocomplete="off" class="form-control" name="title" placeholder="Wpisz tytuł przepisu" aria-label="Wpisz tytuł przepisu" aria-describedby="basic-addon2">
                     <div class="input-group-append">
-                        <button class="btn btn-outline-dark" type="submit" style="border:none; border-bottom: 1px solid #212529;"><i class="fas fa-search"></i></button>
+                        <button class="btn btn-green btn-green-search" type="submit"><i class="fas fa-search"></i></button>
                     </div>
                 </div>
             </form>
@@ -68,67 +67,9 @@
     <% } else { %>
         <div class="row">
                 
-                    <% for(let i=recipes.length-1; i>=0;i--){ %>
-                        
-                        <div class="col-lg-4 col-md-12" style="margin-top: 8px">
-                            <div class="card">
-                                <img src="<%= recipes[i].profile %>" alt="" class="card-img-top">
-                                <br>
-                                <div class="card-title text-center title">
-                                    <a href="/recipes/<%= recipes[i].link %>"><%= recipes[i].title %></a>
-                                    
-                                </div>
-                                <div class="card-body">
-                                    <% if(recipes[i].description === ""){ %>
-                                        <p class="preparation">Składniki: </p>
-                
-                                        <ul>
-                                            <% for(let j=0;j<recipes[i].ingredients.length;j++){ %>
-                                                <li class="description_comment"><%= recipes[i].ingredients[j].text %></li>
-                                                
-                                            <% } %>
-                                        </ul>
-                    
-                                    <% } else { %>
-                                        <% if(recipes[i].description.length < 200){ %>
-                                            <p class="description"><%- recipes[i].description %></p>
-                                        <% } else { %>
-                                            <p class="description"><%- recipes[i].description.substring(0,200) %>...</p>
-                                        <% } %>
-                                    <% } %>
-                                    
-                                    <label>
-                                            <i class="far fa-clock"></i>
-                                            <span style="margin-right:5px">
-                                                <% if(recipes[i].hours === 0){ %>
-                                                    <%= `${recipes[i].minutes}min` %>
-                                                <% } else { %>
-                                                    <%= `${recipes[i].hours}h ${recipes[i].minutes}min` %>
-                                                <% } %>
-                                                
-                                            </span>
-                                            <i class="fas fa-utensils"></i>
-                                            <span style="margin-right:5px"><%= recipes[i].plates %></span>
-                                            <i class="far fa-lightbulb fa-lg"></i>
-                                            <span style="margin-right:5px"><%= recipes[i].level %></span>
-                                            <i class="fas fa-comments"></i>
-                                            <span><%= recipes[i].comments.length %></span>
-                                    </label>
-                                    <br>
-                                    <% if(recipes[i].description === ""){ %>
-                                        <a href="/recipes/<%= recipes[i].link %>" class="btn btn-outline-dark">Zobacz kroki przygotowania</a>
-                                    <% } else { %>
-                                        <a href="/recipes/<%= recipes[i].link %>" class="btn btn-outline-dark">Zobacz składniki</a>
-                                    <% } %>
-                                    
-                                
-                                   
-                                
-                            </div>
-                        
-                            </div>
-                        </div>
-                    <% } %>
+            <% for(let i = recipes.length - 1; i >= 0; i--){ %>
+                <%- include("../partials/recipe", { recipe: recipes[i] }) %>
+            <% } %>
                 
         </div>
        

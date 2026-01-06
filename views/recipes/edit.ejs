@@ -14,22 +14,22 @@
                     <div class="card-body">
                         <form action="/recipes/<%= recipe._id %>?_method=PUT" method="post">
                             <p class="description_new">Edytuj tytuł</p>
-                            <input type="text" name="recipe[title]" class="form-control" value="<%= recipe.title %>" placeholder="Tytuł przepisu">
+                            <input type="text" name="recipe[title]" class="form-control" value="<%= recipe.title %>" placeholder="Tytuł przepisu" required>
                             <br>
                             <p class="description_new">Edytuj ilość godzin potrzebnych do przygotowania</p>
-                            <input type="number" name="recipe[hours]" class="form-control" value="<%= recipe.hours %>" placeholder="Godziny">
+                            <input type="number" name="recipe[hours]" min="0" max="24" class="form-control" value="<%= recipe.hours %>" placeholder="Godziny" required>
                             <br>
                             <p class="description_new">Edytuj ilość minut potrzebnych do przygotowania</p>
-                            <input type="number" name="recipe[minutes]" class="form-control" value="<%= recipe.minutes %>" placeholder="Minuty">
+                            <input type="number" name="recipe[minutes]" min="0" max="60" class="form-control" value="<%= recipe.minutes %>" placeholder="Minuty" required>
                             <br>
                             <p class="description_new">Edytuj ilość porcji</p>
-                            <input type="number" name="recipe[plates]" class="form-control" value="<%= recipe.plates %>" placeholder="Porcje">
+                            <input type="number" name="recipe[plates]" class="form-control" value="<%= recipe.plates %>" placeholder="Porcje" required>
                             <br>
                             <p class="description_new">Edytuj opis</p>
                             <textarea name="recipe[description]" class="form-control" id="description" placeholder="Opis przepisu"><%= recipe.description %></textarea>
                             <br>
                             <p class="description_new">Edytuj poziom zaawansowania</p>
-                                    <select name="recipe[level]" id="select" class="form-control">
+                                    <select name="recipe[level]" id="select" class="form-control" required>
                                         <option><%= recipe.level %></option>
                                         <option>Łatwy</option>
                                         <option>Średni</option>

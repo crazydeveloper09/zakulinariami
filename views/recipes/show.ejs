@@ -7,11 +7,14 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
-                <img src="<%= recipe.profile %>" alt="" class="card-img-top">
-                <br>
-                <div class="card-title text-center title"><%= recipe.title %></div>
+                <img src="<%= recipe.profile %>" alt="" class="card-img-top show">
+
                 <div class="card-body">
+                    <div class="card-title text-center title show"><%= recipe.title %></div>
                     <div class="informations">
+                        <% if(!recipe.published){ %>
+                            <span class="badge text-bg-dark">Wersja robocza</span>
+                        <% } %>
                         <p>
                             <i class="far fa-clock" style="margin-right: 6px;"></i>
                             <span>
@@ -57,7 +60,7 @@
                         </p>
                         <p>
                             <i class="far fa-user" style="margin-right: 6px;"></i>
-                            <span>Dodane przez: <%= recipe.author[0].username %></span>
+                            <span>Dodane przez: <%= recipe.author.username %></span>
                         </p>
                      
                         
@@ -79,7 +82,7 @@
                         <ul>
                             <% for(let i=0;i<recipe.ingredients.length;i++){ %>
                                 <li class="description_comment"><%= recipe.ingredients[i].text %></li>
-                                <% if(currentUser) { %>
+                                <% if(currentUser && currentUser.username === recipe.author.username) { %>
                                     <div class="d-inline">
                                         <a href="/recipes/<%= recipe._id %>/ingredients/<%= recipe.ingredients[i]._id %>/edit">Edytuj</a>
                                         <a href="/recipes/<%= recipe._id %>/ingredients/<%= recipe.ingredients[i]._id %>/delete">Usuń</a>
@@ -94,7 +97,7 @@
                         <ul>
                             <% for(let i=0;i<recipe.cheese.length;i++){ %>
                                 <li class="description_comment"><%= recipe.cheese[i].text %></li>
-                                <% if(currentUser) { %>
+                                <% if(currentUser && currentUser.username === recipe.author.username) { %>
                                     <div class="d-inline">
                                         <a href="/recipes/<%= recipe._id %>/cheese/<%= recipe.cheese[i]._id %>/edit">Edytuj</a>
                                         <a href="/recipes/<%= recipe._id %>/cheese/<%= recipe.cheese[i]._id %>/delete">Usuń</a>
@@ -109,7 +112,7 @@
                         <ul>
                             <% for(let i=0;i<recipe.decorations.length;i++){ %>
                                 <li class="description_comment"><%= recipe.decorations[i].text %></li>
-                                <% if(currentUser) { %>
+                                <% if(currentUser && currentUser.username === recipe.author.username) { %>
                                     <div class="d-inline">
                                         <a href="/recipes/<%= recipe._id %>/decorations/<%= recipe.decorations[i]._id %>/edit">Edytuj</a>
                                         <a href="/recipes/<%= recipe._id %>/decorations/<%= recipe.decorations[i]._id %>/delete">Usuń</a>
@@ -124,7 +127,7 @@
                         <ul>
                             <% for(let i=0;i<recipe.sauce.length;i++){ %>
                                 <li class="description_comment"><%= recipe.sauce[i].text %></li>
-                                <% if(currentUser) { %>
+                                <% if(currentUser && currentUser.username === recipe.author.username) { %>
                                     <div class="d-inline">
                                         <a href="/recipes/<%= recipe._id %>/sauce/<%= recipe.sauce[i]._id %>/edit">Edytuj</a>
                                         <a href="/recipes/<%= recipe._id %>/sauce/<%= recipe.sauce[i]._id %>/delete">Usuń</a>
@@ -147,7 +150,7 @@
                         <ol>
                             <% for(let i=0;i<recipe.preparations.length;i++){ %>
                                 <li class="description_comment"><%= recipe.preparations[i].text %></li>
-                                <% if(currentUser) { %>
+                                <% if(currentUser && currentUser.username === recipe.author.username) { %>
                                    
                                     <a href="/recipes/<%= recipe._id %>/preparations/<%= recipe.preparations[i]._id %>/edit">Edytuj</a>
                                     <a href="/recipes/<%= recipe._id %>/preparations/<%= recipe.preparations[i]._id %>/delete">Usuń</a>
@@ -178,37 +181,45 @@
 
 
 
-                    <% if(currentUser){ %>
-                        <div class="dropdown">
-                            <button class="btn btn-outline-dark dropdown-toggle justify-content-center" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                               Modyfikacja
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                              
-    
-                                <a class="dropdown-item" href="/recipes/<%= recipe._id %>/edit">Edytuj przepis</a>
-                                <a class="dropdown-item" href="/recipes/<%= recipe._id %>/delete">Usuń przepis</a>
-                                <a class="dropdown-item" href="/recipes/<%= recipe._id %>/edit/profile">Edytuj zdjęcie główne</a>
-                                <a class="dropdown-item" href="/recipes/<%= recipe._id %>/add/picture">Dodaj zdjęcie do galerii</a>
-                                <a class="dropdown-item" href="/recipes/<%= recipe._id %>/ingredients/add">Dodaj składnik</a>
-                                <a class="dropdown-item" href="/recipes/<%= recipe._id %>/cheese/add">Dodaj składnik sera</a>
-                                <a class="dropdown-item" href="/recipes/<%= recipe._id %>/sauce/add">Dodaj składnik sosu</a>
-                                <a class="dropdown-item" href="/recipes/<%= recipe._id %>/decorations/add">Dodaj składnik dekoracji</a>
-                                <a class="dropdown-item" href="/recipes/<%= recipe._id %>/preparations/add">Dodaj sposób przygotowania</a>
-                               
+                    <% if(currentUser && currentUser.username === recipe.author.username){ %>
+                        <div class="d-flex" style="gap: 10px; margin-bottom: 10px;">
+                            <div class="dropdown">
+                                <button class="btn btn-outline-dark dropdown-toggle justify-content-center" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Modyfikacja
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 
+        
+                                    <a class="dropdown-item" href="/recipes/<%= recipe._id %>/edit">Edytuj przepis</a>
+                                    <a class="dropdown-item" href="/recipes/<%= recipe._id %>/delete">Usuń przepis</a>
+                                    <a class="dropdown-item" href="/recipes/<%= recipe._id %>/edit/profile">Edytuj zdjęcie główne</a>
+                                    <a class="dropdown-item" href="/recipes/<%= recipe._id %>/add/picture">Dodaj zdjęcie do galerii</a>
+                                    <a class="dropdown-item" href="/recipes/<%= recipe._id %>/ingredients/add">Dodaj składnik</a>
+                                    <a class="dropdown-item" href="/recipes/<%= recipe._id %>/cheese/add">Dodaj składnik sera</a>
+                                    <a class="dropdown-item" href="/recipes/<%= recipe._id %>/sauce/add">Dodaj składnik sosu</a>
+                                    <a class="dropdown-item" href="/recipes/<%= recipe._id %>/decorations/add">Dodaj składnik dekoracji</a>
+                                    <a class="dropdown-item" href="/recipes/<%= recipe._id %>/preparations/add">Dodaj sposób przygotowania</a>
+                                    <a class="dropdown-item" href="/recipes/<%= recipe._id %>/categories/add">Połącz kategorię</a>
+                                    <a class="dropdown-item" href="/recipes/<%= recipe._id %>/products/add">Połącz z produktem</a>
+                                    
+                                </div>
                             </div>
+                            <% if(!recipe.published){ %>
+                                <a href="/recipes/<%= recipe._id %>/publish" class="btn btn-dark">Opublikuj</a>
+                            <% } %>
                         </div>
-                        <br>
+                        
                        
 
 
                     <% }  %>
-
+                    <button type="button" class="report_button" data-bs-toggle="modal" data-bs-target="#reportRecipe">
+                        <i class="fas fa-flag"></i> Zgłoś
+                    </button>
                 </div>
                 <div class="card-footer">
                     <h2 class="title">Komentarze <span style="margin-left: 4%"><%= comments.length %></span></h2>
-                    <% if(comments.length===0){ %>
+                    <% if(comments.length === 0){ %>
                         <div>
                             <a href="/recipes/<%= recipe.link %>/comments/new" class="btn btn-outline-dark">Dodaj nowy komentarz</a>
                         </div>
@@ -254,10 +265,10 @@
                                    
                                         <div class="d-flex justify-content-start mb-4 messages">
                                             <div class="img_cont_msg">
-                                                <img src="<%= comments[i].author[0].profile %>" class="rounded-circle img_cont_msg">
+                                                <img src="<%= comments[i].author.profile %>" class="rounded-circle img_cont_msg">
                                             </div>
                                             <div class="msg_cotainer">
-                                                <p class="author"><strong><%= comments[i].author[0].username %></strong></p>
+                                                <p class="author"><strong><%= comments[i].author.username %></strong></p>
                                                 <p class="description_comment"><%= comments[i].text %></p>
                                                 <span class="date_comment"><%= comments[i].written.toLocaleDateString() %></span>
                                                 <br>
@@ -283,6 +294,29 @@
                     <% } %>
 
                     
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="reportRecipe" tabindex="-1" aria-labelledby="reportRecipeLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title headerp" id="reportRecipeLabel">Zgłoś przepis</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/recipes/<%= recipe._id %>/report" method="post">
+                        <p class="description">Powód zgłoszenia</p>
+                        <input type="text" id="reason" autocomplete="off" class="form-control" name="reason" placeholder="Wpisz powód" aria-label="Powód zgłoszenia" aria-describedby="basic-addon2" required>
+                        <br>
+                        <p class="description">Email zgłaszającego </p>
+                        <input type="email" id="reporterEmail" autocomplete="off" class="form-control" name="reporterEmail" placeholder="Wpisz email" aria-label="Email zgłaszającego" aria-describedby="basic-addon2" required>
+                        <br>
+                        <input type="submit" value="Zgłoś" class="btn btn-green">
+                    
+                    </form>
+              
                 </div>
             </div>
         </div>

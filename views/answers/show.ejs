@@ -11,7 +11,7 @@
                     <% if(comment.nickname){ %>
                         Odpowiedzi do komentarza <%= comment.nickname %>: <q><%= comment.text %></q> do przepisu <a href="/recipes/<%= comment.recipe.link %>" style="color: #212529;"><%= comment.recipe.title %></a>
                     <% } else { %>
-                        Odpowiedzi do komentarza <%= comment.author[0].username %>: <q><%= comment.text %></q> do przepisu <a href="/recipes/<%= comment.recipe.link %>" style="color: #212529;"><%= comment.recipe.title %></a>
+                        Odpowiedzi do komentarza <%= comment.author.username %>: <q><%= comment.text %></q> do przepisu <a href="/recipes/<%= comment.recipe.link %>" style="color: #212529;"><%= comment.recipe.title %></a>
                     <% } %>
                     
                 </div>

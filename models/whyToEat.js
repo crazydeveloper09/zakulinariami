@@ -1,7 +1,7 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const whyToEatSchema = new mongoose.Schema({
     text: String
 })
 
-module.exports = mongoose.model("WhyToEat", whyToEatSchema);
+export default mongoose.model("WhyToEat", whyToEatSchema);

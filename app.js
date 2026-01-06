@@ -1,31 +1,41 @@
-const  express = require("express"),
-        bodyParser = require("body-parser"),
-        mongoose = require("mongoose"),
-        passport = require("passport"),
-        LocalStrategy = require("passport-local").Strategy,
-        Blogger        = require("./models/blogger"),
-        aboutRoutes = require("./routes/about"),
-        indexRoutes = require("./routes/index"),
-        productsRoutes = require("./routes/product"),
-        recipesRoutes = require("./routes/recipe"),
-        ingredientsRoutes = require("./routes/ingredient"),
-        commentsRoutes = require("./routes/comment"),
-        whyToEatRoutes = require("./routes/whyToEat"),
-        whyToAvoidRoutes = require("./routes/whyToAvoid"),
-        substitutesRoutes = require("./routes/substitutes"),
-        preparationsRoutes = require("./routes/preparation"),
-        decorationsRoutes = require("./routes/decoration"),
-        sauceRoutes = require("./routes/sauce"),
-        categoryRoutes = require("./routes/category"),
-        cheeseRoutes = require("./routes/cheese"),
-        methodOverride = require("method-override"),
-        flash = require("connect-flash"),
-        app = express(),
-        dotenv = require("dotenv");
-        dotenv.config();
-    
-  
-  
+import express from "express";
+import bodyParser from "body-parser";
+import mongoose from "mongoose";
+import passport from "passport";
+import PassportLocal from "passport-local";
+import Blogger from "./models/blogger.js";
+import aboutRoutes from "./routes/about.js";
+import indexRoutes from "./routes/index.js";
+import productsRoutes from "./routes/product.js";
+import recipesRoutes from "./routes/recipe.js";
+import ingredientsRoutes from "./routes/ingredient.js";
+import commentsRoutes from "./routes/comment.js";
+import whyToEatRoutes from "./routes/whyToEat.js";
+import whyToAvoidRoutes from "./routes/whyToAvoid.js";
+import substitutesRoutes from "./routes/substitutes.js";
+import preparationsRoutes from "./routes/preparation.js";
+import decorationsRoutes from "./routes/decoration.js";
+import sauceRoutes from "./routes/sauce.js";
+import categoryRoutes from "./routes/category.js";
+import cheeseRoutes from "./routes/cheese.js";
+import methodOverride from "method-override";
+import flash from "connect-flash";
+import dotenv from "dotenv";
+import { fileURLToPath } from "url";
+import path from "path";
+import expressSession from "express-session";
+import helmet from "helmet";
+import { hashEmail } from "./helpers.js";
+
+const app = express();
+const LocalStrategy = PassportLocal.Strategy;
+dotenv.config();
+
+const __filename = fileURLToPath(import.meta.url);
+
+export const __dirname = path.dirname(__filename);
+
+
 // Database and models
 mongoose.connect(process.env.DATABASE_URL, {
     useNewUrlParser: true,
@@ -41,11 +51,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
 app.use(flash());
-app.use(require("express-session")({
+app.use(expressSession({
     secret: "heheszki",
     resave: false,
     saveUninitialized: false
 }));
+app.use(helmet({
+    contentSecurityPolicy: false
+}))
 app.use(function(req, res, next) {
     res.locals.return_route = req.query.return_route;
     res.locals.route = req.path;

@@ -13,7 +13,7 @@
                     <div class="card-body">
                         <form action="/comment/<%= comment._id %>?_method=PUT" method="post">
                             <p class="description_new">Edytuj treść</p>
-                            <textarea name="comment[text]" class="form-control" id="description" placeholder="Twój komentarz"><%= comment.text %></textarea>
+                            <textarea name="comment[text]" class="form-control" id="description" placeholder="Twój komentarz" required><%= comment.text %></textarea>
                             <br>
                             <input type="submit" value="Edytuj komentarz" class="btn btn-primary" style="background: none; color:#212529; border-color:#212529;">
                         </form>

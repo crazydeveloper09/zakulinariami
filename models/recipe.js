@@ -1,15 +1,11 @@
-const mongoose = require("mongoose");
-    
-
+import mongoose from "mongoose";
 
 const recipeSchema = new mongoose.Schema({
     title: String,
-    author: [
-        {
+    author: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Blogger'
-        }
-    ],
+    },
     description: String,
     profile: String,
     level: String,
@@ -74,7 +70,11 @@ const recipeSchema = new mongoose.Schema({
     ],
     hours: Number,
     minutes: Number,
-    plates: Number
+    plates: Number,
+    published: {
+        type: Boolean,
+        default: false
+    }
 });
 
-module.exports = mongoose.model('Recipe', recipeSchema);
+export default mongoose.model('Recipe', recipeSchema);

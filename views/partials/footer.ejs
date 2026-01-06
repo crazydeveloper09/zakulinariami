@@ -1,31 +1,18 @@
-<br>
-<div class="container">
+<footer class="container">
     <div class="row">
         <div class="col-lg-12 text-center footer">
-            Zakulinariami <script>document.write(new Date().getFullYear())</script>  © Wszelkie prawa zastrzeżone by:
-            <a href="https://mkdportfolio.pl" target="_blank" style="color: #212529;">MK</a> 
-            <br>
-            <% if(return_route){ %>
-                <a href="/login?return_route=<%= return_route %>" style="color: #212529;">panel administracyjny</a>
-            <% } else { %> 
-                <a href="/login?return_route=<%= route %>" style="color: #212529;">panel administracyjny</a>
-            <% } %>
+            Cookiety <script>document.write(new Date().getFullYear())</script>  © Wszelkie prawa zastrzeżone by:
+            <a href="https://websiteswithpassion.pl" target="_blank" style="color: #212529;">Maciej Solutions</a> 
               
         </div>
     </div>
 
-</div>
-<br>
+</footer>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 <script>
-    $(".form-control").on('click', function(){
-        $(".form-control").css({
-            "background": "none",
-            "color": "#212529",
-            "box-shadow": "none",
-            "border-color": "#212529"           
-        });
-    });
+    const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+    const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
 </script>
 </body>
 </html>

@@ -14,7 +14,7 @@
                         <form action="/products/<%= product._id %>/substitutes/<%= substitute._id %>?_method=PUT" method="post">
                             
                             <p class="description_new">Edytuj opis cechy</p>
-                            <textarea name="substitute[text]" id="description" class="form-control" placeholder="Zamiennik"><%= substitute.text %></textarea>
+                            <textarea name="substitute[text]" id="description" class="form-control" placeholder="Zamiennik" required><%= substitute.text %></textarea>
                             <br>
                            
                             <input type="submit" value="Edytuj zamiennik" class="btn btn-outline-dark">

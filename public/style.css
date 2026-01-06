@@ -1,6 +1,6 @@
 body {
-    background: #d7dbd8;
-    font-family: "Nunito", sans-serif;
+    background: #E3E6E1;
+    font-family: "DM Sans", sans-serif;
 }
 
 #mainNav .nav-link {
@@ -10,26 +10,106 @@ body {
 
 #mainNav .nav-link:hover,
 #mainNav .active {
-    color: #bb9e68;
+    color: #6F8F7A;
+    text-decoration: none;
 }
 .navbar-brand {
     text-transform: uppercase;
     color: #f5f6fa;
-    font-weight: 100;
-    text-shadow: #bb9e68 4px 1px 12px;
+    text-shadow: #6F8F7A 4px 1px 12px;
+}
+.navbar-brand:hover {
+    text-decoration: none;
 }
 .header {
     font-size: 40px;
     font-weight: 700;
-    color: #212529;
+    color: #1F2428;
 }
 .headerp {
-    font-size: 1.728rem;
+    font-size: 35px;
     font-weight: 700;
-    color: #212529;
+    color: #1F2428;
+    font-family: "Playfair Display", serif;
 }
+a.title_link {
+    color: #1F2428;
+    text-decoration: none;
+    font-family: "Playfair Display", serif;
+}
+
+footer {
+    margin: 25px;
+}
+
 a {
-    color: #bb9e68;
+    color: #506858;
+    text-decoration: none;
+}
+
+a:not(.btn):hover {
+    text-decoration: underline;
+}
+
+.more_details_link {
+    color: #6F8F7A;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+}
+
+.more_details_link:hover {
+    color: #6F8F7A;
+    text-decoration: underline;
+}
+
+.link_div {
+    margin-top: 10px;
+}
+
+
+.card-img-top.show {
+    max-height: 500px;
+    object-fit: cover;
+}
+
+.btn-green {
+    background: #6F8F7A; 
+    border-color: #6F8F7A; 
+    color: #f5f6fa;
+}
+
+.btn-green:hover {
+    background: #506858;
+    border-color: #506858;
+    color: #f5f6fa;
+}
+
+.btn-green-search {
+    border-radius: 0 5px 5px 0;
+}
+
+.modifyButtonsContainer {
+    display: flex;
+    gap: 10px; 
+    margin-bottom: 10px;
+}
+
+i.far.fa-clock,
+i.far.fa-user,
+i.far.fa-lightbulb,
+i.fas.fa-shopping-bag,
+i.fas.fa-utensils,
+i.fas.fa-comments,
+i.fas.fa-tag {
+    color: #6F8F7A;
+}
+
+.report_button {
+    background: none;
+    border: none;
+    color: #B85A6A;
 }
 .user_img{
     height: 70px;
@@ -44,59 +124,73 @@ a {
 
 }
 
+.badge {
+    margin-bottom: 10px;
+}
+
+.image {
+    height: 310px;
+}
+
 .bg-grey {
-    background: #212529;
+    background: #1F2428;
 }
 #name {
-    font-size: 21px;
+    font-size: 25px;
     font-weight: 700;
-    color: #212529; 
+    color: #1F2428; 
 }
 .description {
     font-size: 19px;
     
-    color: #212529;
+    color: #1F2428;
 }
 
 .description_comment {
     font-size: 17px;
     top: 30%;
-    color: #212529;
+    color: #1F2428;
 }
 .info {
     font-size: 12px;
    
-    color: #212529;
+    color: #1F2428;
 }
 
 .footer {
     font-size: 13px;
    
-    color: #212529;
+    color: #1F2428;
 }
 
 .title {
-    font-size: 25px;
+    font-size: 28px;
     font-weight: 700;
-    color: #212529;
+    color: #1F2428;
+}
+
+.title.show {
+    font-size: 30px;
+    font-family: "Playfair Display", serif;
 }
 
 
 .title_new {
-    font-size: 25px;
+    font-size: 35px;
     font-weight: 700;
-    color: #212529;
+    color: #1F2428;
+    font-family: "Playfair Display", serif;
 }
 
 .description_new {
     font-size: 20px;
-    color: #212529;
+    color: #1F2428;
 }
 
 .preparation {
     font-size: 18px;
     font-weight: 700;
-    color: #212529;
+    color: #1F2428;
 }
 
 input[type=text],
@@ -104,12 +198,8 @@ input[type=password],
 input[type=email],
 input[type=number],
 input[type=search] {
-    background: none;
-    border-bottom: 1px solid #212529;
-    border-top: none;
-    border-right: none;
-    border-left: none;
-    color: #212529;
+    background: #f5f6fa;
+    color: #1F2428;
 }
 
 input[type=text]::placeholder,
@@ -118,15 +208,14 @@ input[type=email]::placeholder,
 input[type=number]::placeholder,
 input[type=search]::placeholder {
     
-    color: #212529;
+    color: #1F2428;
 }
 
 
 
 .date_comment {
     text-transform: uppercase;
-    font-family: 'Nunito', sans-serif;
-    color: #212529;
+    color: #1F2428;
     
     left: 0;
     
@@ -134,14 +223,12 @@ input[type=search]::placeholder {
 }
 .informations {
    
-    font-family: 'Nunito', sans-serif;
-    color: #212529;
+    color: #1F2428;
     font-weight: 700;
 }
 .date {
     text-transform: uppercase;
-    font-family: 'Nunito', sans-serif;
-    color: #212529;
+    color: #1F2428;
     font-size: 13px;
     letter-spacing: 0.1em;
 }
@@ -151,25 +238,18 @@ input[type=search]::placeholder {
 }
 #description,
 #select {
-    background: none;
-                                    border-bottom: 1px solid #212529;
-                                    border-top: none;
-                                    border-right: none;
-                                    border-left: none;
-                                    color: #212529;
-                                    font-family: 'Nunito', sans-serif;
+    background: #f5f6fa;
+    color: #1F2428;
 }
 
 #description::placeholder,
 #comment::placeholder {
-    color: #212529;
-    font-family: 'Nunito', sans-serif;
+    color: #1F2428;
 }
 
 .btn-like {
     background: none;
-    color: #212529;
-    font-family: 'Nunito', sans-serif;
+    color: #1F2428;
 
     border: none;
 }
@@ -182,7 +262,6 @@ input[type=search]::placeholder {
     padding: 10px;
    
     max-width: 100%;
-    font-family: 'Nunito', sans-serif;
 }
 .author {
     
@@ -191,8 +270,7 @@ input[type=search]::placeholder {
     font-size: 17px;
     bottom: 30%;
     
-    color: #212529;
-    font-family: 'Nunito', sans-serif;
+    color: #1F2428;
 }
 
 .img_cont_msg{
@@ -211,10 +289,9 @@ div .nickname:nth-of-type(2n) {
    
 }
 .radio {
-    color: #212529;
-    font-family: 'Nunito', sans-serif;
+    color: #1F2428;
     margin-right: 8px;
-   font-size:17px;
+    font-size:17px;
     position: relative;
     align-items: center;
     display:inline-flex;
@@ -247,11 +324,11 @@ input[type=radio] {
         width:20px;
         height:20px;
         border-radius: 50%;
-        border: 2px solid #212529;
+        border: 2px solid #1F2428;
    
 }
 
 input:checked + .radioButton {
-    background: #212529;
+    background: #1F2428;
         box-shadow: inset 0 0 0 3px white;
 }

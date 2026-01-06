@@ -15,21 +15,20 @@ body,
 html {
     margin:0;
 	padding:0;
-   
+    font-family: "DM Sans", sans-serif;
  
 }
 .headerp {
-    font-family: "Nunito", sans-serif;
     font-size: 1.728rem;
     font-weight: 700;
-    color: #212529;
+    color: #1F2428;
+    font-family: "Playfair Display", serif;
 }
 .description {
-    font-family: "Nunito", sans-serif;
     font-size: 19px;
     margin-left: 8px;
     margin-right: 8px;
-    color: #212529;
+    color: #1F2428;
 }
 .container {
     filter: none;
@@ -37,20 +36,14 @@ html {
 
 input[type=search]::placeholder {
     
-    color:#212529;
+    color:#1F2428;
 }
 
 input[type=search] {
-    background: none;
-    border-bottom: 1px solid #212529;
-    border-top: none;
-    border-right: none;
-    border-left: none;
-    color: #212529;
+    color: #1F2428;
 }
 
 .title_jumbotron {
-    font-family: "Nunito", sans-serif;
     font-size: 42px;
     font-weight: 400;
     color: white;

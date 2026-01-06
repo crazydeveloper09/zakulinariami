@@ -1,0 +1,26 @@
+ <div class="col-lg-4 col-md-12" style="margin-top: 8px">
+                            <div class="card">
+                                <img src="<%= product.profile %>" alt="" class="card-img-top image">
+                                <br>
+                                <div class="card-title text-center title">
+                                    <a href="/products/<%= product.link %>" class="title_link"><%= product.title %></a>
+                                </div>
+                                <div class="card-body">
+                                    <% if(product.description.length < 200){ %>
+                                        <p class="description"><%- product.description %></p>
+                                    <% } else { %>
+                                        <p class="description"><%- product.description.substring(0,200) %>...</p>
+                                    <% } %>
+                                
+                                    <div class="link_div">
+                                        <a href="/products/<%= product.link %>" class="more_details_link">
+                                            Zobacz szczegóły →
+                                        </a>
+                                    </div>
+                                    
+                        
+                        
+                                </div>
+                        
+                            </div>
+                        </div>

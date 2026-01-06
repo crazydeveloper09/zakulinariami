@@ -13,14 +13,14 @@
                 <div class="card-body">
                         <form action="/products" method="post" enctype="multipart/form-data">
                             <p class="description_new">Tytuł produktu</p>
-                            <input type="text" name="title" class="form-control" placeholder="Tytuł produktu">
+                            <input type="text" name="title" class="form-control" placeholder="Tytuł produktu" required>
                             <br>
                            
                             <p class="description_new">Opis produktu</p>
                             <textarea name="description" id="description" class="form-control" placeholder="Opis produktu"></textarea>
                             <br>
                             <p class="description_new">Zdjęcie główne produktu</p>
-                            <input type="file" name="profile">
+                            <input class="form-control" type="file" accept="image/*" name="profile" required>
                             <br>
                             <br>
                             <ul class="description_new">

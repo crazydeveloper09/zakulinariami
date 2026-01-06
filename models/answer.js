@@ -1,12 +1,21 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
+import { decrypt, encrypt } from "../helpers.js";
 
 const answerSchema = new mongoose.Schema({
     author: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Blogger'
     },
-    text: String,
-    nickname: String,
+    text: {
+        type: String,
+        set: (text) => encrypt(text),
+        get: (encryptedText) => decrypt(encryptedText),
+    },
+    nickname: {
+        type: String,
+        set: (nickname) => encrypt(nickname),
+        get: (encryptedNickname) => decrypt(encryptedNickname),
+    },
     written: {
         type: Date,
         default: Date.now()
@@ -18,4 +27,4 @@ const answerSchema = new mongoose.Schema({
 })
 
 
-module.exports = mongoose.model("Answer", answerSchema);
+export default mongoose.model("Answer", answerSchema);

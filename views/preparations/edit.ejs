@@ -14,7 +14,7 @@
                         <form action="/recipes/<%= recipe._id %>/preparations/<%= preparation._id %>?_method=PUT" method="post">
                             
                             <p class="description_new">Edytuj opis kroku przygotowania</p>
-                            <textarea name="preparation[text]" id="description" class="form-control" placeholder="Krok przygotowania"><%= preparation.text %></textarea>
+                            <textarea name="preparation[text]" id="description" class="form-control" placeholder="Krok przygotowania" required><%= preparation.text %></textarea>
                             <br>
                            
                             <input type="submit" value="Edytuj krok przygotowania" class="btn btn-outline-dark">

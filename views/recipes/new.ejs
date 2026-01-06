@@ -13,32 +13,29 @@
                         <div class="card-body">
                                 <form action="/recipes" method="post" enctype="multipart/form-data">
                                     <p class="description_new">Tytuł przepisu</p>
-                                    <input type="text" name="title" class="form-control" placeholder="Tytuł przepisu">
+                                    <input type="text" name="title" class="form-control" placeholder="Tytuł przepisu" required>
                                     <br>
                                     <p class="description_new">Ilość godzin potrzebnych do przygotowania</p>
-                                    <input type="number" name="hours" class="form-control" placeholder="Godziny">
+                                    <input type="number" name="hours" min="0" max="24" class="form-control" placeholder="Godziny" required>
                                     <br>
                                     <p class="description_new">Ilość minut potrzebnych do przygotowania</p>
-                                    <input type="number" name="minutes" class="form-control" placeholder="Minuty">
+                                    <input type="number" name="minutes" min="0" max="60" class="form-control" placeholder="Minuty" required>
                                     <br>
                                     <p class="description_new">Ilość porcji</p>
-                                    <input type="number" name="plates" class="form-control" placeholder="Porcje">
+                                    <input type="number" name="plates" class="form-control" placeholder="Porcje" required>
                                     <br>
                                     <p class="description_new">Opis przepisu</p>
                                     <textarea name="description" id="description" class="form-control" placeholder="Opis przepisu"></textarea>
                                     <br>
-                                    <p class="description_new">Opis na instagrama</p>
-                                    <textarea name="instagram_description" id="description" class="form-control" placeholder="Opis na instagrama"></textarea>
-                                    <br>
                                     <p class="description_new">Poziom zaawansowania</p>
-                                    <select name="recipe" id="select" class="form-control">
+                                    <select name="level" id="select" class="form-control" required>
                                         <option>Łatwy</option>
                                         <option>Średni</option>
                                         <option>Zaawansowany</option>
                                     </select>
                                     <br>
                                     <p class="description_new">Zdjęcie główne przepisu</p>
-                                    <input type="file" name="profile">
+                                    <input class="form-control" type="file" name="profile" accept="image/*" required>
                                     <br>
                                     <br>
                                     <ul class="description_new">

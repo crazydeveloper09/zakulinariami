@@ -1,0 +1,48 @@
+<%- include("../partials/header") %>
+<br>
+<br>
+<br>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-12">
+            <div class="card">
+                <div class="card-title text-center title_new" id="name">
+                    <br>
+                    Powiąż produkt z przepisem <%= recipe.title %>
+                </div>
+                <div class="card-body">
+                    <% if(error && error.length > 0){ %>
+                        <div class="alert alert-danger" role="alert">
+                            <%= error %>
+                        </div>
+                    <% } %>
+                        <form action="/recipes/<%= recipe._id %>/products" method="post">
+                            <p class="description_new">Wybierz produkt</p>
+                            <% if(products.length === 0){ %>
+                                <div class="row justify-content-center">
+                                    <div class="col-lg-6 col-md-12">
+                                        <div class="alert alert-secondary text-center" role="alert">
+                                            Powiązałeś wszystkie produkty z tym przepisem
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="submit" value="Powiąż produkt z przepisem" class="btn btn-outline-dark" disabled>
+                            <% } else { %>
+                                <select name="product" id="select" class="form-control" required>
+                                    <% for(let i=0;i< products.length;i++){ %>
+                                        <option value="<%= products[i]._id %>"><%= products[i].title %></option>
+                                    <% } %>
+                                </select>
+                                <br>
+                                
+                                <input type="submit" value="Powiąż produkt z przepisem" class="btn btn-outline-dark">
+                            <% } %>
+                        </form>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<%- include("../partials/footer") %>

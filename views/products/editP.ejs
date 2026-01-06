@@ -14,9 +14,8 @@
                                 <form action="/products/<%= product._id %>/edit/profile" method="post" enctype="multipart/form-data">
                                     
                                     <p class="description_new">Wybierz zdjęcie</p>
-                                    <input type="file" name="profile">
-                                    <br>
-                                    <br>
+                                    <input class="form-control" type="file" name="profile" accept="image/*">
+                                    
                                     <input type="submit" value="Edytuj zdjęcie główne" class="btn btn-outline-dark">
                                 </form>
                         </div>

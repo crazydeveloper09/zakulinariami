@@ -14,7 +14,7 @@
                         <form action="/products/<%= product._id %>/whyToAvoid/<%= whyToAvoid._id %>?_method=PUT" method="post">
                             
                             <p class="description_new">Edytuj opis cechy</p>
-                            <textarea name="whyToAvoid[text]" id="description" class="form-control" placeholder="Cecha dlaczego unikać"><%= whyToAvoid.text %></textarea>
+                            <textarea name="whyToAvoid[text]" id="description" class="form-control" placeholder="Cecha dlaczego unikać" required><%= whyToAvoid.text %></textarea>
                             <br>
                            
                             <input type="submit" value="Edytuj cechę" class="btn btn-outline-dark">

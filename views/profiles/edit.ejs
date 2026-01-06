@@ -14,16 +14,16 @@
                 <div class="card-body">
                         <form action="/about/<%= user._id %>?_method=PUT" method="post">
                             <p class="description_new">Edytuj nazwę użytkownika</p>
-                            <input type="text" name="blogger[username]" class="form-control" value="<%= user.username %>" placeholder="Nazwa użytkownika">
+                            <input type="text" name="blogger[username]" class="form-control" value="<%= user.username %>" placeholder="Nazwa użytkownika" required>
                             <br>
                             <p class="description_new">Edytuj email</p>
-                            <input type="email" name="blogger[email]" class="form-control" value="<%= user.email %>" placeholder="Email">
+                            <input type="email" name="blogger[email]" class="form-control" value="<%= user.email %>" placeholder="Email" required>
                             <br>
                             <p class="description_new">Edytuj imię</p>
-                            <input type="text" name="blogger[name]" class="form-control" value="<%= user.name %>" placeholder="Imię">
+                            <input type="text" name="blogger[name]" class="form-control" value="<%= user.name %>" placeholder="Imię" required>
                             <br>
                             <p class="description_new">Edytuj nazwisko</p>
-                            <input type="text" name="blogger[surname]" class="form-control" value="<%= user.surname %>" placeholder="Nazwisko">
+                            <input type="text" name="blogger[surname]" class="form-control" value="<%= user.surname %>" placeholder="Nazwisko" required>
                             <br>
                             <p class="description_new">Edytuj opis samego siebie</p>
                             <textarea name="blogger[description]" id="description" class="form-control" placeholder="Opis samego siebie"><%= user.description %></textarea>

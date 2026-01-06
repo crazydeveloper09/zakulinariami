@@ -11,7 +11,7 @@
                     <% if(comment.nickname){ %>
                         Dodaj odpowiedż do komentarza <%= comment.nickname %>: <%= comment.text %> do przepisu <%= comment.recipe.title %>
                     <% } else { %>
-                        Dodaj odpowiedż do komentarza <%= comment.author[0].username %>: <%= comment.text %> do przepisu <%= comment.recipe.title %>
+                        Dodaj odpowiedż do komentarza <%= comment.author.username %>: <%= comment.text %> do przepisu <%= comment.recipe.title %>
                     <% } %>
                     
                 </div>
@@ -19,12 +19,12 @@
                         <form action="/recipes/<%= comment.recipe.link %>/comments/<%= comment._id %>/answers" method="post">
                             <% if(!currentUser){ %>
                                 <p class="description_new">Podaj swój nick</p>
-                                <input type="text" name="nickname" class="form-control" placeholder="Nick">
+                                <input type="text" name="nickname" class="form-control" placeholder="Nick" required>
                                 <br>
                             <% } %>
                             
                             <p class="description_new">Tekst odpowiedzi</p>
-                            <textarea name="text" id="description" class="form-control" placeholder="Tekst odpowiedzi"></textarea>
+                            <textarea name="text" id="description" class="form-control" placeholder="Tekst odpowiedzi" required></textarea>
                             <br>
                             <input type="submit" value="Dodaj nową odpowiedź" class="btn btn-outline-dark">
                         </form>

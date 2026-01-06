@@ -1,38 +1,56 @@
-const mongoose = require("mongoose"),
-    passportLocalMongoose = require("passport-local-mongoose");
+import mongoose from "mongoose";
+import passportLocalMongoose from "passport-local-mongoose";
+import { decrypt, encrypt } from "../helpers.js";
 
 
 const bloggerSchema = new mongoose.Schema({
     username: { 
         type:String,
         unique: true,
-        required: true
+        required: true,
     },
     name: {
         type: String,
-        required: true
+        required: true,
+       
     },
     surname: {
         type: String,
-        required: true
+        required: true,
+        
     }, 
     email: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
+       
     },
+    hashedEmail: String,
     profile: String,
     password: String,
-    hobbies: String,
+    hobbies: {
+        type: String,
+        
+    },
     age: Number,
     city: String,
-    description: String,
+    description: {
+        type: String,
+        
+    },
     joined: {
         type: Date,
         default: Date.now()
     },
     resetPasswordToken: String,
-    resetPasswordExpires: Date
+    resetPasswordExpires: Date,
+    verificationCode: Number, 
+    verificationExpires: Date,
+    verificated: {
+        type: Boolean,
+        default: false
+    }
 });
 bloggerSchema.plugin(passportLocalMongoose);
-module.exports = mongoose.model("Blogger", bloggerSchema);
+
+export default mongoose.model("Blogger", bloggerSchema);
