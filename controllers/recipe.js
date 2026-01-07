@@ -218,7 +218,7 @@ export const publishRecipe = (req, res, next) => {
         .then((recipe) => {
             recipe.published = true;
             recipe.save();
-            res.redirect("back")
+            res.redirect(`/recipes/${recipe.link}`)
         })
         .catch((err) => console.log(err))
 }

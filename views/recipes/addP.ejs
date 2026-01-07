@@ -13,7 +13,12 @@
                         <div class="card-body">
                                 <form action="/recipes/<%= recipe._id %>/add/picture" method="post" enctype="multipart/form-data">
                                     
-                                    <p class="description_new">Wybierz zdjęcie</p>
+                                    <p class="description_new">
+                                        Wybierz zdjęcie
+                                        <button type="button" style="background: transparent;border: none;" data-bs-toggle="popover" data-bs-placement="right" data-bs-content="Najlepiej będzie, jeśli będziesz używać poziomego zdjęcia">
+                                            <i class="fas fa-info-circle" style="color: #212529;"></i>
+                                        </button>
+                                    </p>
                                     <input class="form-control" type="file" accept="image/*" name="picture" required>
                                     
                                     <input type="submit" value="Dodaj zdjęcie do galerii" class="btn btn-outline-dark">

@@ -32,10 +32,15 @@ body {
     color: #1F2428;
     font-family: "Playfair Display", serif;
 }
-a.title_link {
+.title_link {
     color: #1F2428;
     text-decoration: none;
     font-family: "Playfair Display", serif;
+}
+
+.title_link:hover {
+    color: #C3A46B;
+    text-decoration: none;
 }
 
 footer {
@@ -47,7 +52,7 @@ a {
     text-decoration: none;
 }
 
-a:not(.btn):hover {
+a:not(.btn, .title_link, .navbar-brand):hover {
     text-decoration: underline;
 }
 

@@ -16,7 +16,7 @@
                     <% if( thisUser.description !== ""){ %>
                         <p class="description"><%= thisUser.description %></p>
                     <% } else { %>
-                        <div class="alert alert-dark" role="alert">
+                        <div class="alert alert-secondary" role="alert">
                             Użytkownik nie dodał jeszcze swojego opisu
                         </div>
                     <% } %>
@@ -26,7 +26,7 @@
                             <% if( thisUser.age !== ""){ %>
                                 <dd class="description"><%= thisUser.age %></dd>
                             <% } else { %>
-                                <div class="alert alert-dark" role="alert">
+                                <div class="alert alert-secondary" role="alert">
                                    Użytkownik nie dodał jeszcze swojego wieku
                                 </div>
                             <% } %>
@@ -37,7 +37,7 @@
                             <% if( thisUser.city !== ""){ %>
                                 <dd class="description"><%= thisUser.city %></dd>
                             <% } else { %>
-                                <div class="alert alert-dark" role="alert">
+                                <div class="alert alert-secondary" role="alert">
                                     Użytkownik nie dodał jeszcze swojej miejscowości zamieszkania
                                 </div>
                             <% } %>
@@ -48,7 +48,7 @@
                             <% if(thisUser.hobbies && thisUser.hobbies.trim() !== ""){ %>
                                 <dd class="description"><%= thisUser.hobbies %></dd>
                             <% } else { %>
-                                <div class="alert alert-dark" role="alert">
+                                <div class="alert alert-secondary" role="alert">
                                     Użytkownik nie dodał jeszcze swoich zainteresowań
                                 </div>
                             <% } %>
@@ -56,7 +56,7 @@
                         
                         <dt class="description_new">Przepisy</dt>
                         <% if(recipes.length === 0){ %>
-                            <div class="alert alert-dark" role="alert">
+                            <div class="alert alert-secondary" role="alert">
                                 Użytkownik nie dodał jeszcze przepisów
                             </div>
                         <% } else { %>
@@ -64,7 +64,7 @@
                                 <% recipes.forEach((recipe) => { %>
                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                         <img src="<%= recipe.profile %>" alt="<%= recipe.title %>" class="img-fluid">
-                                        <div class="link_div">
+                                        <div class="link_div text-center">
                                             <a href="/recipes/<%= recipe.link %>" class="more_details_link"><%= recipe.title %></a>
                                         </div>
                                         
