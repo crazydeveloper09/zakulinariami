@@ -7,7 +7,7 @@
             <h1 class="headerp text-center">Wszystkie przepisy z kategorii: <%= category.name %></h1>
             <% if(currentUser){ %>
                 <div class="dropdown text-center">
-                    <button class="btn btn-outline-dark dropdown-toggle justify-content-center" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button class="btn btn-outline-dark dropdown-toggle justify-content-center" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                        Modyfikacja
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -31,7 +31,7 @@
             </form>
             <% if(categories.length !== 0){ %>
                 <div class="dropdown text-center">
-                    <button class="btn btn-outline-dark dropdown-toggle justify-content-center" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button class="btn btn-outline-dark dropdown-toggle justify-content-center" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                        Wybierz inną kategorię
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -72,4 +72,5 @@
     
     
 </div>
+
 <%- include("../partials/footer") %>
