@@ -1,15 +1,16 @@
-body:before {
-	content: '';
-    background-size: cover;
-    background-position: center; 
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
 
-	background: url(landing.png) no-repeat;
-	background-attachment: fixed;
-	height: 100%;
-	width: 100%;
-	position: fixed;
-	
+    background-image: url("landing.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    z-index: -1;
 }
+
 
 body,
 html {
@@ -51,14 +52,20 @@ input[type=search] {
 }
 
 #landing {
-    margin-top: 30%;
+    height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 @media (max-width: 992px) {
+    body::before {
+        background-image: url("food_mobile.jpg");
+        background-attachment: scroll;
+        background-position: center;
+    }
+
 	.card {
         margin-top: 50%;
-    }
-	#landing {
-        margin-top: 60%;
     }
 }
