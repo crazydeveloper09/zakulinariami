@@ -26,6 +26,7 @@ body {
 .dropdown-item.active {
     background: #6F8F7A;
 }
+
 .header {
     font-size: 40px;
     font-weight: 700;
@@ -62,7 +63,7 @@ a {
     text-decoration: none;
 }
 
-a:not(.btn, .title_link, .navbar-brand):hover {
+a:not(.btn, .title_link, .navbar-brand, .dropdown-item):hover {
     text-decoration: underline;
 }
 
