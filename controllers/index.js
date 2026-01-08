@@ -197,8 +197,6 @@ export const registerUser = (req, res, next) => {
         let emailHash = hashEmail(req.body.email);
         let newBlogger = new Blogger({
             username: req.body.username,
-            name: req.body.name,
-            surname: req.body.surname,
             email: req.body.email,
             profile: result.secure_url,
             hashedEmail: emailHash,

@@ -1,8 +1,6 @@
 <%- include("../partials/header") %>
-<br>
-<br>
-<br>
-<div class="container">
+
+<div class="container customContainer">
     
     
  
@@ -20,23 +18,25 @@
 			
             <% if(categories.length !== 0){ %>
           
-                
-                    <div class="dropdown text-center">
-                        <button class="btn btn-outline-dark dropdown-toggle justify-content-center" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Wybierz kategorię
-                        </button>
-                        <ul class="dropdown-menu">
-                            <% for(let i=0; i< categories.length; i++){ %>
-                                <li>
-                                    <a class="dropdown-item" href="/recipes/category/<%= categories[i].link %>"><%= categories[i].name %></a>
-                                </li>
-                            <% } %>
-                            
+                    <div style="display: flex; justify-content: center; gap: 40px; margin-bottom: 15px;">
+                        <div class="dropdown text-center">
+                            <button class="btn btn-outline-dark dropdown-toggle justify-content-center" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Wybierz kategorię
+                            </button>
+                            <ul class="dropdown-menu">
+                                <% for(let i=0; i< categories.length; i++){ %>
+                                    <li>
+                                        <a class="dropdown-item" href="/recipes/category/<%= categories[i].link %>"><%= categories[i].name %></a>
+                                    </li>
+                                <% } %>
+                                
                             </ul>
-                        <span class="description" style="margin-left: 8px;margin-right: 8px">lub</span>
+                            
+                            
+                        </div>
                         <a data-bs-toggle="modal" data-bs-target="#searchRecipe" class="btn btn-dark" style="color:White">Wyszukaj przepis</a>
                     </div>
-                
+                    
                 
                 <br>
             <% } %>
@@ -94,7 +94,7 @@
                                 Więcej niż 3
                             </label>
                             <label class="radio">
-                                <input type="radio" name="portionS" value="3">
+                                <input type="radio" name="portion" value="3s">
                                 <div class="radioButton"></div>
                                 Mniej niż 3
                             </label>

@@ -2,7 +2,9 @@ body {
     background: #E3E6E1;
     font-family: "DM Sans", sans-serif;
 }
-
+.customContainer {
+    margin-top: 80px;
+}
 #mainNav .nav-link {
     text-transform: uppercase;
     color: #f5f6fa;
@@ -31,6 +33,11 @@ body {
     font-weight: 700;
     color: #1F2428;
     font-family: "Playfair Display", serif;
+    margin: 10px 0 20px 0;
+}
+
+.modal-title.headerp {
+    margin: 0;
 }
 .title_link {
     color: #1F2428;

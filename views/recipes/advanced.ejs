@@ -1,8 +1,6 @@
 <%- include("../partials/header") %>
-<br>
-<br>
-<br>
-<div class="container">
+
+<div class="container customContainer">
     
     
  
@@ -23,10 +21,10 @@
                 <ul class="description">
                     Parametry:
                     <li>
-                        Tytuł - <strong><%= param.title %></strong> <a data-toggle="modal" data-target="#searchRecipe" style="margin-left: 8px;cursor:pointer"> zmień</a>
+                        Tytuł - <strong><%= param.title %></strong> <a data-bs-toggle="modal" data-bs-target="#searchRecipe" style="margin-left: 8px;cursor:pointer"> zmień</a>
                     </li>
                     <li>
-                        Poziom - <strong><%= param.level %></strong> <a data-toggle="modal" data-target="#searchRecipe" style="margin-left: 8px;cursor:pointer"> zmień</a>
+                        Poziom - <strong><%= param.level %></strong> <a data-bs-toggle="modal" data-bs-target="#searchRecipe" style="margin-left: 8px;cursor:pointer"> zmień</a>
                     </li>
                     <li>
                         Czas - 
@@ -45,7 +43,7 @@
                         </strong> <a data-bs-toggle="modal" data-bs-target="#searchRecipe" style="margin-left: 8px;cursor:pointer"> zmień</a>
                     </li>
                     <li>
-                        Ilość porcji - <strong><%= param.portion %></strong> <a data-toggle="modal" data-target="#searchRecipe" style="margin-left: 8px;cursor:pointer"> zmień</a>
+                        Ilość porcji - <strong><%= param.portion %></strong> <a data-bs-toggle="modal" data-bs-target="#searchRecipe" style="margin-left: 8px;cursor:pointer"> zmień</a>
                     </li>
                 </ul>
                
@@ -100,9 +98,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title headerp">Wyszukaj przepis</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form action="/recipes/advanced/search" method="get">

@@ -432,7 +432,7 @@ export const searchRecipesAdvanced = (req, res, next) => {
                         {$or: [{ title: regex }]}, 
                         {$or: [{ level: req.query.level }]},
                         {$or: [{ minutes:{$lte: parseInt(req.query.time)}}]},
-                        {$or: [{ plates: {$lte: parseInt(req.query.portion.split('s'))} } ]},
+                        {$or: [{ plates: {$lte: parseInt(req.query.portion?.split('s'))} } ]},
                         isAdmin
                     ]})
                 .populate(["comments", "ingredients"])
