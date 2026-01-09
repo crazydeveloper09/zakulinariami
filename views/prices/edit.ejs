@@ -1,0 +1,29 @@
+<%- include("../partials/header") %>
+
+<div class="container customContainer">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-12">
+            <div class="card">
+                <div class="card-title text-center title_new" id="name">
+                    <br>
+                    Edytuj opis ceny produktu <%= product.title %>
+                </div>
+                <div class="card-body">
+                        <form action="/products/<%= product._id %>/prices/<%= price._id %>?_method=PUT" method="post">
+                            
+                            <p class="description_new">Nazwa sklepu</p>
+                            <input type="text" name="price[shopName]" value="<%= price.shopName %>" id="description" class="form-control" placeholder="Nazwa sklepu" required>
+                            <br>
+                            <p class="description_new">Cena</p>
+                            <input type="number" name="price[amount]" step="0.01" value="<%= price.amount %>" id="description" class="form-control" placeholder="Cena" required>
+                            <br>
+                        
+                            <input type="submit" value="Edytuj opis ceny" class="btn btn-outline-dark">
+                        </form>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+<%- include("../partials/footer") %>

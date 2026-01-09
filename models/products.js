@@ -33,6 +33,12 @@ const productSchema = new mongoose.Schema({
             ref: "Substitute"
         }
     ],
+    prices: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Price"
+        }
+    ],
     recipes: [
         {
             type: mongoose.Schema.Types.ObjectId,

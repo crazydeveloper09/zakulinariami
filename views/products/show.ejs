@@ -48,8 +48,25 @@
                         </ul>
                         
                     <% } %>
+                    
                         
-                    <% if(product.substitutes.length !== 0){ %>
+                    <% if(product.prices.length !== 0){ %>
+                        <p class="preparation">Ceny w poszczególnych sklepach: </p>
+                        <ul>
+                            <% for(let i=0;i<product.prices.length;i++){ %>
+                                <li class="description_comment"><%= product.prices[i].shopName %> - <%= product.prices[i].amount %>zł</li>
+                                <% if(currentUser) { %>
+                                    <div class="d-inline">
+                                        <a href="/products/<%= product._id %>/prices/<%= product.prices[i]._id %>/edit">Edytuj</a>
+                                        <a href="/products/<%= product._id %>/prices/<%= product.prices[i]._id %>/delete">Usuń</a>
+                                    </div>
+                                   
+                                <% } %>
+                            <% } %>
+                        </ul>
+                        
+                    <% } %>
+                   <% if(product.substitutes.length !== 0){ %>
                         <p class="preparation">Zamienniki: </p>
                         <ul>
                             <% for(let i=0;i<product.substitutes.length;i++){ %>
@@ -65,17 +82,9 @@
                         </ul>
                         
                     <% } %>
-                   
-                    <p class="preparation">Ostatnio powiązane przepisy: </p>
-                    <% if(product.recipes.length === 0){ %>
-                        <div class="row">
-                            <div class="col-lg-6 col-sm-12">
-                                <div class="alert alert-secondary" role="alert">
-                                    Nie powiązaliśmy jeszcze żadnego przepisu z <%= product.title %>
-                                </div>
-                            </div>
-                        </div>
-                    <% } else { %>
+                    
+                    <% if(product.recipes.length ==! 0){ %>
+                        <p class="preparation">Ostatnio powiązane przepisy: </p>
                         <ul>
                             <% for(let i=0;i<product.recipes.length;i++){ %>
                                 <li class="description_comment"> <a href="/products/<%= product.recipes[i].link %>" style="color: #212529"><%= product.recipes[i].title %></a></li>
@@ -110,7 +119,7 @@
                     <% if(currentUser){ %>
                         <div class="modifyButtonsContainer">
                             <div class="dropdown">
-                                <button class="btn btn-outline-dark dropdown-toggle justify-content-center" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <button class="btn btn-outline-dark dropdown-toggle justify-content-center" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Modyfikacja
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -122,6 +131,7 @@
                                     <a class="dropdown-item" href="/products/<%= product._id %>/add/picture">Dodaj zdjęcie do galerii</a>
                                     <a class="dropdown-item" href="/products/<%= product._id %>/whyToEat/new">Dodaj powód do jedzenia</a>
                                     <a class="dropdown-item" href="/products/<%= product._id %>/whyToAvoid/new">Dodaj powód do unikania</a>
+                                    <a class="dropdown-item" href="/products/<%= product._id %>/prices/new">Dodaj sklep z ceną</a>
                                     <a class="dropdown-item" href="/products/<%= product._id %>/substitutes/new">Dodaj zamiennik</a>
                                     <a class="dropdown-item" href="/products/<%= product._id %>/products/add">Powiąż z przepisem</a>
                                 

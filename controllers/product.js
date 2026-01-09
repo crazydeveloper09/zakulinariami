@@ -112,7 +112,7 @@ export const linkProductToRecipe = (req, res, next) => {
 export const renderProductShowPage = (req, res, next) => {
     Product
         .findOne({link: req.params.link})
-        .populate(["whyToEat", "recipes", "pictures","whyToAvoid", "substitutes"])
+        .populate(["whyToEat", "recipes", "pictures","whyToAvoid", "substitutes", "prices"])
         .exec()
         .then((product) => {
             let header = `Cookiety | Produkty | ${product.title}`;

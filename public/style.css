@@ -27,6 +27,11 @@ body {
     background: #6F8F7A;
 }
 
+.form-control:focus,
+.form-select:focus {
+    box-shadow: none;
+}
+
 .header {
     font-size: 40px;
     font-weight: 700;

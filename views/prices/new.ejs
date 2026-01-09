@@ -1,0 +1,29 @@
+<%- include("../partials/header") %>
+
+<div class="container customContainer">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-12">
+            <div class="card">
+                <div class="card-title text-center title_new" id="name">
+                    <br>
+                    Dodaj opis ceny produktu <%= product.title %>
+                </div>
+                <div class="card-body">
+                        <form action="/products/<%= product._id %>/prices" method="post">
+                            
+                            <p class="description_new">Nazwa sklepu</p>
+                            <input type="text" name="shopName" id="description" class="form-control" placeholder="Nazwa sklepu" required>
+                            <br>
+                            <p class="description_new">Cena</p>
+                            <input type="number" name="amount" step="0.01" id="description" class="form-control" placeholder="Cena" required>
+                            <br>
+                        
+                            <input type="submit" value="Dodaj opis ceny" class="btn btn-outline-dark">
+                        </form>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+<%- include("../partials/footer") %>
