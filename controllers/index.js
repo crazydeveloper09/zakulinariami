@@ -52,7 +52,7 @@ export const renderLoginPage = (req, res, next) => {
 
 export const renderRegisterPage = (req, res, next) => {
     let header = `Cookiety | Rejestracja`;
-    res.render("register", { header:header })
+    res.render("register", { header: header, route: req.query.return_route })
 }
 
 export const renderPrivacyPolicyPage = (req, res, next) => {
@@ -158,13 +158,13 @@ export const resetPassword = (req, res, next) => {
             done(undefined);
         }
     ], function(err){
-        res.redirect("/");
+        res.redirect("/login");
     });
 }
 
 export const logOutUser = (req, res, next) => {
     req.logout();
-    res.redirect("/");
+    res.redirect("/home");
 }
 
 export const logInUser = (req, res, next) => {
@@ -214,7 +214,7 @@ export const registerUser = (req, res, next) => {
             passport.authenticate("local")(req, res, function() {
                 const subject = "Zweryfikuj konto w Cookiety";
                 sendSimpleMessage(user.email, subject, verifyCodeTemplate, { code: user.verificationCode })
-                res.redirect(`/about/${user._id}/verification?return_route=/home`);
+                res.redirect(`/about/${user._id}/verification?return_route=${req.query.return_route}`);
             });
         });
     });

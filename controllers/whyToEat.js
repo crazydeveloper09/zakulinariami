@@ -96,7 +96,7 @@ export const deleteWhyToEat = (req, res, next) => {
                 .findByIdAndRemove(req.params.whyToEat_id)
                 .exec()
                 .then((deletedWhyToEat) =>  res.redirect(`/products/${product.link}`))
-                .catch(console.log(err)) 
+                .catch((err) => console.log(err)) 
         })
         .catch((err) => console.log(err))
 }

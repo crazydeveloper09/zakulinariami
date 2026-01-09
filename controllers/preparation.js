@@ -96,7 +96,7 @@ export const deletePreparation = (req, res, next) => {
                 .findByIdAndRemove(req.params.preparation_id)
                 .exec()
                 .then((deletedPreparation) =>  res.redirect(`/recipes/${recipe.link}`))
-                .catch(console.log(err)) 
+                .catch((err) => console.log(err)) 
         })
         .catch((err) => console.log(err))
 }

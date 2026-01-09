@@ -96,7 +96,7 @@ export const deleteSauceIngredient = (req, res, next) => {
                 .findByIdAndRemove(req.params.sauce_id)
                 .exec()
                 .then((deletedSauce) =>  res.redirect(`/recipes/${recipe.link}`))
-                .catch(console.log(err)) 
+                .catch((err) => console.log(err)) 
         })
         .catch((err) => console.log(err))
 }

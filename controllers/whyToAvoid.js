@@ -96,7 +96,7 @@ export const deleteWhyToAvoid = (req, res, next) => {
                 .findByIdAndRemove(req.params.whyToAvoid_id)
                 .exec()
                 .then((deletedWhyToAvoid) =>  res.redirect(`/products/${product.link}`))
-                .catch(console.log(err)) 
+                .catch((err) => console.log(err)) 
         })
         .catch((err) => console.log(err))
 }

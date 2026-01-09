@@ -96,7 +96,7 @@ export const deleteDecorationIngredient = (req, res, next) => {
                 .findByIdAndRemove(req.params.decoration_id)
                 .exec()
                 .then((deletedDecoration) =>  res.redirect(`/recipes/${recipe.link}`))
-                .catch(console.log(err)) 
+                .catch((err) => console.log(err)) 
         })
         .catch((err) => console.log(err))
 }

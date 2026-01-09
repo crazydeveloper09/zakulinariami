@@ -96,7 +96,7 @@ export const deleteSubstitute = (req, res, next) => {
                 .findByIdAndRemove(req.params.substitute_id)
                 .exec()
                 .then((deletedSubstitute) =>  res.redirect(`/products/${product.link}`))
-                .catch(console.log(err)) 
+                .catch((err) => console.log(err)) 
         })
         .catch((err) => console.log(err))
 }

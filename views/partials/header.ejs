@@ -88,6 +88,12 @@
                             <a class="nav-link" href="/recipes/new">Dodaj przepis</a>
                         </li>
                     <% } %>
+
+                    <% if(!currentUser) { %>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/login?return_route=<%= route %>">Logowanie</a>
+                        </li>
+                    <% } %>
                     
                     <% if(typeof currentUser !== 'undefined'){ %>
                         <% if(typeof about !== 'undefined'){ %>
